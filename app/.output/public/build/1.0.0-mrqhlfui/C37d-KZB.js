@@ -1,4 +1,4 @@
-const __vite__mapDeps=(i,m=__vite__mapDeps,d=(m.f||(m.f=["./CVRI56iY.js","./1tPrXgE0.js","./index.B2wTUuaD.css","./BoW54tNg.js","./default.BgjY-Fct.css","./C3IUmx4z.js","./error-404.Dv2pyLoR.css","./Cb66PySp.js","./error-500.C2XaBLWY.css"])))=>i.map(i=>d[i]);
+const __vite__mapDeps=(i,m=__vite__mapDeps,d=(m.f||(m.f=["./Ck-ozjzG.js","./1tPrXgE0.js","./E8AUv15y.js","./Icon.BPysc5Dr.css","./index.fS9Okayb.css","./CiZmPyeZ.js","./default.DAP4wL0X.css","./C_p_lMaf.js","./error-404.Dv2pyLoR.css","./DlhtbqkX.js","./error-500.C2XaBLWY.css"])))=>i.map(i=>d[i]);
 (function polyfill() {
   const relList = document.createElement("link").relList;
   if (relList && relList.supports && relList.supports("modulepreload")) return;
@@ -416,6 +416,11 @@ function effectScope(detached) {
 }
 function getCurrentScope() {
   return activeEffectScope;
+}
+function onScopeDispose(fn, failSilently = false) {
+  if (activeEffectScope) {
+    activeEffectScope.cleanups.push(fn);
+  }
 }
 let activeSub;
 const pausedQueueEffects = /* @__PURE__ */ new WeakSet();
@@ -4187,6 +4192,42 @@ function normalizePropsOrEmits(props) {
     (normalized, p2) => (normalized[p2] = null, normalized),
     {}
   ) : props;
+}
+function withAsyncContext(getAwaitable) {
+  const ctx = getCurrentInstance();
+  const inSSRSetup = isInSSRComponentSetup;
+  let awaitable = getAwaitable();
+  unsetCurrentInstance();
+  if (inSSRSetup) {
+    setInSSRSetupState(false);
+  }
+  const restore = () => {
+    setCurrentInstance(ctx);
+    if (inSSRSetup) {
+      setInSSRSetupState(true);
+    }
+  };
+  const cleanup = () => {
+    if (getCurrentInstance() !== ctx) ctx.scope.off();
+    unsetCurrentInstance();
+    if (inSSRSetup) {
+      setInSSRSetupState(false);
+    }
+  };
+  if (isPromise(awaitable)) {
+    awaitable = awaitable.catch((e) => {
+      restore();
+      Promise.resolve().then(() => Promise.resolve().then(cleanup));
+      throw e;
+    });
+  }
+  return [
+    awaitable,
+    () => {
+      restore();
+      Promise.resolve().then(cleanup);
+    }
+  ];
 }
 let shouldCacheAccess = true;
 function applyOptions(instance) {
@@ -9834,6 +9875,7 @@ const appPageTransition = false;
 const appKeepalive = false;
 const renderJsonPayloads = true;
 const nuxtLinkDefaults = { "componentName": "NuxtLink", "prefetch": true, "prefetchOn": { "visibility": true } };
+const asyncDataDefaults = { "value": null, "errorValue": null, "deep": true };
 const nuxtDefaultErrorValue = null;
 const vueAppRootContainer = "#__nuxt";
 const appId = "nuxt-app";
@@ -13552,7 +13594,7 @@ const _routes = [
   {
     name: "index",
     path: "/",
-    component: () => __vitePreload(() => import("./CVRI56iY.js"), true ? __vite__mapDeps([0,1,2]) : void 0, import.meta.url)
+    component: () => __vitePreload(() => import("./Ck-ozjzG.js"), true ? __vite__mapDeps([0,1,2,3,4]) : void 0, import.meta.url)
   }
 ];
 const _wrapInTransition = (props, children) => {
@@ -14096,7 +14138,7 @@ const components_plugin_z4hgvsiddfKkfXTP6M8M4zG5Cb7sGnDhcryKVM45Di4 = /* @__PURE
   name: "nuxt:global-components"
 });
 const layouts = {
-  default: /* @__PURE__ */ defineAsyncComponent(() => __vitePreload(() => import("./BoW54tNg.js"), true ? __vite__mapDeps([3,1,4]) : void 0, import.meta.url).then((m) => m.default || m))
+  default: /* @__PURE__ */ defineAsyncComponent(() => __vitePreload(() => import("./CiZmPyeZ.js"), true ? __vite__mapDeps([5,1,2,3,6]) : void 0, import.meta.url).then((m) => m.default || m))
 };
 function _loadAsyncComponent(component) {
   if (component?.__asyncLoader && !component.__asyncResolved) {
@@ -14570,12 +14612,14 @@ const description = "Современный статический сайт на
 const keywords = ["nuxt", "vue", "ssg", "template"];
 const favicon = "/favicon.ico";
 const ogImage = "/images/og-image.png";
+const copyright = "© 2026 Все права защищены";
 const site = {
   title,
   description,
   keywords,
   favicon,
-  ogImage
+  ogImage,
+  copyright
 };
 const _sfc_main$2 = {
   __name: "app",
@@ -14589,11 +14633,11 @@ const _sfc_main$2 = {
         { name: "keywords", content: site.keywords?.join(", ") },
         { property: "og:title", content: site.title },
         { property: "og:description", content: site.description },
-        { property: "og:image", content: site.ogImage },
+        { property: "og:image", content: site.ogImage || "/images/og-image.png" },
         { property: "og:type", content: "website" }
       ],
       link: [
-        { rel: "icon", type: "image/x-icon", href: site.favicon }
+        { rel: "icon", type: "image/x-icon", href: site.favicon || "/favicon.ico" }
       ]
     });
     return (_ctx, _cache) => {
@@ -14621,8 +14665,8 @@ const _sfc_main$1 = {
     const statusText = _error.statusMessage ?? (is404 ? "Page Not Found" : "Internal Server Error");
     const description2 = _error.message || _error.toString();
     const stack2 = void 0;
-    const _Error404 = /* @__PURE__ */ defineAsyncComponent(() => __vitePreload(() => import("./C3IUmx4z.js"), true ? __vite__mapDeps([5,1,6]) : void 0, import.meta.url));
-    const _Error = /* @__PURE__ */ defineAsyncComponent(() => __vitePreload(() => import("./Cb66PySp.js"), true ? __vite__mapDeps([7,1,8]) : void 0, import.meta.url));
+    const _Error404 = /* @__PURE__ */ defineAsyncComponent(() => __vitePreload(() => import("./C_p_lMaf.js"), true ? __vite__mapDeps([7,1,8]) : void 0, import.meta.url));
+    const _Error = /* @__PURE__ */ defineAsyncComponent(() => __vitePreload(() => import("./DlhtbqkX.js"), true ? __vite__mapDeps([9,1,10]) : void 0, import.meta.url));
     const ErrorTemplate = is404 ? _Error404 : _Error;
     return (_ctx, _cache) => {
       return openBlock(), createBlock(unref(ErrorTemplate), normalizeProps$1(guardReactiveProps({ status: unref(status), statusText: unref(statusText), statusCode: unref(status), statusMessage: unref(statusText), description: unref(description2), stack: unref(stack2) })), null, 16);
@@ -14734,6 +14778,7 @@ let entry;
   });
 }
 export {
+  queuePostFlushCb as $,
   useHead as A,
   openBlock as B,
   createElementBlock as C,
@@ -14742,15 +14787,31 @@ export {
   createVNode as F,
   withCtx as G,
   createTextVNode as H,
-  createCommentVNode as I,
-  createBlock as J,
+  renderSlot as I,
+  normalizeClass as J,
   normalizeStyle as K,
-  Fragment as L,
-  renderList as M,
-  mergeProps as N,
-  resolveDynamicComponent as O,
-  renderSlot as P,
+  createCommentVNode as L,
+  createBlock as M,
+  Fragment as N,
+  renderList as O,
+  asyncDataDefaults as P,
+  watch as Q,
+  onScopeDispose as R,
+  getCurrentScope as S,
+  nextTick as T,
+  createError as U,
+  toRef as V,
+  onBeforeMount as W,
+  onUnmounted as X,
+  inject as Y,
+  getCurrentInstance as Z,
+  toValue as _,
   useNuxtApp as a,
+  withAsyncContext as a0,
+  normalizeProps$1 as a1,
+  mergeProps as a2,
+  __vitePreload as a3,
+  site as a4,
   onNuxtReady as b,
   onBeforeUnmount as c,
   defineComponent as d,

@@ -1,29 +1,14 @@
 <script setup>
-import HeroSection from '~/components/sections/HeroSection.vue'
-import FeaturesSection from '~/components/sections/FeaturesSection.vue'
-import AboutSection from '~/components/sections/AboutSection.vue'
-import ContactSection from '~/components/sections/ContactSection.vue'
-import CtaSection from '~/components/sections/CtaSection.vue'
-
-import heroData from '~/../data/sections/hero.json'
-import featuresData from '~/../data/sections/features.json'
-import aboutData from '~/../data/sections/about.json'
-import contactData from '~/../data/sections/contact.json'
-import ctaData from '~/../data/sections/cta.json'
-
-const sectionMap = {
-  hero:     { component: HeroSection,     data: heroData },
-  features: { component: FeaturesSection, data: featuresData },
-  about:    { component: AboutSection,    data: aboutData },
-  contact:  { component: ContactSection,  data: contactData },
-  cta:      { component: CtaSection,      data: ctaData },
-}
-
 import sectionsList from '~/../data/pages/index.json'
 
-const sections = sectionsList
-  .map(name => sectionMap[name])
-  .filter(Boolean)
+const { data: sections } = await useAsyncData('sections', () => {
+  return Promise.all(
+    sectionsList.map(async (name) => {
+      const mod = await import(`~/../data/sections/${name}.json`)
+      return { ...mod.default || mod, type: name }
+    })
+  )
+})
 
 useHead({
   title: 'Главная',
@@ -35,11 +20,25 @@ useHead({
 
 <template>
   <main>
-    <template v-for="(section, index) in sections" :key="index">
-      <component
-        :is="section.component"
-        v-bind="section.data"
-      />
-    </template>
+    <HeroSection
+      v-if="sections?.[0]?.type === 'hero'"
+      v-bind="sections[0]"
+    />
+    <FeaturesSection
+      v-if="sections?.[1]?.type === 'features'"
+      v-bind="sections[1]"
+    />
+    <AboutSection
+      v-if="sections?.[2]?.type === 'about'"
+      v-bind="sections[2]"
+    />
+    <CtaSection
+      v-if="sections?.[3]?.type === 'cta'"
+      v-bind="sections[3]"
+    />
+    <ContactSection
+      v-if="sections?.[4]?.type === 'contact'"
+      v-bind="sections[4]"
+    />
   </main>
 </template>

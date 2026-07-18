@@ -21,8 +21,17 @@ export default defineNuxtConfig({
     },
   },
 
+  components: {
+    dirs: [
+      { path: '~/components/ui', pathPrefix: false },
+      { path: '~/components/shared', pathPrefix: false },
+      { path: '~/components/sections', pathPrefix: false },
+    ],
+  },
+
   nitro: {
     static: true,
+    compressHTML: false,
     minify: false,
   },
 
