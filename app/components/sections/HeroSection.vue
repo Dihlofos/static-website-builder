@@ -7,17 +7,10 @@ const props = defineProps({
   backgroundImage: { type: String, default: '' },
 })
 
-const bgStyle = computed(() => {
-  if (!props.backgroundImage) return {}
-  const fileName = props.backgroundImage.replace('components/HeroSection/', '')
-  return {
-    backgroundImage: `url(/components/HeroSection/${fileName})`,
-  }
-})
 </script>
 
 <template>
-  <section id="hero" class="hero" :style="bgStyle">
+  <section id="hero" class="hero">
     <Container>
       <div class="hero__content">
         <h1 class="hero__title">{{ title }}</h1>

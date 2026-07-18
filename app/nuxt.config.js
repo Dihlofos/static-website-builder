@@ -32,7 +32,6 @@ export default defineNuxtConfig({
     minify: false,
     publicAssets: [
       { baseURL: '/docs', dir: resolve(__dirname, '../public/docs') },
-      { baseURL: '/fonts', dir: resolve(__dirname, '../public/fonts') },
     ],
   },
 

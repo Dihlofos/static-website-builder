@@ -1,4 +1,5 @@
 <script setup>
+import footerData from '~/../data/sections/footer.json'
 </script>
 
 <template>
@@ -6,33 +7,24 @@
     <Container>
       <div class="footer__wrapper">
         <div class="footer__content">
-          <div class="footer__title">Контакты</div>
+          <div class="footer__title">{{ footerData.title }}</div>
 
           <div class="footer__contacts">
-            <div class="footer__contacts-item">
-              <div class="footer__contacts-label">По вопросам регистрации</div>
-              <a href="mailto:ano@mossport.ru" target="_blank" class="footer__contacts-link">ano@mossport.ru</a>
-            </div>
-            <div class="footer__contacts-item">
-              <div class="footer__contacts-label">Для СМИ</div>
-              <a href="mailto:press@moscow.sport" target="_blank" class="footer__contacts-link">press@moscow.sport</a>
+            <div v-for="contact in footerData.contacts" :key="contact.email" class="footer__contacts-item">
+              <div class="footer__contacts-label">{{ contact.label }}</div>
+              <a :href="'mailto:' + contact.email" target="_blank" class="footer__contacts-link">{{ contact.email }}</a>
             </div>
           </div>
 
           <div class="footer__info">
-            <p class="footer__info-text">
-              Для аккредитации на событие отправьте письмо на электронный адрес со следующей информацией:
-            </p>
+            <p class="footer__info-text">{{ footerData.info.text }}</p>
             <ul>
-              <li>название СМИ и программы, планируемая дата выхода материала;</li>
-              <li>ФИО корреспондента / всех участников съемочной группы с контактными телефонами.</li>
+              <li v-for="(item, i) in footerData.info.items" :key="i">{{ item }}</li>
             </ul>
           </div>
 
           <div class="footer__docs">
-            <a href="/docs/policy.pdf" target="_blank">Политика конфиденциальности</a>
-            <a href="/docs/reject.pdf" target="_blank">Отказ от претензий от участника</a>
-            <a href="/docs/reject_child.pdf" target="_blank">Отказ от претензий от опекуна ребенка</a>
+            <a v-for="doc in footerData.docs" :key="doc.href" :href="doc.href" target="_blank">{{ doc.label }}</a>
           </div>
         </div>
       </div>
