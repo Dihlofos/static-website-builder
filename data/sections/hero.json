@@ -1,0 +1,8 @@
+{
+  "type": "hero",
+  "title": "Создаём современные веб-сайты",
+  "subtitle": "Быстро, надёжно, красиво. Используем Nuxt 3 и SCSS.",
+  "button": { "text": "Узнать больше", "link": "#features" },
+  "secondaryButton": { "text": "Связаться", "link": "#contact" },
+  "backgroundImage": "components/HeroSection/bg-hero.jpg"
+}

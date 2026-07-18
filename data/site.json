@@ -1,0 +1,8 @@
+{
+  "title": "Мой сайт",
+  "description": "Современный статический сайт на Nuxt 3",
+  "keywords": ["nuxt", "vue", "ssg", "template"],
+  "favicon": "/favicon.ico",
+  "ogImage": "/images/og-image.png",
+  "copyright": "© 2026 Все права защищены"
+}

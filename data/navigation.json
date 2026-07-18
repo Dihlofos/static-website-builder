@@ -1,0 +1,6 @@
+[
+  { "label": "Главная", "link": "#hero" },
+  { "label": "Возможности", "link": "#features" },
+  { "label": "О нас", "link": "#about" },
+  { "label": "Контакты", "link": "#contact" }
+]
