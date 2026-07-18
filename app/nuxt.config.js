@@ -1,4 +1,4 @@
-import { dirname } from 'node:path'
+import { dirname, resolve } from 'node:path'
 import { fileURLToPath } from 'node:url'
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
@@ -30,6 +30,10 @@ export default defineNuxtConfig({
     static: true,
     compressHTML: false,
     minify: false,
+    publicAssets: [
+      { baseURL: '/docs', dir: resolve(__dirname, '../public/docs') },
+      { baseURL: '/fonts', dir: resolve(__dirname, '../public/fonts') },
+    ],
   },
 
   experimental: {

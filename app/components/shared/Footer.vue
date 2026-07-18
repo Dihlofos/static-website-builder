@@ -1,37 +1,40 @@
 <script setup>
-import site from '~/../data/site.json'
-import navItems from '~/../data/navigation.json'
 </script>
 
 <template>
-  <footer class="footer">
+  <footer class="footer" id="footer">
     <Container>
-      <div class="footer__grid">
-        <div class="footer__brand">
-          <a href="/" class="footer__logo">Template</a>
-          <p class="footer__desc">{{ site.description }}</p>
-        </div>
+      <div class="footer__wrapper">
+        <div class="footer__content">
+          <div class="footer__title">Контакты</div>
 
-        <div class="footer__links">
-          <h4 class="footer__heading">Навигация</h4>
-          <ul class="footer__list">
-            <li v-for="item in navItems" :key="item.link">
-              <a :href="item.link" class="footer__link">{{ item.label }}</a>
-            </li>
-          </ul>
-        </div>
+          <div class="footer__contacts">
+            <div class="footer__contacts-item">
+              <div class="footer__contacts-label">По вопросам регистрации</div>
+              <a href="mailto:ano@mossport.ru" target="_blank" class="footer__contacts-link">ano@mossport.ru</a>
+            </div>
+            <div class="footer__contacts-item">
+              <div class="footer__contacts-label">Для СМИ</div>
+              <a href="mailto:press@moscow.sport" target="_blank" class="footer__contacts-link">press@moscow.sport</a>
+            </div>
+          </div>
 
-        <div class="footer__links">
-          <h4 class="footer__heading">Контакты</h4>
-          <ul class="footer__list">
-            <li><a href="mailto:hello@example.com" class="footer__link">hello@example.com</a></li>
-            <li><a href="tel:+79991234567" class="footer__link">+7 (999) 123-45-67</a></li>
-          </ul>
-        </div>
-      </div>
+          <div class="footer__info">
+            <p class="footer__info-text">
+              Для аккредитации на событие отправьте письмо на электронный адрес со следующей информацией:
+            </p>
+            <ul>
+              <li>название СМИ и программы, планируемая дата выхода материала;</li>
+              <li>ФИО корреспондента / всех участников съемочной группы с контактными телефонами.</li>
+            </ul>
+          </div>
 
-      <div class="footer__bottom">
-        <p class="footer__copyright">{{ site.copyright }}</p>
+          <div class="footer__docs">
+            <a href="/docs/policy.pdf" target="_blank">Политика конфиденциальности</a>
+            <a href="/docs/reject.pdf" target="_blank">Отказ от претензий от участника</a>
+            <a href="/docs/reject_child.pdf" target="_blank">Отказ от претензий от опекуна ребенка</a>
+          </div>
+        </div>
       </div>
     </Container>
   </footer>
@@ -39,70 +42,146 @@ import navItems from '~/../data/navigation.json'
 
 <style lang="scss" scoped>
 .footer {
-  background-color: #0f172a;
-  color: #f1f5f9;
-  padding: 64px 0 32px;
+  position: relative;
+  background-color: $darkBlue;
+  padding: 7rem 0 3.2rem;
+  overflow: hidden;
 
-  &__grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 32px;
-
-    @media (min-width: 768px) {
-      grid-template-columns: 2fr 1fr 1fr;
-    }
+  @media (max-width: $tablet) {
+    padding: 4rem 0 2rem;
   }
 
-  &__logo {
-    display: inline-block;
-    font-weight: 700;
-    font-size: 16px;
-    color: #f1f5f9;
-    text-decoration: none;
-
-    &:hover {
-      color: #0055ff;
-    }
+  &__wrapper {
+    position: relative;
   }
 
-  &__desc {
-    margin-top: 16px;
-    color: #94a3b8;
-    font-size: 14px;
-  }
-
-  &__heading {
-    margin-bottom: 16px;
-    color: #f1f5f9;
-    font-size: 16px;
-  }
-
-  &__list {
+  &__content {
+    position: relative;
     display: flex;
     flex-direction: column;
-    gap: 8px;
   }
 
-  &__link {
-    color: #94a3b8;
-    font-size: 14px;
-    transition: color 150ms ease;
+  &__title {
+    font-family: $mossport;
+    font-size: 6.4rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 0.86;
+    text-transform: uppercase;
+    color: $white;
+    text-align: left;
+    margin-bottom: 4rem;
 
-    &:hover {
-      color: #0055ff;
+    @media (max-width: $tablet) {
+      font-size: 4rem;
+      margin-bottom: 3.5rem;
     }
   }
 
-  &__bottom {
-    margin-top: 48px;
-    padding-top: 24px;
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
+  &__contacts {
+    display: flex;
+    flex-direction: row;
+    gap: 6.6rem;
+    margin-bottom: 4rem;
+
+    @media (max-width: $tablet) {
+      flex-direction: column;
+      gap: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
   }
 
-  &__copyright {
-    color: #94a3b8;
-    font-size: 14px;
-    text-align: center;
+  &__contacts-item {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+
+    @media (max-width: $tablet) {
+      gap: 0.2rem;
+    }
+  }
+
+  &__contacts-label {
+    color: $white;
+    font-family: $monserrat;
+    font-size: 2rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 120%;
+    text-transform: uppercase;
+
+    @media (max-width: $tablet) {
+      font-size: 1.2rem;
+    }
+  }
+
+  &__contacts-link {
+    color: $white;
+    font-family: $monserrat;
+    font-size: 4rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 3.2rem;
+    text-decoration: none;
+
+    @media (max-width: $tablet) {
+      font-size: 2.4rem;
+    }
+  }
+
+  &__info {
+    color: $white;
+    font-family: $monserrat;
+    font-size: 2rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 120%;
+    max-width: 105rem;
+
+    @media (max-width: $tablet) {
+      font-size: 1.2rem;
+    }
+
+    &-text {
+      margin: 0;
+    }
+
+    ul {
+      margin-top: 2.3rem;
+      margin-bottom: 2.2rem;
+      padding-left: 3rem;
+      max-width: 85rem;
+
+      @media (max-width: $tablet) {
+        margin-top: 1rem;
+        margin-bottom: 2.4rem;
+      }
+    }
+  }
+
+  &__docs {
+    display: flex;
+    flex-direction: row;
+    gap: 5rem;
+
+    @media (max-width: $tablet) {
+      flex-direction: column;
+      gap: 0.3rem;
+    }
+
+    a {
+      color: $white;
+      opacity: 0.8;
+      font-family: $monserrat;
+      font-size: 1.6rem;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 2rem;
+
+      @media (max-width: $tablet) {
+        font-size: 1.2rem;
+      }
+    }
   }
 }
 </style>

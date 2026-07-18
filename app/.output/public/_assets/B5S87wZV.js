@@ -1,4 +1,4 @@
-const __vite__mapDeps=(i,m=__vite__mapDeps,d=(m.f||(m.f=["./B9ubTAA-.js","./1tPrXgE0.js","./WNLM8uNV.js","./Container.iV8lCh0G.css","./index.7hoFaKe1.css","./BWGT6ed3.js","./default.Df1t83Ti.css","./CrJi6rU1.js","./error-404.Dv2pyLoR.css","./DbKT4ubM.js","./error-500.C2XaBLWY.css"])))=>i.map(i=>d[i]);
+const __vite__mapDeps=(i,m=__vite__mapDeps,d=(m.f||(m.f=["./vAAp-uz4.js","./1tPrXgE0.js","./BjFUbwAl.js","./Container.iV8lCh0G.css","./index.D_Lk3vGs.css","./CYyaderM.js","./default.DzKvMOkE.css","./pXti5wne.js","./error-404.Dv2pyLoR.css","./CUovlxMt.js","./error-500.C2XaBLWY.css"])))=>i.map(i=>d[i]);
 (function polyfill() {
   const relList = document.createElement("link").relList;
   if (relList && relList.supports && relList.supports("modulepreload")) return;
@@ -13552,7 +13552,7 @@ const _routes = [
   {
     name: "index",
     path: "/",
-    component: () => __vitePreload(() => import("./B9ubTAA-.js"), true ? __vite__mapDeps([0,1,2,3,4]) : void 0, import.meta.url)
+    component: () => __vitePreload(() => import("./vAAp-uz4.js"), true ? __vite__mapDeps([0,1,2,3,4]) : void 0, import.meta.url)
   }
 ];
 const _wrapInTransition = (props, children) => {
@@ -14096,7 +14096,7 @@ const components_plugin_z4hgvsiddfKkfXTP6M8M4zG5Cb7sGnDhcryKVM45Di4 = /* @__PURE
   name: "nuxt:global-components"
 });
 const layouts = {
-  default: /* @__PURE__ */ defineAsyncComponent(() => __vitePreload(() => import("./BWGT6ed3.js"), true ? __vite__mapDeps([5,1,2,3,6]) : void 0, import.meta.url).then((m) => m.default || m))
+  default: /* @__PURE__ */ defineAsyncComponent(() => __vitePreload(() => import("./CYyaderM.js"), true ? __vite__mapDeps([5,1,2,3,6]) : void 0, import.meta.url).then((m) => m.default || m))
 };
 function _loadAsyncComponent(component) {
   if (component?.__asyncLoader && !component.__asyncResolved) {
@@ -14570,14 +14570,12 @@ const description = "Современный статический сайт на
 const keywords = ["nuxt", "vue", "ssg", "template"];
 const favicon = "/favicon.ico";
 const ogImage = "/images/og-image.png";
-const copyright = "© 2026 Все права защищены";
 const site = {
   title,
   description,
   keywords,
   favicon,
-  ogImage,
-  copyright
+  ogImage
 };
 const YM_ID = "110537821";
 const _sfc_main$2 = {
@@ -14592,11 +14590,11 @@ const _sfc_main$2 = {
         { name: "keywords", content: site.keywords?.join(", ") },
         { property: "og:title", content: site.title },
         { property: "og:description", content: site.description },
-        { property: "og:image", content: site.ogImage || "/images/og-image.png" },
+        { property: "og:image", content: site.ogImage },
         { property: "og:type", content: "website" }
       ],
       link: [
-        { rel: "icon", type: "image/x-icon", href: site.favicon || "/favicon.ico" }
+        { rel: "icon", type: "image/x-icon", href: site.favicon }
       ],
       script: [
         {
@@ -14658,8 +14656,8 @@ const _sfc_main$1 = {
     const statusText = _error.statusMessage ?? (is404 ? "Page Not Found" : "Internal Server Error");
     const description2 = _error.message || _error.toString();
     const stack2 = void 0;
-    const _Error404 = /* @__PURE__ */ defineAsyncComponent(() => __vitePreload(() => import("./CrJi6rU1.js"), true ? __vite__mapDeps([7,1,8]) : void 0, import.meta.url));
-    const _Error = /* @__PURE__ */ defineAsyncComponent(() => __vitePreload(() => import("./DbKT4ubM.js"), true ? __vite__mapDeps([9,1,10]) : void 0, import.meta.url));
+    const _Error404 = /* @__PURE__ */ defineAsyncComponent(() => __vitePreload(() => import("./pXti5wne.js"), true ? __vite__mapDeps([7,1,8]) : void 0, import.meta.url));
+    const _Error = /* @__PURE__ */ defineAsyncComponent(() => __vitePreload(() => import("./CUovlxMt.js"), true ? __vite__mapDeps([9,1,10]) : void 0, import.meta.url));
     const ErrorTemplate = is404 ? _Error404 : _Error;
     return (_ctx, _cache) => {
       return openBlock(), createBlock(unref(ErrorTemplate), normalizeProps$1(guardReactiveProps({ status: unref(status), statusText: unref(statusText), statusCode: unref(status), statusMessage: unref(statusText), description: unref(description2), stack: unref(stack2) })), null, 16);
@@ -14784,12 +14782,11 @@ export {
   normalizeStyle as K,
   createCommentVNode as L,
   createBlock as M,
-  normalizeProps$1 as N,
-  guardReactiveProps as O,
-  Fragment as P,
-  renderList as Q,
+  Fragment as N,
+  renderList as O,
+  normalizeProps$1 as P,
+  guardReactiveProps as Q,
   onUnmounted as R,
-  site as S,
   useNuxtApp as a,
   onNuxtReady as b,
   onBeforeUnmount as c,
