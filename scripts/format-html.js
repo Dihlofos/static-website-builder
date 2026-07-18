@@ -15,7 +15,15 @@ function walk(dir) {
     const full = join(dir, entry.name)
     if (entry.isDirectory()) walk(full)
     else if (entry.name.endsWith('.html')) {
-      const html = readFileSync(full, 'utf-8')
+      let html = readFileSync(full, 'utf-8')
+      // Убираем crossorigin — для same-origin статики он не нужен и вызывает CORS-блокировку
+      html = html.replace(/\s+crossorigin(=["'][^"']*["'])?/gi, '')
+      // Делаем пути относительными (убираем ведущий / в href, src)
+      // Чтобы работало из file:// и из поддиректории на сервере
+      // Не трогаем протоколы (https://, //) — только пути вида /build/..., /_payload.json
+      // И не трогаем одиночный / (href="/") — превратится в пустую строку
+      html = html.replace(/(href|src)="\/([^\/"])/g, '$1="$2')
+      // Форматируем
       const formatted = beautify(html, {
         indent_size: 2,
         max_preserve_newlines: 0,
