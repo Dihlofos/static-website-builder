@@ -66,6 +66,7 @@ const bgStyle = computed(() => {
   &__title {
     color: #fff;
     font-size: 36px;
+    line-height: 1;
     margin-bottom: 24px;
 
     @media (min-width: 768px) {
@@ -74,6 +75,7 @@ const bgStyle = computed(() => {
 
     @media (min-width: 1024px) {
       font-size: 60px;
+
     }
   }
 
