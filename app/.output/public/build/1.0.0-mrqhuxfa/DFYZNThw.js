@@ -1,4 +1,4 @@
-const __vite__mapDeps=(i,m=__vite__mapDeps,d=(m.f||(m.f=["./Ck-ozjzG.js","./1tPrXgE0.js","./E8AUv15y.js","./Icon.BPysc5Dr.css","./index.fS9Okayb.css","./CiZmPyeZ.js","./default.DAP4wL0X.css","./C_p_lMaf.js","./error-404.Dv2pyLoR.css","./DlhtbqkX.js","./error-500.C2XaBLWY.css"])))=>i.map(i=>d[i]);
+const __vite__mapDeps=(i,m=__vite__mapDeps,d=(m.f||(m.f=["./BrA3vF8K.js","./1tPrXgE0.js","./C9LYYVfA.js","./Icon.BPysc5Dr.css","./index.fS9Okayb.css","./DjOMsHoC.js","./default.DAP4wL0X.css","./BlQlFPqG.js","./error-404.Dv2pyLoR.css","./CVOxzczb.js","./error-500.C2XaBLWY.css"])))=>i.map(i=>d[i]);
 (function polyfill() {
   const relList = document.createElement("link").relList;
   if (relList && relList.supports && relList.supports("modulepreload")) return;
@@ -13594,7 +13594,7 @@ const _routes = [
   {
     name: "index",
     path: "/",
-    component: () => __vitePreload(() => import("./Ck-ozjzG.js"), true ? __vite__mapDeps([0,1,2,3,4]) : void 0, import.meta.url)
+    component: () => __vitePreload(() => import("./BrA3vF8K.js"), true ? __vite__mapDeps([0,1,2,3,4]) : void 0, import.meta.url)
   }
 ];
 const _wrapInTransition = (props, children) => {
@@ -14138,7 +14138,7 @@ const components_plugin_z4hgvsiddfKkfXTP6M8M4zG5Cb7sGnDhcryKVM45Di4 = /* @__PURE
   name: "nuxt:global-components"
 });
 const layouts = {
-  default: /* @__PURE__ */ defineAsyncComponent(() => __vitePreload(() => import("./CiZmPyeZ.js"), true ? __vite__mapDeps([5,1,2,3,6]) : void 0, import.meta.url).then((m) => m.default || m))
+  default: /* @__PURE__ */ defineAsyncComponent(() => __vitePreload(() => import("./DjOMsHoC.js"), true ? __vite__mapDeps([5,1,2,3,6]) : void 0, import.meta.url).then((m) => m.default || m))
 };
 function _loadAsyncComponent(component) {
   if (component?.__asyncLoader && !component.__asyncResolved) {
@@ -14621,6 +14621,7 @@ const site = {
   ogImage,
   copyright
 };
+const YM_ID = "110537821";
 const _sfc_main$2 = {
   __name: "app",
   setup(__props) {
@@ -14638,17 +14639,51 @@ const _sfc_main$2 = {
       ],
       link: [
         { rel: "icon", type: "image/x-icon", href: site.favicon || "/favicon.ico" }
+      ],
+      script: [
+        {
+          innerHTML: `
+(function(m,e,t,r,i,k,a){
+    m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+    m[i].l=1*new Date();
+    for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+    k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+})(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=${YM_ID}', 'ym');
+
+ym(${YM_ID}, 'init', {
+    ssr:true,
+    webvisor:true,
+    clickmap:true,
+    ecommerce:"dataLayer",
+    referrer: document.referrer,
+    url: location.href,
+    accurateTrackBounce:true,
+    trackLinks:true
+});`,
+          type: "text/javascript"
+        }
       ]
     });
     return (_ctx, _cache) => {
       const _component_NuxtPage = __nuxt_component_0;
       const _component_NuxtLayout = __nuxt_component_1;
-      return openBlock(), createBlock(_component_NuxtLayout, null, {
-        default: withCtx(() => [
-          createVNode(_component_NuxtPage)
-        ]),
-        _: 1
-      });
+      return openBlock(), createElementBlock(Fragment, null, [
+        _cache[0] || (_cache[0] = createBaseVNode("noscript", null, [
+          createBaseVNode("div", null, [
+            createBaseVNode("img", {
+              src: "https://mc.yandex.ru/watch/110537821",
+              style: { "position": "absolute", "left": "-9999px" },
+              alt: ""
+            })
+          ])
+        ], -1)),
+        createVNode(_component_NuxtLayout, null, {
+          default: withCtx(() => [
+            createVNode(_component_NuxtPage)
+          ]),
+          _: 1
+        })
+      ], 64);
     };
   }
 };
@@ -14665,8 +14700,8 @@ const _sfc_main$1 = {
     const statusText = _error.statusMessage ?? (is404 ? "Page Not Found" : "Internal Server Error");
     const description2 = _error.message || _error.toString();
     const stack2 = void 0;
-    const _Error404 = /* @__PURE__ */ defineAsyncComponent(() => __vitePreload(() => import("./C_p_lMaf.js"), true ? __vite__mapDeps([7,1,8]) : void 0, import.meta.url));
-    const _Error = /* @__PURE__ */ defineAsyncComponent(() => __vitePreload(() => import("./DlhtbqkX.js"), true ? __vite__mapDeps([9,1,10]) : void 0, import.meta.url));
+    const _Error404 = /* @__PURE__ */ defineAsyncComponent(() => __vitePreload(() => import("./BlQlFPqG.js"), true ? __vite__mapDeps([7,1,8]) : void 0, import.meta.url));
+    const _Error = /* @__PURE__ */ defineAsyncComponent(() => __vitePreload(() => import("./CVOxzczb.js"), true ? __vite__mapDeps([9,1,10]) : void 0, import.meta.url));
     const ErrorTemplate = is404 ? _Error404 : _Error;
     return (_ctx, _cache) => {
       return openBlock(), createBlock(unref(ErrorTemplate), normalizeProps$1(guardReactiveProps({ status: unref(status), statusText: unref(statusText), statusCode: unref(status), statusMessage: unref(statusText), description: unref(description2), stack: unref(stack2) })), null, 16);
