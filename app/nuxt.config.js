@@ -35,6 +35,10 @@ export default defineNuxtConfig({
     minify: false,
   },
 
+  experimental: {
+    inlineSSRStyles: false,
+  },
+
   routeRules: {
     '/**': { prerender: true },
   },
