@@ -21,11 +21,11 @@ const props = defineProps({
   @include container;
 
   &--narrow {
-    @include container($container-narrow);
+    @include container(800px);
   }
 
   &--wide {
-    @include container($container-wide);
+    @include container(1400px);
   }
 }
 </style>

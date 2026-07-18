@@ -8,7 +8,7 @@ import navItems from '~/../data/navigation.json'
     <Container>
       <div class="footer__grid">
         <div class="footer__brand">
-          <Logo size="sm" />
+          <a href="/" class="footer__logo">Template</a>
           <p class="footer__desc">{{ site.description }}</p>
         </div>
 
@@ -39,63 +39,69 @@ import navItems from '~/../data/navigation.json'
 
 <style lang="scss" scoped>
 .footer {
-  background-color: $color-bg-dark;
-  color: $color-text-on-dark;
-  padding: $spacing-3xl 0 $spacing-xl;
+  background-color: #0f172a;
+  color: #f1f5f9;
+  padding: 64px 0 32px;
 
   &__grid {
     display: grid;
     grid-template-columns: 1fr;
-    gap: $spacing-xl;
+    gap: 32px;
 
-    @include up('md') {
+    @media (min-width: 768px) {
       grid-template-columns: 2fr 1fr 1fr;
     }
   }
 
-  &__brand {
-    .logo {
-      color: $color-text-on-dark;
+  &__logo {
+    display: inline-block;
+    font-weight: 700;
+    font-size: 16px;
+    color: #f1f5f9;
+    text-decoration: none;
+
+    &:hover {
+      color: #0055ff;
     }
   }
 
   &__desc {
-    margin-top: $spacing-md;
-    color: $color-text-light;
-    font-size: $font-size-sm;
+    margin-top: 16px;
+    color: #94a3b8;
+    font-size: 14px;
   }
 
   &__heading {
-    margin-bottom: $spacing-md;
-    color: $color-text-on-dark;
-    font-size: $font-size-base;
+    margin-bottom: 16px;
+    color: #f1f5f9;
+    font-size: 16px;
   }
 
   &__list {
     display: flex;
     flex-direction: column;
-    gap: $spacing-sm;
+    gap: 8px;
   }
 
   &__link {
-    color: $color-text-light;
-    font-size: $font-size-sm;
-    transition: color $transition-fast;
+    color: #94a3b8;
+    font-size: 14px;
+    transition: color 150ms ease;
 
     &:hover {
-      color: $color-primary;
+      color: #0055ff;
     }
   }
 
   &__bottom {
-    margin-top: $spacing-2xl;
-    padding-top: $spacing-lg;
+    margin-top: 48px;
+    padding-top: 24px;
     border-top: 1px solid rgba(255, 255, 255, 0.1);
   }
 
   &__copyright {
-    color: $color-text-light;
-    font-size: $font-size-sm;
+    color: #94a3b8;
+    font-size: 14px;
     text-align: center;
   }
 }

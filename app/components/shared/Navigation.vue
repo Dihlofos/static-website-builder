@@ -15,7 +15,7 @@ function closeMobile() {
 <template>
   <nav class="nav" :class="{ 'nav--open': mobileOpen }">
     <button class="nav__toggle" @click="toggleMobile" aria-label="Меню">
-      <Icon :name="mobileOpen ? 'x' : 'menu'" :size="24" />
+      <span class="nav__toggle-icon">{{ mobileOpen ? '✕' : '☰' }}</span>
     </button>
 
     <ul class="nav__list">
@@ -36,33 +36,41 @@ function closeMobile() {
 .nav {
   &__toggle {
     display: none;
-    @include focus-ring;
+    &:focus-visible {
+      outline: 2px solid #0055ff;
+      outline-offset: 2px;
+    }
+  }
+
+  &__toggle-icon {
+    font-size: 24px;
+    line-height: 1;
   }
 
   &__list {
     display: flex;
-    gap: $spacing-lg;
+    gap: 24px;
     align-items: center;
   }
 
   &__link {
-    font-size: $font-size-sm;
-    font-weight: $font-weight-medium;
-    color: $color-text-muted;
-    transition: color $transition-fast;
+    font-size: 14px;
+    font-weight: 500;
+    color: #64748b;
+    transition: color 150ms ease;
 
     &:hover {
-      color: $color-primary;
+      color: #0055ff;
     }
   }
 
   // Mobile
-  @include down('md') {
+  @media (max-width: 767px) {
     &__toggle {
       display: flex;
       align-items: center;
       justify-content: center;
-      z-index: $z-fixed;
+      z-index: 1030;
     }
 
     &__list {
@@ -72,13 +80,13 @@ function closeMobile() {
       bottom: 0;
       width: 280px;
       flex-direction: column;
-      padding: $spacing-3xl $spacing-xl;
-      background: $color-bg;
-      box-shadow: $shadow-xl;
+      padding: 64px 32px;
+      background: #ffffff;
+      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
       transform: translateX(100%);
-      transition: transform $transition-base;
-      gap: $spacing-md;
-      z-index: $z-modal - 1;
+      transition: transform 250ms ease;
+      gap: 16px;
+      z-index: 1039;
     }
 
     &--open &__list {
@@ -86,8 +94,8 @@ function closeMobile() {
     }
 
     &__link {
-      font-size: $font-size-lg;
-      padding: $spacing-sm 0;
+      font-size: 18px;
+      padding: 8px 0;
     }
   }
 }

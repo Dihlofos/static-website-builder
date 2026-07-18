@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "npx nuxt dev --cwd app",
     "generate": "npx nuxt generate --cwd app && node scripts/format-html.js",
-    "preview": "npx serve ./app/dist",
+    "preview": "npx serve ./app/.output/public",
     "clean": "npx nuxt cleanup --cwd app"
   },
   "devDependencies": {

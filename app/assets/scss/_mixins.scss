@@ -1,70 +1,36 @@
 // ══════════════════════════════════════════════════════════
-// Mixins — переиспользуемые CSS паттерны
+// Mixins
 // ══════════════════════════════════════════════════════════
 
 @use 'variables' as *;
 @use 'breakpoints' as *;
 
-// --- Focus ring ---
-@mixin focus-ring($color: $color-primary) {
-  &:focus-visible {
-    outline: 2px solid $color;
-    outline-offset: 2px;
-  }
+// Font shorthand — font-size, line-height, font-weight
+@mixin font($size: 1.6rem, $height: 2.1rem, $weight: 400) {
+  font-size: $size;
+  line-height: $height;
+  font-weight: $weight;
 }
 
-// --- Flex center ---
-@mixin flex-center {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-// --- Flex between ---
-@mixin flex-between {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-// --- Container ---
-@mixin container($max-width: $container-max) {
-  width: 100%;
+// Container — desktop-first
+@mixin container($max-width: 120rem) {
   max-width: $max-width;
-  margin-left: auto;
-  margin-right: auto;
-  padding-left: $spacing-md;
-  padding-right: $spacing-md;
+  margin: 0 auto;
+  padding: 0 3rem;
+  box-sizing: content-box;
 
-  @include up('md') {
-    padding-left: $spacing-xl;
-    padding-right: $spacing-xl;
+  @media (max-width: $laptop) {
+    min-width: 67.8rem;
+    padding: 0 4.5rem;
   }
-}
 
-// --- Truncate text ---
-@mixin truncate($lines: 1) {
-  @if $lines == 1 {
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-  } @else {
-    display: -webkit-box;
-    -webkit-line-clamp: $lines;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
+  @media (max-width: $tablet) {
+    min-width: initial;
+    max-width: initial;
+    padding: 0 24px;
   }
-}
 
-// --- Visually hidden (accessibility) ---
-@mixin visually-hidden {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  white-space: nowrap;
-  border: 0;
+  @media (max-width: $mobile) {
+    padding: 0 20px;
+  }
 }

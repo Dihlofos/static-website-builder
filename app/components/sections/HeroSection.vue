@@ -42,7 +42,7 @@ const bgStyle = computed(() => {
   align-items: center;
   background-size: cover;
   background-position: center;
-  background-color: $color-bg-dark;
+  background-color: #0f172a;
   position: relative;
 
   // Overlay for readability
@@ -65,33 +65,33 @@ const bgStyle = computed(() => {
 
   &__title {
     color: #fff;
-    font-size: $font-size-4xl;
-    margin-bottom: $spacing-lg;
+    font-size: 36px;
+    margin-bottom: 24px;
 
-    @include up('md') {
-      font-size: $font-size-5xl;
+    @media (min-width: 768px) {
+      font-size: 48px;
     }
 
-    @include up('lg') {
-      font-size: $font-size-6xl;
+    @media (min-width: 1024px) {
+      font-size: 60px;
     }
   }
 
   &__subtitle {
-    color: $color-text-light;
-    font-size: $font-size-lg;
-    margin-bottom: $spacing-xl;
-    line-height: $line-height-relaxed;
+    color: #94a3b8;
+    font-size: 18px;
+    margin-bottom: 32px;
+    line-height: 1.75;
     max-width: 540px;
 
-    @include up('md') {
-      font-size: $font-size-xl;
+    @media (min-width: 768px) {
+      font-size: 20px;
     }
   }
 
   &__actions {
     display: flex;
-    gap: $spacing-md;
+    gap: 16px;
     flex-wrap: wrap;
   }
 }

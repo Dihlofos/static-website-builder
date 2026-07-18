@@ -2,25 +2,18 @@
 // Main SCSS — точка входа
 // ══════════════════════════════════════════════════════════
 
+@use 'variables' as *;
 @use 'reset';
 @use 'typography';
 
-// Глобальные стили для body
-body {
-  background-color: $color-bg;
-  color: $color-text;
-}
+// Утилитарный класс заголовка
+.title {
+  font-family: $mossport;
+  font-size: 10.4rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 0.86;
+  text-transform: uppercase;
 
-// Утилитарный класс для контейнера (опционально)
-.container {
-  @include container;
-}
-
-// Утилитарный класс для секций
-.section {
-  padding: $spacing-3xl 0;
-
-  @include up('md') {
-    padding: $spacing-4xl 0;
-  }
+  &--white { color: $white; }
 }

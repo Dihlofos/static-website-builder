@@ -31,59 +31,82 @@ const props = defineProps({
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: $spacing-sm;
-  font-weight: $font-weight-semibold;
-  border-radius: $radius-md;
-  transition: all $transition-fast;
-  @include focus-ring;
+  gap: 8px;
+  border-radius: 8px;
+  transition: all 150ms ease;
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
 
   // --- Sizes ---
   &--sm {
-    padding: $spacing-xs $spacing-md;
-    font-size: $font-size-sm;
+    padding: 4px 16px;
+    font-size: 1.4rem;
   }
   &--md {
-    padding: $spacing-sm $spacing-lg;
-    font-size: $font-size-base;
+    padding: 8px 24px;
+    font-size: 1.6rem;
   }
   &--lg {
-    padding: $spacing-md $spacing-xl;
-    font-size: $font-size-lg;
+    padding: 16px 32px;
+    font-size: 1.8rem;
   }
 
   // --- Variants ---
   &--primary {
-    background-color: $color-primary;
-    color: #fff;
+    display: inline-flex;
+    color: $white;
+    font-family: $monserrat;
+    font-size: 2.8rem;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    border-radius: 20px;
+    border: 2px solid $magenta;
+    background: $magenta;
+    text-decoration: none;
+    padding: 2.3rem;
+    cursor: pointer;
+    flex-shrink: 0;
 
-    &:hover:not(:disabled) {
-      background-color: darken($color-primary, 8%);
+    &:hover {
+      background-color: $darkBlue;
+      border-color: $darkBlue;
+    }
+
+    &--active {
+      border: 2px solid $magenta;
+      background: $magenta;
+    }
+
+    @media (max-width: $tablet) {
+      border-width: 1px;
+      border-radius: 6px;
+      font-size: 2.2rem;
+      padding: 0.5rem 0.8rem;
     }
   }
 
   &--secondary {
     background-color: transparent;
-    color: $color-primary;
-    border: 2px solid $color-primary;
+    color: #0055ff;
+    border: 2px solid #0055ff;
 
     &:hover:not(:disabled) {
-      background-color: $color-primary;
+      background-color: #0055ff;
       color: #fff;
     }
   }
 
   &--ghost {
     background-color: transparent;
-    color: $color-text;
+    color: #1e293b;
 
     &:hover:not(:disabled) {
-      background-color: $color-bg-alt;
+      background-color: #f8fafc;
     }
-  }
-
-  &:disabled {
-    opacity: 0.5;
-    cursor: not-allowed;
   }
 }
 </style>

@@ -1,43 +1,93 @@
 // ══════════════════════════════════════════════════════════
-// Typography — font-face, глобальные стили текста
+// @font-face — self-hosted шрифты
 // ══════════════════════════════════════════════════════════
 
-@use 'variables' as *;
-@use 'breakpoints' as *;
-
-// Inter — пример подключения через Google Fonts
-// Для продакшена рекомендуется скачать woff2 и подключить через @font-face локально
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
-
-html {
-  font-family: $font-family-base;
-  font-size: 16px;
-  color: $color-text;
+@font-face {
+  font-family: "Montserrat";
+  font-display: swap;
+  font-weight: 500;
+  font-style: normal;
+  src: local("Montserrat"), local("Montserrat Medium"),
+    url("../fonts/Montserrat-Medium.woff2") format("woff2"),
+    url("../fonts/Montserrat-Medium.woff") format("woff");
 }
 
-h1, h2, h3, h4, h5, h6 {
-  font-family: $font-family-heading;
-  font-weight: $font-weight-bold;
-  line-height: $line-height-tight;
-  color: $color-text;
+@font-face {
+  font-family: "Montserrat";
+  font-display: swap;
+  font-weight: 400;
+  font-style: normal;
+  src: local("Montserrat"), local("Montserrat Regular"),
+    url("../fonts/Montserrat-Regular.woff2") format("woff2"),
+    url("../fonts/Montserrat-Regular.woff") format("woff");
 }
 
-h1 { font-size: $font-size-4xl; }
-h2 { font-size: $font-size-3xl; }
-h3 { font-size: $font-size-2xl; }
-h4 { font-size: $font-size-xl; }
-
-@include up('lg') {
-  h1 { font-size: $font-size-5xl; }
-  h2 { font-size: $font-size-4xl; }
-  h3 { font-size: $font-size-3xl; }
+@font-face {
+  font-family: "Montserrat";
+  font-display: swap;
+  font-weight: 400;
+  font-style: italic;
+  src: local("Montserrat Italic"),
+    url("../fonts/Montserrat-Italic.woff2") format("woff2"),
+    url("../fonts/Montserrat-Italic.woff") format("woff");
 }
 
-p {
-  margin-bottom: $spacing-md;
-  line-height: $line-height-relaxed;
+@font-face {
+  font-family: "Montserrat";
+  font-display: swap;
+  font-weight: 700;
+  font-style: normal;
+  src: local("Montserrat"), local("Montserrat Bold"),
+    url("../fonts/Montserrat-Bold.woff2") format("woff2"),
+    url("../fonts/Montserrat-Bold.woff") format("woff");
 }
 
-small {
-  font-size: $font-size-sm;
+@font-face {
+  font-family: "Montserrat";
+  font-display: swap;
+  font-weight: 700;
+  font-style: italic;
+  src: local("Montserrat"), local("Montserrat Bold"),
+    url("../fonts/Montserrat-BoldItalic.woff2") format("woff2"),
+    url("../fonts/Montserrat-BoldItalic.woff") format("woff");
+}
+
+@font-face {
+  font-family: "Montserrat";
+  font-display: swap;
+  font-weight: 600;
+  font-style: normal;
+  src: local("Montserrat"), local("Montserrat SemiBold"),
+    url("../fonts/Montserrat-SemiBold.woff2") format("woff2"),
+    url("../fonts/Montserrat-SemiBold.woff") format("woff");
+}
+
+@font-face {
+  font-family: "Bounded";
+  font-display: swap;
+  font-weight: 400;
+  font-style: normal;
+  src: local("Bounded"), local("Bounded Regular"),
+    url("../fonts/Bounded-Regular.woff2") format("woff2"),
+    url("../fonts/Bounded-Regular.woff") format("woff");
+}
+
+@font-face {
+  font-family: "Unbounded";
+  font-display: swap;
+  font-weight: 500;
+  font-style: normal;
+  src: local("Unbounded"), local("Unbounded Medium"),
+    url("../fonts/Unbounded-Medium.woff2") format("woff2"),
+    url("../fonts/Unbounded-Medium.woff") format("woff");
+}
+
+@font-face {
+  font-family: "Mossport";
+  font-display: swap;
+  font-weight: 700;
+  font-style: normal;
+  src: local("Mossport"),
+    url("../fonts/Mossport.woff2") format("woff2"),
+    url("../fonts/Mossport.woff") format("woff");
 }
