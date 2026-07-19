@@ -1,4 +1,4 @@
-const __vite__mapDeps=(i,m=__vite__mapDeps,d=(m.f||(m.f=["./vAAp-uz4.js","./1tPrXgE0.js","./BjFUbwAl.js","./Container.iV8lCh0G.css","./index.D_Lk3vGs.css","./CYyaderM.js","./default.DzKvMOkE.css","./pXti5wne.js","./error-404.Dv2pyLoR.css","./CUovlxMt.js","./error-500.C2XaBLWY.css"])))=>i.map(i=>d[i]);
+const __vite__mapDeps=(i,m=__vite__mapDeps,d=(m.f||(m.f=["./BM481s99.js","./1tPrXgE0.js","./Bb9lcrrM.js","./Container.iV8lCh0G.css","./index._Rd7MogH.css","./BLkJKIzI.js","./default.CMYxyU2P.css","./C27spY1q.js","./error-404.Dv2pyLoR.css","./ChsxBVrz.js","./error-500.C2XaBLWY.css"])))=>i.map(i=>d[i]);
 (function polyfill() {
   const relList = document.createElement("link").relList;
   if (relList && relList.supports && relList.supports("modulepreload")) return;
@@ -9007,23 +9007,23 @@ function withQuery(input, query) {
   parsed.search = stringifyQuery$1(mergedQuery);
   return stringifyParsedURL(parsed);
 }
-function isEmptyURL(url) {
-  return !url || url === "/";
+function isEmptyURL(url2) {
+  return !url2 || url2 === "/";
 }
-function isNonEmptyURL(url) {
-  return url && url !== "/";
+function isNonEmptyURL(url2) {
+  return url2 && url2 !== "/";
 }
 function joinURL(base, ...input) {
-  let url = base || "";
-  for (const segment of input.filter((url2) => isNonEmptyURL(url2))) {
-    if (url) {
+  let url2 = base || "";
+  for (const segment of input.filter((url22) => isNonEmptyURL(url22))) {
+    if (url2) {
       const _segment = segment.replace(JOIN_LEADING_SLASH_RE, "");
-      url = withTrailingSlash(url) + _segment;
+      url2 = withTrailingSlash(url2) + _segment;
     } else {
-      url = segment;
+      url2 = segment;
     }
   }
-  return url;
+  return url2;
 }
 function joinRelativeURL(..._input) {
   const JOIN_SEGMENT_SPLIT_RE = /\/(?!\/)/;
@@ -9054,20 +9054,20 @@ function joinRelativeURL(..._input) {
       segmentsDepth++;
     }
   }
-  let url = segments.join("/");
+  let url2 = segments.join("/");
   if (segmentsDepth >= 0) {
-    if (input[0]?.startsWith("/") && !url.startsWith("/")) {
-      url = "/" + url;
-    } else if (input[0]?.startsWith("./") && !url.startsWith("./")) {
-      url = "./" + url;
+    if (input[0]?.startsWith("/") && !url2.startsWith("/")) {
+      url2 = "/" + url2;
+    } else if (input[0]?.startsWith("./") && !url2.startsWith("./")) {
+      url2 = "./" + url2;
     }
   } else {
-    url = "../".repeat(-1 * segmentsDepth) + url;
+    url2 = "../".repeat(-1 * segmentsDepth) + url2;
   }
-  if (input[input.length - 1]?.endsWith("/") && !url.endsWith("/")) {
-    url += "/";
+  if (input[input.length - 1]?.endsWith("/") && !url2.endsWith("/")) {
+    url2 += "/";
   }
-  return url;
+  return url2;
 }
 function isSamePath(p1, p2) {
   return decode$1(withoutTrailingSlash(p1)) === decode$1(withoutTrailingSlash(p2));
@@ -9137,8 +9137,8 @@ class FetchError extends Error {
 function createFetchError(ctx) {
   const errorMessage = ctx.error?.message || ctx.error?.toString() || "";
   const method = ctx.request?.method || ctx.options?.method || "GET";
-  const url = ctx.request?.url || String(ctx.request) || "/";
-  const requestStr = `[${method}] ${JSON.stringify(url)}`;
+  const url2 = ctx.request?.url || String(ctx.request) || "/";
+  const requestStr = `[${method}] ${JSON.stringify(url2)}`;
   const statusStr = ctx.response ? `${ctx.response.status} ${ctx.response.statusText}` : "<no response>";
   const message = `${requestStr}: ${statusStr}${errorMessage ? ` ${errorMessage}` : ""}`;
   const fetchError = new FetchError(
@@ -10314,8 +10314,8 @@ const navigateTo = (to, options) => {
 function resolveRouteObject(to) {
   return withQuery(to.path || "", to.query || {}) + (to.hash || "");
 }
-function encodeRoutePath(url) {
-  const parsed = parseURL$1(url);
+function encodeRoutePath(url2) {
+  const parsed = parseURL$1(url2);
   return encodePath$1(decodePath(parsed.pathname)) + parsed.search + parsed.hash;
 }
 const NUXT_ERROR_SIGNATURE = "__nuxt_error";
@@ -10535,13 +10535,13 @@ function unflatten(parsed, revivers2) {
             break;
           }
           case "URL": {
-            const url = new URL(value[1]);
-            hydrated[index] = url;
+            const url2 = new URL(value[1]);
+            hydrated[index] = url2;
             break;
           }
           case "URLSearchParams": {
-            const url = new URLSearchParams(value[1]);
-            hydrated[index] = url;
+            const url2 = new URLSearchParams(value[1]);
+            hydrated[index] = url2;
             break;
           }
           default:
@@ -11553,23 +11553,23 @@ function getRouteRules(arg) {
     return {};
   }
 }
-async function loadPayload(url, opts = {}) {
-  if (await shouldLoadPayload(url)) {
-    const payloadURL = await _getPayloadURL(url, opts);
+async function loadPayload(url2, opts = {}) {
+  if (await shouldLoadPayload(url2)) {
+    const payloadURL = await _getPayloadURL(url2, opts);
     return await _importPayload(payloadURL) || null;
   }
   return null;
 }
 const filename = "_payload.json";
-async function _getPayloadURL(url, opts = {}) {
-  const u = new URL(url, "http://localhost");
+async function _getPayloadURL(url2, opts = {}) {
+  const u = new URL(url2, "http://localhost");
   if (u.host !== "localhost" || hasProtocol(u.pathname, { acceptRelative: true })) {
-    throw new Error("Payload URL must not include hostname: " + url);
+    throw new Error("Payload URL must not include hostname: " + url2);
   }
   const config = /* @__PURE__ */ useRuntimeConfig();
   const hash = opts.hash || (opts.fresh || false ? Date.now() : config.app.buildId);
   const cdnURL = config.app.cdnURL;
-  const baseOrCdnURL = cdnURL && await isPrerendered(url) ? cdnURL : config.app.baseURL;
+  const baseOrCdnURL = cdnURL && await isPrerendered(url2) ? cdnURL : config.app.baseURL;
   return joinURL(baseOrCdnURL, u.pathname, filename + (hash ? `?${hash}` : ""));
 }
 async function _importPayload(payloadURL) {
@@ -11595,17 +11595,17 @@ function _shouldLoadPrerenderedPayload(rules) {
     return true;
   }
 }
-async function _isPrerenderedInManifest(url) {
-  url = url === "/" ? url : url.replace(/\/$/, "");
+async function _isPrerenderedInManifest(url2) {
+  url2 = url2 === "/" ? url2 : url2.replace(/\/$/, "");
   try {
     const manifest2 = await getAppManifest();
-    return manifest2.prerendered.includes(url);
+    return manifest2.prerendered.includes(url2);
   } catch {
     return false;
   }
 }
-async function shouldLoadPayload(url = useRoute$1().path) {
-  const rules = getRouteRules({ path: url });
+async function shouldLoadPayload(url2 = useRoute$1().path) {
+  const rules = getRouteRules({ path: url2 });
   if (rules.ssr === false) {
     return false;
   }
@@ -11616,15 +11616,15 @@ async function shouldLoadPayload(url = useRoute$1().path) {
   if (rules.payload) {
     return true;
   }
-  const prerendered = await _isPrerenderedInManifest(url);
+  const prerendered = await _isPrerenderedInManifest(url2);
   return prerendered;
 }
-async function isPrerendered(url = useRoute$1().path) {
-  const res = _shouldLoadPrerenderedPayload(getRouteRules({ path: url }));
+async function isPrerendered(url2 = useRoute$1().path) {
+  const res = _shouldLoadPrerenderedPayload(getRouteRules({ path: url2 }));
   if (res !== void 0) {
     return res;
   }
-  const prerendered = await _isPrerenderedInManifest(url);
+  const prerendered = await _isPrerenderedInManifest(url2);
   return prerendered;
 }
 let payloadCache = null;
@@ -12440,13 +12440,13 @@ function useHistoryStateNavigation(base) {
   }, true);
   function changeLocation(to, state, replace$1) {
     const hashIndex = base.indexOf("#");
-    const url = hashIndex > -1 ? (location$1.host && document.querySelector("base") ? base : base.slice(hashIndex)) + to : createBaseLocation() + base + to;
+    const url2 = hashIndex > -1 ? (location$1.host && document.querySelector("base") ? base : base.slice(hashIndex)) + to : createBaseLocation() + base + to;
     try {
-      history$1[replace$1 ? "replaceState" : "pushState"](state, "", url);
+      history$1[replace$1 ? "replaceState" : "pushState"](state, "", url2);
       historyState.value = state;
     } catch (err) {
       console.error(err);
-      location$1[replace$1 ? "replace" : "assign"](url);
+      location$1[replace$1 ? "replace" : "assign"](url2);
     }
   }
   function replace(to, data) {
@@ -13552,7 +13552,7 @@ const _routes = [
   {
     name: "index",
     path: "/",
-    component: () => __vitePreload(() => import("./vAAp-uz4.js"), true ? __vite__mapDeps([0,1,2,3,4]) : void 0, import.meta.url)
+    component: () => __vitePreload(() => import("./BM481s99.js"), true ? __vite__mapDeps([0,1,2,3,4]) : void 0, import.meta.url)
   }
 ];
 const _wrapInTransition = (props, children) => {
@@ -13976,11 +13976,11 @@ const payload_client_X0_XABaJEN3mXNpLz5RSfZdoLq_diKzZIWPF4HinC5Q = /* @__PURE__ 
       }
     });
     onNuxtReady(() => {
-      nuxtApp.hooks.hook("link:prefetch", async (url) => {
-        const { hostname } = new URL(url, window.location.href);
+      nuxtApp.hooks.hook("link:prefetch", async (url2) => {
+        const { hostname } = new URL(url2, window.location.href);
         if (hostname === window.location.hostname) {
-          await loadPayload(url).catch(() => {
-            console.warn("[nuxt] Error preloading payload for", url);
+          await loadPayload(url2).catch(() => {
+            console.warn("[nuxt] Error preloading payload for", url2);
           });
         }
       });
@@ -14036,12 +14036,12 @@ const check_outdated_build_client_kRdP0hsyNSWRJESGlaqVgRQ1Bgm0NpNaCfqmEeSNd0I = 
 });
 function reloadNuxtApp(options = {}) {
   const path = options.path || window.location.pathname;
-  const url = new URL(path, window.location.href);
-  if (url.host !== window.location.host) {
+  const url2 = new URL(path, window.location.href);
+  if (url2.host !== window.location.host) {
     throw new Error(`Cannot navigate to a URL with a different host: '${path}'.`);
   }
-  if (url.protocol && isScriptProtocol(url.protocol)) {
-    throw new Error(`Cannot navigate to a URL with '${url.protocol}' protocol.`);
+  if (url2.protocol && isScriptProtocol(url2.protocol)) {
+    throw new Error(`Cannot navigate to a URL with '${url2.protocol}' protocol.`);
   }
   let handledPath = {};
   try {
@@ -14096,7 +14096,7 @@ const components_plugin_z4hgvsiddfKkfXTP6M8M4zG5Cb7sGnDhcryKVM45Di4 = /* @__PURE
   name: "nuxt:global-components"
 });
 const layouts = {
-  default: /* @__PURE__ */ defineAsyncComponent(() => __vitePreload(() => import("./CYyaderM.js"), true ? __vite__mapDeps([5,1,2,3,6]) : void 0, import.meta.url).then((m) => m.default || m))
+  default: /* @__PURE__ */ defineAsyncComponent(() => __vitePreload(() => import("./BLkJKIzI.js"), true ? __vite__mapDeps([5,1,2,3,6]) : void 0, import.meta.url).then((m) => m.default || m))
 };
 function _loadAsyncComponent(component) {
   if (component?.__asyncLoader && !component.__asyncResolved) {
@@ -14140,11 +14140,11 @@ const prefetch_client_xwHiCvtnqAuv25cPdV3VTRqlYkBwUqHZbymrolAkzB8 = /* @__PURE__
         }
       });
     });
-    nuxtApp.hooks.hook("link:prefetch", (url) => {
-      if (hasProtocol(url)) {
+    nuxtApp.hooks.hook("link:prefetch", (url2) => {
+      if (hasProtocol(url2)) {
         return;
       }
-      const route = router.resolve(url);
+      const route = router.resolve(url2);
       if (!route) {
         return;
       }
@@ -14568,16 +14568,40 @@ const LayoutProvider = /* @__PURE__ */ defineComponent({
 const title = "Мой сайт";
 const description = "Современный статический сайт на Nuxt 3";
 const keywords = ["nuxt", "vue", "ssg", "template"];
-const favicon = "/favicon.ico";
-const ogImage = "/images/og-image.png";
+const url = "https://example.com";
+const ogImage = "/images/favicons/favicon.svg";
 const site = {
   title,
   description,
   keywords,
-  favicon,
+  url,
   ogImage
 };
-const YM_ID = "110537821";
+const getYM = (YM_ID2) => {
+  return {
+    innerHTML: `
+      (function(m,e,t,r,i,k,a){
+          m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+          m[i].l=1*new Date();
+          for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+          k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+      })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=${YM_ID2}', 'ym');
+
+      ym(${YM_ID2}, 'init', {
+          ssr:true,
+          webvisor:true,
+          clickmap:true,
+          ecommerce:"dataLayer",
+          referrer: document.referrer,
+          url: location.href,
+          accurateTrackBounce:true,
+          trackLinks:true
+      });`,
+    type: "text/javascript"
+  };
+};
+const _hoisted_1$1 = ["src"];
+const YM_ID = "999999999";
 const _sfc_main$2 = {
   __name: "app",
   setup(__props) {
@@ -14586,53 +14610,42 @@ const _sfc_main$2 = {
         return titleChunk ? `${titleChunk} — ${site.title}` : site.title;
       },
       meta: [
+        { name: "title", content: site.title },
         { name: "description", content: site.description },
         { name: "keywords", content: site.keywords?.join(", ") },
         { property: "og:title", content: site.title },
         { property: "og:description", content: site.description },
         { property: "og:image", content: site.ogImage },
-        { property: "og:type", content: "website" }
+        { property: "og:type", content: "website" },
+        { property: "og:url", content: site.url },
+        { charset: "UTF-8" },
+        { name: "viewport", content: "width=device-width, initial-scale=1" }
       ],
       link: [
-        { rel: "icon", type: "image/x-icon", href: site.favicon }
+        { rel: "icon", type: "image/png", href: "/images/favicons/favicon-96x96.png", sizes: "96x96" },
+        { rel: "icon", type: "image/svg+xml", href: "/images/favicons/favicon.svg" },
+        { rel: "shortcut icon", href: "/images/favicons/favicon.ico" },
+        { rel: "apple-touch-icon", sizes: "180x180", href: "/images/favicons/apple-touch-icon.png" },
+        { rel: "manifest", href: "/images/favicons/site.webmanifest" },
+        { rel: "canonical", href: site.url }
       ],
       script: [
-        {
-          innerHTML: `
-(function(m,e,t,r,i,k,a){
-    m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
-    m[i].l=1*new Date();
-    for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
-    k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
-})(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=${YM_ID}', 'ym');
-
-ym(${YM_ID}, 'init', {
-    ssr:true,
-    webvisor:true,
-    clickmap:true,
-    ecommerce:"dataLayer",
-    referrer: document.referrer,
-    url: location.href,
-    accurateTrackBounce:true,
-    trackLinks:true
-});`,
-          type: "text/javascript"
-        }
+        getYM(YM_ID)
       ]
     });
     return (_ctx, _cache) => {
       const _component_NuxtPage = __nuxt_component_0;
       const _component_NuxtLayout = __nuxt_component_1;
       return openBlock(), createElementBlock(Fragment, null, [
-        _cache[0] || (_cache[0] = createBaseVNode("noscript", null, [
+        createBaseVNode("noscript", null, [
           createBaseVNode("div", null, [
             createBaseVNode("img", {
-              src: "https://mc.yandex.ru/watch/110537821",
+              src: `https://mc.yandex.ru/watch/${YM_ID}`,
               style: { "position": "absolute", "left": "-9999px" },
               alt: ""
-            })
+            }, null, 8, _hoisted_1$1)
           ])
-        ], -1)),
+        ]),
         createVNode(_component_NuxtLayout, null, {
           default: withCtx(() => [
             createVNode(_component_NuxtPage)
@@ -14656,8 +14669,8 @@ const _sfc_main$1 = {
     const statusText = _error.statusMessage ?? (is404 ? "Page Not Found" : "Internal Server Error");
     const description2 = _error.message || _error.toString();
     const stack2 = void 0;
-    const _Error404 = /* @__PURE__ */ defineAsyncComponent(() => __vitePreload(() => import("./pXti5wne.js"), true ? __vite__mapDeps([7,1,8]) : void 0, import.meta.url));
-    const _Error = /* @__PURE__ */ defineAsyncComponent(() => __vitePreload(() => import("./CUovlxMt.js"), true ? __vite__mapDeps([9,1,10]) : void 0, import.meta.url));
+    const _Error404 = /* @__PURE__ */ defineAsyncComponent(() => __vitePreload(() => import("./C27spY1q.js"), true ? __vite__mapDeps([7,1,8]) : void 0, import.meta.url));
+    const _Error = /* @__PURE__ */ defineAsyncComponent(() => __vitePreload(() => import("./ChsxBVrz.js"), true ? __vite__mapDeps([9,1,10]) : void 0, import.meta.url));
     const ErrorTemplate = is404 ? _Error404 : _Error;
     return (_ctx, _cache) => {
       return openBlock(), createBlock(unref(ErrorTemplate), normalizeProps$1(guardReactiveProps({ status: unref(status), statusText: unref(statusText), statusCode: unref(status), statusMessage: unref(statusText), description: unref(description2), stack: unref(stack2) })), null, 16);
@@ -14779,14 +14792,13 @@ export {
   createTextVNode as H,
   renderSlot as I,
   normalizeClass as J,
-  normalizeStyle as K,
-  createCommentVNode as L,
-  createBlock as M,
-  Fragment as N,
-  renderList as O,
-  normalizeProps$1 as P,
-  guardReactiveProps as Q,
-  onUnmounted as R,
+  createCommentVNode as K,
+  createBlock as L,
+  Fragment as M,
+  renderList as N,
+  normalizeProps$1 as O,
+  guardReactiveProps as P,
+  onUnmounted as Q,
   useNuxtApp as a,
   onNuxtReady as b,
   onBeforeUnmount as c,

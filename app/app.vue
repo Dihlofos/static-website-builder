@@ -1,45 +1,35 @@
 <script setup>
 import site from '~/../data/site.json'
+import { getYM } from '~/utils/getYM'
 
-const YM_ID = '110537821' // ⚠️ ЗДЕСЬ МЕНЯТЬ ID ЯНДЕКС.МЕТРИКИ
+const YM_ID = '999999999' // ⚠️ ЗДЕСЬ МЕНЯТЬ ID ЯНДЕКС.МЕТРИКИ
 
 useHead({
   titleTemplate: (titleChunk) => {
     return titleChunk ? `${titleChunk} — ${site.title}` : site.title
   },
   meta: [
+    { name: 'title', content: site.title },
     { name: 'description', content: site.description },
     { name: 'keywords', content: site.keywords?.join(', ') },
     { property: 'og:title', content: site.title },
     { property: 'og:description', content: site.description },
-    { property: 'og:image', content: site.ogImage || '/images/og-image.png' },
+    { property: 'og:image', content: site.ogImage },
     { property: 'og:type', content: 'website' },
+    { property: 'og:url', content: site.url },
+    { charset: 'UTF-8' },
+    { name: 'viewport', content: 'width=device-width, initial-scale=1' },
   ],
   link: [
-    { rel: 'icon', type: 'image/x-icon', href: site.favicon || '/favicon.ico' },
+    { rel: 'icon', type: 'image/png', href: '/images/favicons/favicon-96x96.png', sizes: '96x96' },
+    { rel: 'icon', type: 'image/svg+xml', href: '/images/favicons/favicon.svg' },
+    { rel: 'shortcut icon', href: '/images/favicons/favicon.ico' },
+    { rel: 'apple-touch-icon', sizes: '180x180', href: '/images/favicons/apple-touch-icon.png' },
+    { rel: 'manifest', href: '/images/favicons/site.webmanifest' },
+    { rel: 'canonical', href: site.url },
   ],
   script: [
-    {
-      innerHTML: `
-(function(m,e,t,r,i,k,a){
-    m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
-    m[i].l=1*new Date();
-    for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
-    k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
-})(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=${YM_ID}', 'ym');
-
-ym(${YM_ID}, 'init', {
-    ssr:true,
-    webvisor:true,
-    clickmap:true,
-    ecommerce:"dataLayer",
-    referrer: document.referrer,
-    url: location.href,
-    accurateTrackBounce:true,
-    trackLinks:true
-});`,
-      type: 'text/javascript',
-    },
+    getYM(YM_ID),
   ],
 })
 </script>
@@ -48,9 +38,7 @@ ym(${YM_ID}, 'init', {
   <!-- ⚠️ ЯНДЕКС.МЕТРИКА: noscript — в самом начале body -->
   <noscript>
     <div>
-      <img src="https://mc.yandex.ru/watch/110537821"
-           style="position:absolute; left:-9999px;"
-           alt="" />
+      <img :src="`https://mc.yandex.ru/watch/${YM_ID}`" style="position:absolute; left:-9999px;" alt="" />
     </div>
   </noscript>
 

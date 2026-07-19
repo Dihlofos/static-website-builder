@@ -1,6 +1,6 @@
 import { _ as _export_sfc } from "./1tPrXgE0.js";
-import { B as openBlock, C as createElementBlock, I as renderSlot, J as normalizeClass, F as createVNode, G as withCtx, K as normalizeStyle, l as unref, m as computed, D as createBaseVNode, E as toDisplayString, L as createCommentVNode, M as createBlock, H as createTextVNode, N as Fragment, O as renderList, i as ref, A as useHead, P as normalizeProps, Q as guardReactiveProps } from "./B5S87wZV.js";
-import { _ as __nuxt_component_0$2 } from "./BjFUbwAl.js";
+import { B as openBlock, C as createElementBlock, I as renderSlot, J as normalizeClass, F as createVNode, G as withCtx, D as createBaseVNode, E as toDisplayString, K as createCommentVNode, L as createBlock, H as createTextVNode, M as Fragment, N as renderList, i as ref, A as useHead, O as normalizeProps, P as guardReactiveProps, l as unref } from "./K4NGPIF4.js";
+import { _ as __nuxt_component_0$2 } from "./Bb9lcrrM.js";
 const _hoisted_1$2 = ["href"];
 const _hoisted_2$2 = ["disabled", "type"];
 const _sfc_main$3 = {
@@ -32,13 +32,17 @@ const _sfc_main$3 = {
   }
 };
 const __nuxt_component_0$1 = /* @__PURE__ */ _export_sfc(_sfc_main$3, [["__scopeId", "data-v-03c3ba3b"]]);
-const _hoisted_1$1 = { class: "hero__content" };
-const _hoisted_2$1 = { class: "hero__title" };
-const _hoisted_3$1 = {
+const _hoisted_1$1 = {
+  id: "hero",
+  class: "hero"
+};
+const _hoisted_2$1 = { class: "hero__content" };
+const _hoisted_3$1 = { class: "hero__title" };
+const _hoisted_4$1 = {
   key: 0,
   class: "hero__subtitle"
 };
-const _hoisted_4$1 = {
+const _hoisted_5$1 = {
   key: 1,
   class: "hero__actions"
 };
@@ -52,28 +56,16 @@ const _sfc_main$2 = {
     backgroundImage: { type: String, default: "" }
   },
   setup(__props) {
-    const props = __props;
-    const bgStyle = computed(() => {
-      if (!props.backgroundImage) return {};
-      const fileName = props.backgroundImage.replace("components/HeroSection/", "");
-      return {
-        backgroundImage: `url(/components/HeroSection/${fileName})`
-      };
-    });
     return (_ctx, _cache) => {
       const _component_Button = __nuxt_component_0$1;
       const _component_Container = __nuxt_component_0$2;
-      return openBlock(), createElementBlock("section", {
-        id: "hero",
-        class: "hero",
-        style: normalizeStyle(unref(bgStyle))
-      }, [
+      return openBlock(), createElementBlock("section", _hoisted_1$1, [
         createVNode(_component_Container, null, {
           default: withCtx(() => [
-            createBaseVNode("div", _hoisted_1$1, [
-              createBaseVNode("h1", _hoisted_2$1, toDisplayString(__props.title), 1),
-              __props.subtitle ? (openBlock(), createElementBlock("p", _hoisted_3$1, toDisplayString(__props.subtitle), 1)) : createCommentVNode("", true),
-              __props.button || __props.secondaryButton ? (openBlock(), createElementBlock("div", _hoisted_4$1, [
+            createBaseVNode("div", _hoisted_2$1, [
+              createBaseVNode("h1", _hoisted_3$1, toDisplayString(__props.title), 1),
+              __props.subtitle ? (openBlock(), createElementBlock("p", _hoisted_4$1, toDisplayString(__props.subtitle), 1)) : createCommentVNode("", true),
+              __props.button || __props.secondaryButton ? (openBlock(), createElementBlock("div", _hoisted_5$1, [
                 __props.button?.text ? (openBlock(), createBlock(_component_Button, {
                   key: 0,
                   to: __props.button.link,
@@ -101,11 +93,11 @@ const _sfc_main$2 = {
           ]),
           _: 1
         })
-      ], 4);
+      ]);
     };
   }
 };
-const __nuxt_component_0 = /* @__PURE__ */ _export_sfc(_sfc_main$2, [["__scopeId", "data-v-812708f9"]]);
+const __nuxt_component_0 = /* @__PURE__ */ _export_sfc(_sfc_main$2, [["__scopeId", "data-v-190bb458"]]);
 const _hoisted_1 = {
   id: "faq",
   class: "faq"

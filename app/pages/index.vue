@@ -5,7 +5,6 @@ import faqData from '~/../data/sections/faq.json'
 useHead({
   title: 'Главная',
   meta: [
-    { name: 'description', content: 'Современный статический сайт на Nuxt 3' },
   ],
 })
 </script>
