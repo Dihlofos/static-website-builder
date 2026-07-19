@@ -5,7 +5,7 @@
   "version": "1.0.0",
   "scripts": {
     "dev": "npx nuxt dev --cwd app",
-    "generate": "npx nuxt generate --cwd app && node scripts/format-html.js",
+    "generate": "npx nuxt generate --cwd app",
     "preview": "npx serve ./app/.output/public",
     "clean": "npx nuxt cleanup --cwd app"
   },

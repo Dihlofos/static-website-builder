@@ -1,6 +1,6 @@
 import { _ as _export_sfc } from "./1tPrXgE0.js";
-import { B as openBlock, C as createElementBlock, I as renderSlot, J as normalizeClass, F as createVNode, G as withCtx, D as createBaseVNode, E as toDisplayString, K as createCommentVNode, L as createBlock, H as createTextVNode, M as publicAssetsURL, _ as __vitePreload, N as Fragment, O as renderList, l as unref, i as ref, A as useHead, P as normalizeProps, Q as guardReactiveProps } from "./OkrzeBgZ.js";
-import { _ as __nuxt_component_0$2 } from "./BxqsffKz.js";
+import { B as openBlock, C as createElementBlock, I as renderSlot, J as normalizeClass, F as createVNode, G as withCtx, D as createBaseVNode, E as toDisplayString, K as createCommentVNode, L as createBlock, H as createTextVNode, _ as __vitePreload, M as Fragment, N as renderList, l as unref, i as ref, A as useHead, O as normalizeProps, P as guardReactiveProps } from "./CxVyMzyC.js";
+import { _ as __nuxt_component_0$2 } from "./BRACMW7P.js";
 const _hoisted_1$2 = ["href"];
 const _hoisted_2$2 = ["disabled", "type"];
 const _sfc_main$3 = {
@@ -98,10 +98,6 @@ const _sfc_main$2 = {
   }
 };
 const __nuxt_component_0 = /* @__PURE__ */ _export_sfc(_sfc_main$2, [["__scopeId", "data-v-190bb458"]]);
-const _imports_0 = publicAssetsURL("/images/faq/decor-left.svg");
-const _imports_1 = publicAssetsURL("/images/faq/decor-right.svg");
-const _imports_2 = publicAssetsURL("/images/faq/arrow-down.svg");
-const _imports_3 = publicAssetsURL("/images/faq/arrow-up.svg");
 let purify = null;
 {
   __vitePreload(() => import("./C3FtZLC6.js"), true ? [] : void 0, import.meta.url).then((m) => {
@@ -120,17 +116,34 @@ const _hoisted_1 = {
   id: "faq",
   class: "faq"
 };
-const _hoisted_2 = { class: "faq__wrapper" };
-const _hoisted_3 = { class: "faq__title" };
-const _hoisted_4 = { class: "faq__accordion" };
-const _hoisted_5 = ["aria-expanded", "aria-controls", "onClick"];
-const _hoisted_6 = ["id"];
-const _hoisted_7 = ["innerHTML"];
+const _hoisted_2 = ["src"];
+const _hoisted_3 = ["src"];
+const _hoisted_4 = { class: "faq__wrapper" };
+const _hoisted_5 = { class: "faq__title" };
+const _hoisted_6 = { class: "faq__accordion" };
+const _hoisted_7 = ["aria-expanded", "aria-controls", "onClick"];
+const _hoisted_8 = {
+  class: "faq__icon",
+  "aria-hidden": "true"
+};
+const _hoisted_9 = ["src"];
+const _hoisted_10 = ["src"];
+const _hoisted_11 = ["id"];
+const _hoisted_12 = ["innerHTML"];
 const _sfc_main$1 = {
   __name: "Faq",
   props: {
     title: { type: String, required: true },
-    items: { type: Array, required: true }
+    items: { type: Array, required: true },
+    images: {
+      type: Object,
+      default: () => ({
+        decorLeft: "/images/faq/decor-left.svg",
+        decorRight: "/images/faq/decor-right.svg",
+        arrowDown: "/images/faq/arrow-down.svg",
+        arrowUp: "/images/faq/arrow-up.svg"
+      })
+    }
   },
   setup(__props) {
     const openState = ref({});
@@ -143,25 +156,25 @@ const _sfc_main$1 = {
     return (_ctx, _cache) => {
       const _component_Container = __nuxt_component_0$2;
       return openBlock(), createElementBlock("section", _hoisted_1, [
-        _cache[1] || (_cache[1] = createBaseVNode("img", {
-          src: _imports_0,
+        createBaseVNode("img", {
+          src: __props.images.decorLeft,
           alt: "",
           class: "faq__decor faq__decor--left",
           width: "1075",
           height: "1090"
-        }, null, -1)),
-        _cache[2] || (_cache[2] = createBaseVNode("img", {
-          src: _imports_1,
+        }, null, 8, _hoisted_2),
+        createBaseVNode("img", {
+          src: __props.images.decorRight,
           alt: "",
           class: "faq__decor faq__decor--right",
           width: "945",
           height: "958"
-        }, null, -1)),
+        }, null, 8, _hoisted_3),
         createVNode(_component_Container, null, {
           default: withCtx(() => [
-            createBaseVNode("div", _hoisted_2, [
-              createBaseVNode("h2", _hoisted_3, toDisplayString(__props.title), 1),
-              createBaseVNode("div", _hoisted_4, [
+            createBaseVNode("div", _hoisted_4, [
+              createBaseVNode("h2", _hoisted_5, toDisplayString(__props.title), 1),
+              createBaseVNode("div", _hoisted_6, [
                 (openBlock(true), createElementBlock(Fragment, null, renderList(__props.items, (item, index) => {
                   return openBlock(), createElementBlock("div", {
                     key: index,
@@ -174,26 +187,23 @@ const _sfc_main$1 = {
                       onClick: ($event) => toggle(index)
                     }, [
                       createTextVNode(toDisplayString(item.question) + " ", 1),
-                      _cache[0] || (_cache[0] = createBaseVNode("span", {
-                        class: "faq__icon",
-                        "aria-hidden": "true"
-                      }, [
+                      createBaseVNode("span", _hoisted_8, [
                         createBaseVNode("img", {
-                          src: _imports_2,
+                          src: __props.images.arrowDown,
                           alt: "",
                           class: "faq__down",
                           width: "36",
                           height: "36"
-                        }),
+                        }, null, 8, _hoisted_9),
                         createBaseVNode("img", {
-                          src: _imports_3,
+                          src: __props.images.arrowUp,
                           alt: "",
                           class: "faq__up",
                           width: "36",
                           height: "36"
-                        })
-                      ], -1))
-                    ], 10, _hoisted_5),
+                        }, null, 8, _hoisted_10)
+                      ])
+                    ], 10, _hoisted_7),
                     createBaseVNode("div", {
                       id: `faq-content-${index}`,
                       class: normalizeClass(["faq__content", { active: isOpen(index) }]),
@@ -201,8 +211,8 @@ const _sfc_main$1 = {
                     }, [
                       createBaseVNode("p", {
                         innerHTML: unref(sanitizeText)(item.answer)
-                      }, null, 8, _hoisted_7)
-                    ], 10, _hoisted_6)
+                      }, null, 8, _hoisted_12)
+                    ], 10, _hoisted_11)
                   ], 2);
                 }), 128))
               ])
@@ -214,7 +224,7 @@ const _sfc_main$1 = {
     };
   }
 };
-const __nuxt_component_1 = /* @__PURE__ */ _export_sfc(_sfc_main$1, [["__scopeId", "data-v-ce363c85"]]);
+const __nuxt_component_1 = /* @__PURE__ */ _export_sfc(_sfc_main$1, [["__scopeId", "data-v-6b9ccbb0"]]);
 const type$1 = "hero";
 const title$1 = "Создаём современные веб-сайты";
 const subtitle = "Быстро, надёжно, красиво. Используем Nuxt 3 и SCSS.";
@@ -231,10 +241,12 @@ const heroData = {
 };
 const type = "faq";
 const title = "Вопросы и ответы";
+const images = { "decorLeft": "/images/faq/decor-left.svg", "decorRight": "/images/faq/decor-right.svg", "arrowDown": "/images/faq/arrow-down.svg", "arrowUp": "/images/faq/arrow-up.svg" };
 const items = [{ "question": "Сколько активностей можно посетить?", "answer": "Вы&nbsp;можете выбрать и&nbsp;посетить любое количество активностей фестиваля. На&nbsp;некоторые понадобится регистрация&nbsp;&mdash; в&nbsp;расписании вы&nbsp;увидите кнопку &laquo;Регистрация&raquo;." }, { "question": "Нужно ли брать с собой спортивный инвентарь?", "answer": "Мы предоставим коврики, а другой специальный инвентарь не потребуется. Просто приходите в удобной одежде и обуви. И не забудьте взять с собой воду." }, { "question": "Можно ли переодеться на площадке?", "answer": "На площадке нет раздевалок и камер хранения, поэтому приходите в спортивной одежде и обуви сразу." }, { "question": "Что делать, если я опаздываю на зарегистрированное событие?", "answer": "В случае опоздания забронированный слот аннулируется. Рекомендуем приходить на площадку за 15 минут до начала, чтобы успеть отметиться и занять место." }, { "question": "Можно ли прийти с ребенком?", "answer": "Да, для детей от 3 лет подготовлены специальные активности в детской зоне." }, { "question": "Могут ли в активностях принять участие мужчины?", "answer": "Тренировки организованы только для женщин. Но для мужчин будет работать специальная зона с кибербаром и играми." }];
 const faqData = {
   type,
   title,
+  images,
   items
 };
 const _sfc_main = {
@@ -250,8 +262,9 @@ const _sfc_main = {
         createVNode(_component_HeroSection, normalizeProps(guardReactiveProps(unref(heroData))), null, 16),
         createVNode(_component_Faq, {
           title: unref(faqData).title,
-          items: unref(faqData).items
-        }, null, 8, ["title", "items"])
+          items: unref(faqData).items,
+          images: unref(faqData).images
+        }, null, 8, ["title", "items", "images"])
       ]);
     };
   }

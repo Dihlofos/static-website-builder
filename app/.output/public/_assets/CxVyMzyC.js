@@ -1,4 +1,4 @@
-const __vite__mapDeps=(i,m=__vite__mapDeps,d=(m.f||(m.f=["./BtnLkicg.js","./1tPrXgE0.js","./BxqsffKz.js","./Container.iV8lCh0G.css","./index.F-rYt_iT.css","./DmEufTHd.js","./default.CMYxyU2P.css","./CONQaRMi.js","./error-404.Dv2pyLoR.css","./DIp_kA-5.js","./error-500.C2XaBLWY.css"])))=>i.map(i=>d[i]);
+const __vite__mapDeps=(i,m=__vite__mapDeps,d=(m.f||(m.f=["./Bpq5llF0.js","./1tPrXgE0.js","./BRACMW7P.js","./Container.iV8lCh0G.css","./index.Bo_9s2X0.css","./KNMXmPQW.js","./default.CMYxyU2P.css","./BSGXL5Ez.js","./error-404.Dv2pyLoR.css","./BLde9kqi.js","./error-500.C2XaBLWY.css"])))=>i.map(i=>d[i]);
 (function polyfill() {
   const relList = document.createElement("link").relList;
   if (relList && relList.supports && relList.supports("modulepreload")) return;
@@ -13552,7 +13552,7 @@ const _routes = [
   {
     name: "index",
     path: "/",
-    component: () => __vitePreload(() => import("./BtnLkicg.js"), true ? __vite__mapDeps([0,1,2,3,4]) : void 0, import.meta.url)
+    component: () => __vitePreload(() => import("./Bpq5llF0.js"), true ? __vite__mapDeps([0,1,2,3,4]) : void 0, import.meta.url)
   }
 ];
 const _wrapInTransition = (props, children) => {
@@ -14096,7 +14096,7 @@ const components_plugin_z4hgvsiddfKkfXTP6M8M4zG5Cb7sGnDhcryKVM45Di4 = /* @__PURE
   name: "nuxt:global-components"
 });
 const layouts = {
-  default: /* @__PURE__ */ defineAsyncComponent(() => __vitePreload(() => import("./DmEufTHd.js"), true ? __vite__mapDeps([5,1,2,3,6]) : void 0, import.meta.url).then((m) => m.default || m))
+  default: /* @__PURE__ */ defineAsyncComponent(() => __vitePreload(() => import("./KNMXmPQW.js"), true ? __vite__mapDeps([5,1,2,3,6]) : void 0, import.meta.url).then((m) => m.default || m))
 };
 function _loadAsyncComponent(component) {
   if (component?.__asyncLoader && !component.__asyncResolved) {
@@ -14600,7 +14600,6 @@ const getYM = (YM_ID2) => {
     type: "text/javascript"
   };
 };
-const _hoisted_1$1 = ["src"];
 const YM_ID = "999999999";
 const _sfc_main$2 = {
   __name: "app",
@@ -14631,28 +14630,22 @@ const _sfc_main$2 = {
       ],
       script: [
         getYM(YM_ID)
+      ],
+      noscript: [
+        {
+          innerHTML: `<div><img src="https://mc.yandex.ru/watch/${YM_ID}" style="position:absolute;left:-9999px;" alt=""></div>`
+        }
       ]
     });
     return (_ctx, _cache) => {
       const _component_NuxtPage = __nuxt_component_0;
       const _component_NuxtLayout = __nuxt_component_1;
-      return openBlock(), createElementBlock(Fragment, null, [
-        createBaseVNode("noscript", null, [
-          createBaseVNode("div", null, [
-            createBaseVNode("img", {
-              src: `https://mc.yandex.ru/watch/${YM_ID}`,
-              style: { "position": "absolute", "left": "-9999px" },
-              alt: ""
-            }, null, 8, _hoisted_1$1)
-          ])
+      return openBlock(), createBlock(_component_NuxtLayout, null, {
+        default: withCtx(() => [
+          createVNode(_component_NuxtPage)
         ]),
-        createVNode(_component_NuxtLayout, null, {
-          default: withCtx(() => [
-            createVNode(_component_NuxtPage)
-          ]),
-          _: 1
-        })
-      ], 64);
+        _: 1
+      });
     };
   }
 };
@@ -14669,8 +14662,8 @@ const _sfc_main$1 = {
     const statusText = _error.statusMessage ?? (is404 ? "Page Not Found" : "Internal Server Error");
     const description2 = _error.message || _error.toString();
     const stack2 = void 0;
-    const _Error404 = /* @__PURE__ */ defineAsyncComponent(() => __vitePreload(() => import("./CONQaRMi.js"), true ? __vite__mapDeps([7,1,8]) : void 0, import.meta.url));
-    const _Error = /* @__PURE__ */ defineAsyncComponent(() => __vitePreload(() => import("./DIp_kA-5.js"), true ? __vite__mapDeps([9,1,10]) : void 0, import.meta.url));
+    const _Error404 = /* @__PURE__ */ defineAsyncComponent(() => __vitePreload(() => import("./BSGXL5Ez.js"), true ? __vite__mapDeps([7,1,8]) : void 0, import.meta.url));
+    const _Error = /* @__PURE__ */ defineAsyncComponent(() => __vitePreload(() => import("./BLde9kqi.js"), true ? __vite__mapDeps([9,1,10]) : void 0, import.meta.url));
     const ErrorTemplate = is404 ? _Error404 : _Error;
     return (_ctx, _cache) => {
       return openBlock(), createBlock(unref(ErrorTemplate), normalizeProps$1(guardReactiveProps({ status: unref(status), statusText: unref(statusText), statusCode: unref(status), statusMessage: unref(statusText), description: unref(description2), stack: unref(stack2) })), null, 16);
@@ -14794,12 +14787,11 @@ export {
   normalizeClass as J,
   createCommentVNode as K,
   createBlock as L,
-  publicAssetsURL as M,
-  Fragment as N,
-  renderList as O,
-  normalizeProps$1 as P,
-  guardReactiveProps as Q,
-  onUnmounted as R,
+  Fragment as M,
+  renderList as N,
+  normalizeProps$1 as O,
+  guardReactiveProps as P,
+  onUnmounted as Q,
   __vitePreload as _,
   useNuxtApp as a,
   onNuxtReady as b,

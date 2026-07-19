@@ -31,17 +31,15 @@ useHead({
   script: [
     getYM(YM_ID),
   ],
+  noscript: [
+    {
+      innerHTML: `<div><img src="https://mc.yandex.ru/watch/${YM_ID}" style="position:absolute;left:-9999px;" alt=""></div>`,
+    },
+  ],
 })
 </script>
 
 <template>
-  <!-- ⚠️ ЯНДЕКС.МЕТРИКА: noscript — в самом начале body -->
-  <noscript>
-    <div>
-      <img :src="`https://mc.yandex.ru/watch/${YM_ID}`" style="position:absolute; left:-9999px;" alt="" />
-    </div>
-  </noscript>
-
   <NuxtLayout>
     <NuxtPage />
   </NuxtLayout>

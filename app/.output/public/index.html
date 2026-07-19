@@ -1,188 +1,51 @@
-<!DOCTYPE html>
-<html>
+<!DOCTYPE html><html><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Мой сайт</title>
+<script type="text/javascript">
+      (function(m,e,t,r,i,k,a){
+          m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+          m[i].l=1*new Date();
+          for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+          k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+      })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=999999999', 'ym');
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Мой сайт</title>
-  <script type="text/javascript">
-    (function(m, e, t, r, i, k, a) {
-      m[i] = m[i] || function() {
-        (m[i].a = m[i].a || []).push(arguments)
-      };
-      m[i].l = 1 * new Date();
-      for (var j = 0; j < document.scripts.length; j++) {
-        if (document.scripts[j].src === r) {
-          return;
-        }
-      }
-      k = e.createElement(t), a = e.getElementsByTagName(t)[0], k.async = 1, k.src = r, a.parentNode.insertBefore(k, a)
-    })(window, document, 'script', 'https://mc.yandex.ru/metrika/tag.js?id=999999999', 'ym');
-    ym(999999999, 'init', {
-      ssr: true,
-      webvisor: true,
-      clickmap: true,
-      ecommerce: "dataLayer",
-      referrer: document.referrer,
-      url: location.href,
-      accurateTrackBounce: true,
-      trackLinks: true
-    });
-  </script>
-  <link rel="stylesheet" href="_assets/entry.qj4Ya1j9.css">
-  <link rel="stylesheet" href="_assets/default.CMYxyU2P.css">
-  <link rel="stylesheet" href="_assets/Container.iV8lCh0G.css">
-  <link rel="stylesheet" href="_assets/index.F-rYt_iT.css">
-  <link rel="preload" as="fetch" href="_payload.json?97a3836f-e5ab-4a49-9c1b-4c2133b88458">
-  <link rel="modulepreload" as="script" href="_assets/OkrzeBgZ.js">
-  <link rel="modulepreload" as="script" href="_assets/DmEufTHd.js">
-  <link rel="modulepreload" as="script" href="_assets/1tPrXgE0.js">
-  <link rel="modulepreload" as="script" href="_assets/BxqsffKz.js">
-  <link rel="modulepreload" as="script" href="_assets/BtnLkicg.js">
-  <script type="module" src="_assets/OkrzeBgZ.js"></script>
-  <link rel="prefetch" as="style" href="_assets/error-500.C2XaBLWY.css">
-  <link rel="prefetch" as="script" href="_assets/DIp_kA-5.js">
-  <link rel="prefetch" as="script" href="_assets/C3FtZLC6.js">
-  <meta name="title" content="Мой сайт">
-  <meta name="description" content="Современный статический сайт на Nuxt 3">
-  <meta name="keywords" content="nuxt, vue, ssg, template">
-  <meta property="og:title" content="Мой сайт">
-  <meta property="og:description" content="Современный статический сайт на Nuxt 3">
-  <meta property="og:image" content="/images/favicons/favicon.svg">
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://example.com">
-  <link rel="icon" type="image/png" href="images/favicons/favicon-96x96.png" sizes="96x96">
-  <link rel="icon" type="image/svg+xml" href="images/favicons/favicon.svg">
-  <link rel="shortcut icon" href="images/favicons/favicon.ico">
-  <link rel="apple-touch-icon" sizes="180x180" href="images/favicons/apple-touch-icon.png">
-  <link rel="manifest" href="images/favicons/site.webmanifest">
-  <link rel="canonical" href="https://example.com">
-</head>
-
-<body>
-  <div id="__nuxt"><!--[--><noscript>
-      <div><img src="https://mc.yandex.ru/watch/999999999" style="position:absolute;left:-9999px;" alt=""></div>
-    </noscript>
-    <div class="page" data-v-9931e2df>
-      <header class="header" data-v-9931e2df data-v-0b6565a3>
-        <div class="container" data-v-0b6565a3 data-v-ad66a7bc><!--[-->
-          <div class="header__inner" data-v-0b6565a3><a href="/" class="header__logo" data-v-0b6565a3>Template</a>
-            <nav class="nav" data-v-0b6565a3 data-v-e25e4602><button class="nav__toggle" aria-label="Меню" data-v-e25e4602><span class="nav__toggle-icon" data-v-e25e4602>☰</span></button>
-              <ul class="nav__list" data-v-e25e4602><!--[-->
-                <li class="nav__item" data-v-e25e4602><a href="#hero" class="nav__link" data-v-e25e4602>Главная</a></li>
-                <li class="nav__item" data-v-e25e4602><a href="#features" class="nav__link" data-v-e25e4602>Возможности</a></li>
-                <li class="nav__item" data-v-e25e4602><a href="#about" class="nav__link" data-v-e25e4602>О нас</a></li>
-                <li class="nav__item" data-v-e25e4602><a href="#contact" class="nav__link" data-v-e25e4602>Контакты</a></li><!--]-->
-              </ul>
-            </nav>
-          </div><!--]-->
-        </div>
-      </header><!--[-->
-      <main>
-        <section id="hero" class="hero" type="hero" data-v-190bb458>
-          <div class="container" data-v-190bb458 data-v-ad66a7bc><!--[-->
-            <div class="hero__content" data-v-190bb458>
-              <h1 class="hero__title" data-v-190bb458>Создаём современные веб-сайты</h1>
-              <p class="hero__subtitle" data-v-190bb458>Быстро, надёжно, красиво. Используем Nuxt 3 и SCSS.</p>
-              <div class="hero__actions" data-v-190bb458><a href="#features" class="button button--primary button--lg" data-v-190bb458 data-v-03c3ba3b><!--[-->Узнать больше<!--]--></a><a href="#contact" class="button button--secondary button--lg" data-v-190bb458 data-v-03c3ba3b><!--[-->Связаться<!--]--></a></div>
-            </div><!--]-->
-          </div>
-        </section>
-        <section id="faq" class="faq" data-v-ce363c85><img src="images/faq/decor-left.svg" alt="" class="faq__decor faq__decor--left" width="1075" height="1090" data-v-ce363c85><img src="images/faq/decor-right.svg" alt="" class="faq__decor faq__decor--right" width="945" height="958" data-v-ce363c85>
-          <div class="container" data-v-ce363c85 data-v-ad66a7bc><!--[-->
-            <div class="faq__wrapper" data-v-ce363c85>
-              <h2 class="faq__title" data-v-ce363c85>Вопросы и ответы</h2>
-              <div class="faq__accordion" data-v-ce363c85><!--[-->
-                <div class="faq__item" data-v-ce363c85><button class="faq__toggler" aria-expanded="false" aria-controls="faq-content-0" data-v-ce363c85>Сколько активностей можно посетить? <span class="faq__icon" aria-hidden="true" data-v-ce363c85><img src="images/faq/arrow-down.svg" alt="" class="faq__down" width="36" height="36" data-v-ce363c85><img src="images/faq/arrow-up.svg" alt="" class="faq__up" width="36" height="36" data-v-ce363c85></span></button>
-                  <div id="faq-content-0" class="faq__content" role="region" data-v-ce363c85>
-                    <p data-v-ce363c85>Вы&nbsp;можете выбрать и&nbsp;посетить любое количество активностей фестиваля. На&nbsp;некоторые понадобится регистрация&nbsp;&mdash; в&nbsp;расписании вы&nbsp;увидите кнопку &laquo;Регистрация&raquo;.</p>
-                  </div>
-                </div>
-                <div class="faq__item" data-v-ce363c85><button class="faq__toggler" aria-expanded="false" aria-controls="faq-content-1" data-v-ce363c85>Нужно ли брать с собой спортивный инвентарь? <span class="faq__icon" aria-hidden="true" data-v-ce363c85><img src="images/faq/arrow-down.svg" alt="" class="faq__down" width="36" height="36" data-v-ce363c85><img src="images/faq/arrow-up.svg" alt="" class="faq__up" width="36" height="36" data-v-ce363c85></span></button>
-                  <div id="faq-content-1" class="faq__content" role="region" data-v-ce363c85>
-                    <p data-v-ce363c85>Мы предоставим коврики, а другой специальный инвентарь не потребуется. Просто приходите в удобной одежде и обуви. И не забудьте взять с собой воду.</p>
-                  </div>
-                </div>
-                <div class="faq__item" data-v-ce363c85><button class="faq__toggler" aria-expanded="false" aria-controls="faq-content-2" data-v-ce363c85>Можно ли переодеться на площадке? <span class="faq__icon" aria-hidden="true" data-v-ce363c85><img src="images/faq/arrow-down.svg" alt="" class="faq__down" width="36" height="36" data-v-ce363c85><img src="images/faq/arrow-up.svg" alt="" class="faq__up" width="36" height="36" data-v-ce363c85></span></button>
-                  <div id="faq-content-2" class="faq__content" role="region" data-v-ce363c85>
-                    <p data-v-ce363c85>На площадке нет раздевалок и камер хранения, поэтому приходите в спортивной одежде и обуви сразу.</p>
-                  </div>
-                </div>
-                <div class="faq__item" data-v-ce363c85><button class="faq__toggler" aria-expanded="false" aria-controls="faq-content-3" data-v-ce363c85>Что делать, если я опаздываю на зарегистрированное событие? <span class="faq__icon" aria-hidden="true" data-v-ce363c85><img src="images/faq/arrow-down.svg" alt="" class="faq__down" width="36" height="36" data-v-ce363c85><img src="images/faq/arrow-up.svg" alt="" class="faq__up" width="36" height="36" data-v-ce363c85></span></button>
-                  <div id="faq-content-3" class="faq__content" role="region" data-v-ce363c85>
-                    <p data-v-ce363c85>В случае опоздания забронированный слот аннулируется. Рекомендуем приходить на площадку за 15 минут до начала, чтобы успеть отметиться и занять место.</p>
-                  </div>
-                </div>
-                <div class="faq__item" data-v-ce363c85><button class="faq__toggler" aria-expanded="false" aria-controls="faq-content-4" data-v-ce363c85>Можно ли прийти с ребенком? <span class="faq__icon" aria-hidden="true" data-v-ce363c85><img src="images/faq/arrow-down.svg" alt="" class="faq__down" width="36" height="36" data-v-ce363c85><img src="images/faq/arrow-up.svg" alt="" class="faq__up" width="36" height="36" data-v-ce363c85></span></button>
-                  <div id="faq-content-4" class="faq__content" role="region" data-v-ce363c85>
-                    <p data-v-ce363c85>Да, для детей от 3 лет подготовлены специальные активности в детской зоне.</p>
-                  </div>
-                </div>
-                <div class="faq__item" data-v-ce363c85><button class="faq__toggler" aria-expanded="false" aria-controls="faq-content-5" data-v-ce363c85>Могут ли в активностях принять участие мужчины? <span class="faq__icon" aria-hidden="true" data-v-ce363c85><img src="images/faq/arrow-down.svg" alt="" class="faq__down" width="36" height="36" data-v-ce363c85><img src="images/faq/arrow-up.svg" alt="" class="faq__up" width="36" height="36" data-v-ce363c85></span></button>
-                  <div id="faq-content-5" class="faq__content" role="region" data-v-ce363c85>
-                    <p data-v-ce363c85>Тренировки организованы только для женщин. Но для мужчин будет работать специальная зона с кибербаром и играми.</p>
-                  </div>
-                </div><!--]-->
-              </div>
-            </div><!--]-->
-          </div>
-        </section>
-      </main><!--]-->
-      <footer class="footer" id="footer" data-v-9931e2df data-v-8d2b4cce>
-        <div class="container" data-v-8d2b4cce data-v-ad66a7bc><!--[-->
-          <div class="footer__wrapper" data-v-8d2b4cce>
-            <div class="footer__content" data-v-8d2b4cce>
-              <div class="footer__title" data-v-8d2b4cce>Контакты</div>
-              <div class="footer__contacts" data-v-8d2b4cce><!--[-->
-                <div class="footer__contacts-item" data-v-8d2b4cce>
-                  <div class="footer__contacts-label" data-v-8d2b4cce>По вопросам регистрации</div><a href="mailto:name@mail.ru" target="_blank" class="footer__contacts-link" data-v-8d2b4cce>name@mail.ru</a>
-                </div>
-                <div class="footer__contacts-item" data-v-8d2b4cce>
-                  <div class="footer__contacts-label" data-v-8d2b4cce>Для СМИ</div><a href="mailto:pressame@mail.ru" target="_blank" class="footer__contacts-link" data-v-8d2b4cce>pressame@mail.ru</a>
-                </div><!--]-->
-              </div>
-              <div class="footer__info" data-v-8d2b4cce>
-                <p class="footer__info-text" data-v-8d2b4cce>Для аккредитации на событие отправьте письмо на электронный адрес со следующей информацией:</p>
-                <ul data-v-8d2b4cce><!--[-->
-                  <li data-v-8d2b4cce>название СМИ и программы, планируемая дата выхода материала;</li>
-                  <li data-v-8d2b4cce>ФИО корреспондента / всех участников съемочной группы с контактными телефонами.</li><!--]-->
-                </ul>
-              </div>
-              <div class="footer__docs" data-v-8d2b4cce><!--[--><a href="docs/policy.pdf" target="_blank" data-v-8d2b4cce>Политика конфиденциальности</a><a href="docs/reject.pdf" target="_blank" data-v-8d2b4cce>Отказ от претензий от участника</a><a href="docs/reject_child.pdf" target="_blank" data-v-8d2b4cce>Отказ от претензий от опекуна ребенка</a><!--]--></div>
-            </div>
-          </div><!--]-->
-        </div>
-      </footer>
-    </div><!--]-->
-  </div>
-  <div id="teleports"></div>
-  <script>
-    window.__NUXT__ = {};
-    window.__NUXT__.config = {
-      public: {},
-      app: {
-        baseURL: "/",
-        buildId: "97a3836f-e5ab-4a49-9c1b-4c2133b88458",
-        buildAssetsDir: "_assets/",
-        cdnURL: ""
-      }
-    }
-  </script>
-  <script type="application/json" data-nuxt-data="nuxt-app" data-ssr="true" id="__NUXT_DATA__" data-src="_payload.json?97a3836f-e5ab-4a49-9c1b-4c2133b88458">
-    [{
-        "state": 1,
-        "once": 3,
-        "_errors": 4,
-        "serverRendered": 6,
-        "path": 7,
-        "prerenderedAt": 8
-      },
-      ["Reactive", 2], {},
-      ["Set"],
-      ["ShallowReactive", 5], {},
-      true, "\u002F", 1784437966127
-    ]
-  </script>
-</body>
-
-</html>
+      ym(999999999, 'init', {
+          ssr:true,
+          webvisor:true,
+          clickmap:true,
+          ecommerce:"dataLayer",
+          referrer: document.referrer,
+          url: location.href,
+          accurateTrackBounce:true,
+          trackLinks:true
+      });</script>
+<link rel="stylesheet" href="/_assets/entry.qj4Ya1j9.css" crossorigin>
+<link rel="stylesheet" href="/_assets/default.CMYxyU2P.css" crossorigin>
+<link rel="stylesheet" href="/_assets/Container.iV8lCh0G.css" crossorigin>
+<link rel="stylesheet" href="/_assets/index.Bo_9s2X0.css" crossorigin>
+<link rel="preload" as="fetch" crossorigin="anonymous" href="/_payload.json?94b1e463-4bd9-4b0a-bbf3-3d1c421f4895">
+<link rel="modulepreload" as="script" crossorigin href="/_assets/CxVyMzyC.js">
+<link rel="modulepreload" as="script" crossorigin href="/_assets/KNMXmPQW.js">
+<link rel="modulepreload" as="script" crossorigin href="/_assets/1tPrXgE0.js">
+<link rel="modulepreload" as="script" crossorigin href="/_assets/BRACMW7P.js">
+<link rel="modulepreload" as="script" crossorigin href="/_assets/Bpq5llF0.js">
+<script type="module" src="/_assets/CxVyMzyC.js" crossorigin></script>
+<link rel="prefetch" as="style" crossorigin href="/_assets/error-500.C2XaBLWY.css">
+<link rel="prefetch" as="script" crossorigin href="/_assets/BLde9kqi.js">
+<link rel="prefetch" as="script" crossorigin href="/_assets/C3FtZLC6.js">
+<meta name="title" content="Мой сайт">
+<meta name="description" content="Современный статический сайт на Nuxt 3">
+<meta name="keywords" content="nuxt, vue, ssg, template">
+<meta property="og:title" content="Мой сайт">
+<meta property="og:description" content="Современный статический сайт на Nuxt 3">
+<meta property="og:image" content="/images/favicons/favicon.svg">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://example.com">
+<link rel="icon" type="image/png" href="/images/favicons/favicon-96x96.png" sizes="96x96">
+<link rel="icon" type="image/svg+xml" href="/images/favicons/favicon.svg">
+<link rel="shortcut icon" href="/images/favicons/favicon.ico">
+<link rel="apple-touch-icon" sizes="180x180" href="/images/favicons/apple-touch-icon.png">
+<link rel="manifest" href="/images/favicons/site.webmanifest">
+<link rel="canonical" href="https://example.com">
+<noscript><div><img src="https://mc.yandex.ru/watch/999999999" style="position:absolute;left:-9999px;" alt=""></div></noscript></head><body><div id="__nuxt"><div class="page" data-v-9931e2df><header class="header" data-v-9931e2df data-v-0b6565a3><div class="container" data-v-0b6565a3 data-v-ad66a7bc><!--[--><div class="header__inner" data-v-0b6565a3><a href="/" class="header__logo" data-v-0b6565a3>Template</a><nav class="nav" data-v-0b6565a3 data-v-e25e4602><button class="nav__toggle" aria-label="Меню" data-v-e25e4602><span class="nav__toggle-icon" data-v-e25e4602>☰</span></button><ul class="nav__list" data-v-e25e4602><!--[--><li class="nav__item" data-v-e25e4602><a href="#hero" class="nav__link" data-v-e25e4602>Главная</a></li><li class="nav__item" data-v-e25e4602><a href="#features" class="nav__link" data-v-e25e4602>Возможности</a></li><li class="nav__item" data-v-e25e4602><a href="#about" class="nav__link" data-v-e25e4602>О нас</a></li><li class="nav__item" data-v-e25e4602><a href="#contact" class="nav__link" data-v-e25e4602>Контакты</a></li><!--]--></ul></nav></div><!--]--></div></header><!--[--><main><section id="hero" class="hero" type="hero" data-v-190bb458><div class="container" data-v-190bb458 data-v-ad66a7bc><!--[--><div class="hero__content" data-v-190bb458><h1 class="hero__title" data-v-190bb458>Создаём современные веб-сайты</h1><p class="hero__subtitle" data-v-190bb458>Быстро, надёжно, красиво. Используем Nuxt 3 и SCSS.</p><div class="hero__actions" data-v-190bb458><a href="#features" class="button button--primary button--lg" data-v-190bb458 data-v-03c3ba3b><!--[-->Узнать больше<!--]--></a><a href="#contact" class="button button--secondary button--lg" data-v-190bb458 data-v-03c3ba3b><!--[-->Связаться<!--]--></a></div></div><!--]--></div></section><section id="faq" class="faq" data-v-6b9ccbb0><img src="/images/faq/decor-left.svg" alt="" class="faq__decor faq__decor--left" width="1075" height="1090" data-v-6b9ccbb0><img src="/images/faq/decor-right.svg" alt="" class="faq__decor faq__decor--right" width="945" height="958" data-v-6b9ccbb0><div class="container" data-v-6b9ccbb0 data-v-ad66a7bc><!--[--><div class="faq__wrapper" data-v-6b9ccbb0><h2 class="faq__title" data-v-6b9ccbb0>Вопросы и ответы</h2><div class="faq__accordion" data-v-6b9ccbb0><!--[--><div class="faq__item" data-v-6b9ccbb0><button class="faq__toggler" aria-expanded="false" aria-controls="faq-content-0" data-v-6b9ccbb0>Сколько активностей можно посетить? <span class="faq__icon" aria-hidden="true" data-v-6b9ccbb0><img src="/images/faq/arrow-down.svg" alt="" class="faq__down" width="36" height="36" data-v-6b9ccbb0><img src="/images/faq/arrow-up.svg" alt="" class="faq__up" width="36" height="36" data-v-6b9ccbb0></span></button><div id="faq-content-0" class="faq__content" role="region" data-v-6b9ccbb0><p data-v-6b9ccbb0>Вы&nbsp;можете выбрать и&nbsp;посетить любое количество активностей фестиваля. На&nbsp;некоторые понадобится регистрация&nbsp;&mdash; в&nbsp;расписании вы&nbsp;увидите кнопку &laquo;Регистрация&raquo;.</p></div></div><div class="faq__item" data-v-6b9ccbb0><button class="faq__toggler" aria-expanded="false" aria-controls="faq-content-1" data-v-6b9ccbb0>Нужно ли брать с собой спортивный инвентарь? <span class="faq__icon" aria-hidden="true" data-v-6b9ccbb0><img src="/images/faq/arrow-down.svg" alt="" class="faq__down" width="36" height="36" data-v-6b9ccbb0><img src="/images/faq/arrow-up.svg" alt="" class="faq__up" width="36" height="36" data-v-6b9ccbb0></span></button><div id="faq-content-1" class="faq__content" role="region" data-v-6b9ccbb0><p data-v-6b9ccbb0>Мы предоставим коврики, а другой специальный инвентарь не потребуется. Просто приходите в удобной одежде и обуви. И не забудьте взять с собой воду.</p></div></div><div class="faq__item" data-v-6b9ccbb0><button class="faq__toggler" aria-expanded="false" aria-controls="faq-content-2" data-v-6b9ccbb0>Можно ли переодеться на площадке? <span class="faq__icon" aria-hidden="true" data-v-6b9ccbb0><img src="/images/faq/arrow-down.svg" alt="" class="faq__down" width="36" height="36" data-v-6b9ccbb0><img src="/images/faq/arrow-up.svg" alt="" class="faq__up" width="36" height="36" data-v-6b9ccbb0></span></button><div id="faq-content-2" class="faq__content" role="region" data-v-6b9ccbb0><p data-v-6b9ccbb0>На площадке нет раздевалок и камер хранения, поэтому приходите в спортивной одежде и обуви сразу.</p></div></div><div class="faq__item" data-v-6b9ccbb0><button class="faq__toggler" aria-expanded="false" aria-controls="faq-content-3" data-v-6b9ccbb0>Что делать, если я опаздываю на зарегистрированное событие? <span class="faq__icon" aria-hidden="true" data-v-6b9ccbb0><img src="/images/faq/arrow-down.svg" alt="" class="faq__down" width="36" height="36" data-v-6b9ccbb0><img src="/images/faq/arrow-up.svg" alt="" class="faq__up" width="36" height="36" data-v-6b9ccbb0></span></button><div id="faq-content-3" class="faq__content" role="region" data-v-6b9ccbb0><p data-v-6b9ccbb0>В случае опоздания забронированный слот аннулируется. Рекомендуем приходить на площадку за 15 минут до начала, чтобы успеть отметиться и занять место.</p></div></div><div class="faq__item" data-v-6b9ccbb0><button class="faq__toggler" aria-expanded="false" aria-controls="faq-content-4" data-v-6b9ccbb0>Можно ли прийти с ребенком? <span class="faq__icon" aria-hidden="true" data-v-6b9ccbb0><img src="/images/faq/arrow-down.svg" alt="" class="faq__down" width="36" height="36" data-v-6b9ccbb0><img src="/images/faq/arrow-up.svg" alt="" class="faq__up" width="36" height="36" data-v-6b9ccbb0></span></button><div id="faq-content-4" class="faq__content" role="region" data-v-6b9ccbb0><p data-v-6b9ccbb0>Да, для детей от 3 лет подготовлены специальные активности в детской зоне.</p></div></div><div class="faq__item" data-v-6b9ccbb0><button class="faq__toggler" aria-expanded="false" aria-controls="faq-content-5" data-v-6b9ccbb0>Могут ли в активностях принять участие мужчины? <span class="faq__icon" aria-hidden="true" data-v-6b9ccbb0><img src="/images/faq/arrow-down.svg" alt="" class="faq__down" width="36" height="36" data-v-6b9ccbb0><img src="/images/faq/arrow-up.svg" alt="" class="faq__up" width="36" height="36" data-v-6b9ccbb0></span></button><div id="faq-content-5" class="faq__content" role="region" data-v-6b9ccbb0><p data-v-6b9ccbb0>Тренировки организованы только для женщин. Но для мужчин будет работать специальная зона с кибербаром и играми.</p></div></div><!--]--></div></div><!--]--></div></section></main><!--]--><footer class="footer" id="footer" data-v-9931e2df data-v-8d2b4cce><div class="container" data-v-8d2b4cce data-v-ad66a7bc><!--[--><div class="footer__wrapper" data-v-8d2b4cce><div class="footer__content" data-v-8d2b4cce><div class="footer__title" data-v-8d2b4cce>Контакты</div><div class="footer__contacts" data-v-8d2b4cce><!--[--><div class="footer__contacts-item" data-v-8d2b4cce><div class="footer__contacts-label" data-v-8d2b4cce>По вопросам регистрации</div><a href="mailto:name@mail.ru" target="_blank" class="footer__contacts-link" data-v-8d2b4cce>name@mail.ru</a></div><div class="footer__contacts-item" data-v-8d2b4cce><div class="footer__contacts-label" data-v-8d2b4cce>Для СМИ</div><a href="mailto:pressame@mail.ru" target="_blank" class="footer__contacts-link" data-v-8d2b4cce>pressame@mail.ru</a></div><!--]--></div><div class="footer__info" data-v-8d2b4cce><p class="footer__info-text" data-v-8d2b4cce>Для аккредитации на событие отправьте письмо на электронный адрес со следующей информацией:</p><ul data-v-8d2b4cce><!--[--><li data-v-8d2b4cce>название СМИ и программы, планируемая дата выхода материала;</li><li data-v-8d2b4cce>ФИО корреспондента / всех участников съемочной группы с контактными телефонами.</li><!--]--></ul></div><div class="footer__docs" data-v-8d2b4cce><!--[--><a href="/docs/policy.pdf" target="_blank" data-v-8d2b4cce>Политика конфиденциальности</a><a href="/docs/reject.pdf" target="_blank" data-v-8d2b4cce>Отказ от претензий от участника</a><a href="/docs/reject_child.pdf" target="_blank" data-v-8d2b4cce>Отказ от претензий от опекуна ребенка</a><!--]--></div></div></div><!--]--></div></footer></div></div><div id="teleports"></div><script>window.__NUXT__={};window.__NUXT__.config={public:{},app:{baseURL:"/",buildId:"94b1e463-4bd9-4b0a-bbf3-3d1c421f4895",buildAssetsDir:"_assets/",cdnURL:""}}</script>
+<script type="application/json" data-nuxt-data="nuxt-app" data-ssr="true" id="__NUXT_DATA__" data-src="/_payload.json?94b1e463-4bd9-4b0a-bbf3-3d1c421f4895">[{"state":1,"once":3,"_errors":4,"serverRendered":6,"path":7,"prerenderedAt":8},["Reactive",2],{},["Set"],["ShallowReactive",5],{},true,"\u002F",1784484656552]</script></body></html>
