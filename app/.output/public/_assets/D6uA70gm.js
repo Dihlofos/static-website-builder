@@ -1,6 +1,6 @@
 import { _ as _export_sfc } from "./1tPrXgE0.js";
-import { B as openBlock, C as createElementBlock, I as renderSlot, J as normalizeClass, F as createVNode, G as withCtx, D as createBaseVNode, E as toDisplayString, K as createCommentVNode, L as createBlock, H as createTextVNode, M as Fragment, N as renderList, i as ref, A as useHead, O as normalizeProps, P as guardReactiveProps, l as unref } from "./K4NGPIF4.js";
-import { _ as __nuxt_component_0$2 } from "./Bb9lcrrM.js";
+import { B as openBlock, C as createElementBlock, I as renderSlot, J as normalizeClass, F as createVNode, G as withCtx, D as createBaseVNode, E as toDisplayString, K as createCommentVNode, L as createBlock, H as createTextVNode, M as Fragment, N as renderList, i as ref, A as useHead, O as normalizeProps, P as guardReactiveProps, l as unref } from "./Cz7-0qyF.js";
+import { _ as __nuxt_component_0$2 } from "./CLW2fUw6.js";
 const _hoisted_1$2 = ["href"];
 const _hoisted_2$2 = ["disabled", "type"];
 const _sfc_main$3 = {
@@ -218,9 +218,7 @@ const _sfc_main = {
   setup(__props) {
     useHead({
       title: "Главная",
-      meta: [
-        { name: "description", content: "Современный статический сайт на Nuxt 3" }
-      ]
+      meta: []
     });
     return (_ctx, _cache) => {
       const _component_HeroSection = __nuxt_component_0;
