@@ -9,6 +9,9 @@
     "preview": "npx serve ./app/.output/public",
     "clean": "npx nuxt cleanup --cwd app"
   },
+  "dependencies": {
+    "dompurify": "^3.4.12"
+  },
   "devDependencies": {
     "js-beautify": "^2.0.3",
     "nuxt": "^3.15.0",
