@@ -34,6 +34,7 @@ useHead({
   noscript: [
     {
       innerHTML: `<div><img src="https://mc.yandex.ru/watch/${YM_ID}" style="position:absolute;left:-9999px;" alt=""></div>`,
+      tagPosition: 'bodyOpen',
     },
   ],
 })
