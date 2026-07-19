@@ -5,6 +5,15 @@ import { sanitizeText } from '~/utils/sanitize'
 const props = defineProps({
   title: { type: String, required: true },
   items: { type: Array, required: true },
+  images: {
+    type: Object,
+    default: () => ({
+      decorLeft: '/images/faq/decor-left.svg',
+      decorRight: '/images/faq/decor-right.svg',
+      arrowDown: '/images/faq/arrow-down.svg',
+      arrowUp: '/images/faq/arrow-up.svg',
+    }),
+  },
 })
 
 const openState = ref({})
@@ -20,8 +29,8 @@ function isOpen(index) {
 
 <template>
   <section id="faq" class="faq">
-    <img src="/images/faq/decor-left.svg" alt="" class="faq__decor faq__decor--left" width="1075" height="1090">
-    <img src="/images/faq/decor-right.svg" alt="" class="faq__decor faq__decor--right" width="945" height="958">
+    <img :src="images.decorLeft" alt="" class="faq__decor faq__decor--left" width="1075" height="1090">
+    <img :src="images.decorRight" alt="" class="faq__decor faq__decor--right" width="945" height="958">
     <Container>
       <div class="faq__wrapper">
         <h2 class="faq__title">{{ title }}</h2>
@@ -42,8 +51,8 @@ function isOpen(index) {
             >
               {{ item.question }}
               <span class="faq__icon" aria-hidden="true">
-                <img src="/images/faq/arrow-down.svg" alt="" class="faq__down" width="36" height="36">
-                <img src="/images/faq/arrow-up.svg" alt="" class="faq__up" width="36" height="36">
+                <img :src="images.arrowDown" alt="" class="faq__down" width="36" height="36">
+                <img :src="images.arrowUp" alt="" class="faq__up" width="36" height="36">
               </span>
             </button>
 

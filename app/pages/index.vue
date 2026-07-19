@@ -11,6 +11,6 @@ useHead({
 <template>
   <main>
     <HeroSection v-bind="heroData" />
-    <Faq :title="faqData.title" :items="faqData.items" />
+    <Faq :title="faqData.title" :items="faqData.items" :images="faqData.images" />
   </main>
 </template>
