@@ -1,6 +1,6 @@
 import { _ as _export_sfc } from "./1tPrXgE0.js";
-import { B as openBlock, C as createElementBlock, D as createBaseVNode, E as toDisplayString, l as unref, P as Fragment, Q as renderList, J as normalizeClass, i as ref, o as onMounted, R as onUnmounted, F as createVNode, G as withCtx, I as renderSlot } from "./v6goQ4JH.js";
-import { _ as __nuxt_component_0$2 } from "./BEkA0R25.js";
+import { B as openBlock, C as createElementBlock, D as createBaseVNode, E as toDisplayString, l as unref, M as Fragment, N as renderList, J as normalizeClass, i as ref, o as onMounted, Q as onUnmounted, F as createVNode, G as withCtx, I as renderSlot } from "./DPA6MgMa.js";
+import { _ as __nuxt_component_0$2 } from "./V-qEBWXD.js";
 const navItems = [
   {
     label: "Главная",

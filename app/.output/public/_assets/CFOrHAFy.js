@@ -1,9 +1,9 @@
 import { _ as _export_sfc } from "./1tPrXgE0.js";
-import { B as openBlock, C as createElementBlock, I as renderSlot, J as normalizeClass, F as createVNode, G as withCtx, D as createBaseVNode, E as toDisplayString, K as createCommentVNode, L as createBlock, H as createTextVNode, M as normalizeProps, N as guardReactiveProps, O as mergeProps, m as computed, _ as __vitePreload, P as Fragment, Q as renderList, l as unref, i as ref, A as useHead } from "./v6goQ4JH.js";
-import { _ as __nuxt_component_0$3 } from "./BEkA0R25.js";
-const _hoisted_1$3 = ["href"];
-const _hoisted_2$3 = ["disabled", "type"];
-const _sfc_main$4 = {
+import { B as openBlock, C as createElementBlock, I as renderSlot, J as normalizeClass, F as createVNode, G as withCtx, D as createBaseVNode, E as toDisplayString, K as createCommentVNode, L as createBlock, H as createTextVNode, _ as __vitePreload, M as Fragment, N as renderList, l as unref, i as ref, A as useHead, O as normalizeProps, P as guardReactiveProps } from "./DPA6MgMa.js";
+import { _ as __nuxt_component_0$2 } from "./V-qEBWXD.js";
+const _hoisted_1$2 = ["href"];
+const _hoisted_2$2 = ["disabled", "type"];
+const _sfc_main$3 = {
   __name: "Button",
   props: {
     variant: { type: String, default: "primary" },
@@ -20,23 +20,23 @@ const _sfc_main$4 = {
         class: normalizeClass(["button", `button--${__props.variant}`, `button--${__props.size}`])
       }, [
         renderSlot(_ctx.$slots, "default", {}, void 0)
-      ], 10, _hoisted_1$3)) : (openBlock(), createElementBlock("button", {
+      ], 10, _hoisted_1$2)) : (openBlock(), createElementBlock("button", {
         key: 1,
         class: normalizeClass(["button", `button--${__props.variant}`, `button--${__props.size}`]),
         disabled: __props.disabled,
         type: __props.type
       }, [
         renderSlot(_ctx.$slots, "default", {}, void 0)
-      ], 10, _hoisted_2$3));
+      ], 10, _hoisted_2$2));
     };
   }
 };
-const __nuxt_component_0$2 = /* @__PURE__ */ _export_sfc(_sfc_main$4, [["__scopeId", "data-v-03c3ba3b"]]);
-const _hoisted_1$2 = {
+const __nuxt_component_0$1 = /* @__PURE__ */ _export_sfc(_sfc_main$3, [["__scopeId", "data-v-03c3ba3b"]]);
+const _hoisted_1$1 = {
   id: "hero",
   class: "hero"
 };
-const _hoisted_2$2 = { class: "hero__content" };
+const _hoisted_2$1 = { class: "hero__content" };
 const _hoisted_3$1 = { class: "hero__title" };
 const _hoisted_4$1 = {
   key: 0,
@@ -46,7 +46,7 @@ const _hoisted_5$1 = {
   key: 1,
   class: "hero__actions"
 };
-const _sfc_main$3 = {
+const _sfc_main$2 = {
   __name: "HeroSection",
   props: {
     title: { type: String, required: true },
@@ -57,12 +57,12 @@ const _sfc_main$3 = {
   },
   setup(__props) {
     return (_ctx, _cache) => {
-      const _component_Button = __nuxt_component_0$2;
-      const _component_Container = __nuxt_component_0$3;
-      return openBlock(), createElementBlock("section", _hoisted_1$2, [
+      const _component_Button = __nuxt_component_0$1;
+      const _component_Container = __nuxt_component_0$2;
+      return openBlock(), createElementBlock("section", _hoisted_1$1, [
         createVNode(_component_Container, null, {
           default: withCtx(() => [
-            createBaseVNode("div", _hoisted_2$2, [
+            createBaseVNode("div", _hoisted_2$1, [
               createBaseVNode("h1", _hoisted_3$1, toDisplayString(__props.title), 1),
               __props.subtitle ? (openBlock(), createElementBlock("p", _hoisted_4$1, toDisplayString(__props.subtitle), 1)) : createCommentVNode("", true),
               __props.button || __props.secondaryButton ? (openBlock(), createElementBlock("div", _hoisted_5$1, [
@@ -97,73 +97,7 @@ const _sfc_main$3 = {
     };
   }
 };
-const __nuxt_component_0$1 = /* @__PURE__ */ _export_sfc(_sfc_main$3, [["__scopeId", "data-v-190bb458"]]);
-const _hoisted_1$1 = { key: 0 };
-const _hoisted_2$1 = ["srcset"];
-const _sfc_main$2 = {
-  __name: "Image",
-  props: {
-    src: { type: String, required: true },
-    alt: { type: String, default: "" },
-    width: { type: [Number, String], default: null },
-    height: { type: [Number, String], default: null },
-    loading: { type: String, default: "lazy" },
-    decoding: { type: String, default: "async" },
-    fetchpriority: { type: String, default: null },
-    class: { type: [String, Array, Object], default: null },
-    imgAttrs: { type: Object, default: () => ({}) }
-  },
-  setup(__props) {
-    const props = __props;
-    const RASTER_EXTS = /* @__PURE__ */ new Set([".png", ".jpg", ".jpeg"]);
-    function cleanPath(src) {
-      return src.split("?")[0].split("#")[0];
-    }
-    function getExtension(src) {
-      const path = cleanPath(src);
-      const match = path.match(/\.(\w+)$/);
-      return match ? match[1].toLowerCase() : null;
-    }
-    function isExternalUrl(src) {
-      return /^https?:\/\//.test(src) || /^\/\//.test(src) || /^data:/.test(src);
-    }
-    function getWebpSrc(src) {
-      const [path, rest] = src.split("?");
-      const [pathOnly] = path.split("#");
-      const webpPath = pathOnly.replace(/\.\w+$/, ".webp");
-      return rest ? `${webpPath}?${rest}` : webpPath;
-    }
-    const ext = computed(() => {
-      if (isExternalUrl(props.src)) return null;
-      return getExtension(props.src);
-    });
-    const isRaster = computed(() => ext.value && RASTER_EXTS.has(`.${ext.value}`));
-    const webpSrc = computed(() => isRaster.value ? getWebpSrc(props.src) : null);
-    const imgBindings = computed(() => {
-      const bindings = {
-        src: props.src,
-        alt: props.alt,
-        loading: props.loading,
-        decoding: props.decoding
-      };
-      if (props.width != null) bindings.width = props.width;
-      if (props.height != null) bindings.height = props.height;
-      if (props.fetchpriority) bindings.fetchpriority = props.fetchpriority;
-      if (props.class) bindings.class = props.class;
-      return { ...bindings, ...props.imgAttrs };
-    });
-    return (_ctx, _cache) => {
-      return isRaster.value && webpSrc.value ? (openBlock(), createElementBlock("picture", _hoisted_1$1, [
-        createBaseVNode("source", {
-          srcset: webpSrc.value,
-          type: "image/webp"
-        }, null, 8, _hoisted_2$1),
-        createBaseVNode("img", normalizeProps(guardReactiveProps(imgBindings.value)), null, 16)
-      ])) : (openBlock(), createElementBlock("img", normalizeProps(mergeProps({ key: 1 }, imgBindings.value)), null, 16));
-    };
-  }
-};
-const __nuxt_component_0 = /* @__PURE__ */ _export_sfc(_sfc_main$2, [["__scopeId", "data-v-186a3613"]]);
+const __nuxt_component_0 = /* @__PURE__ */ _export_sfc(_sfc_main$2, [["__scopeId", "data-v-190bb458"]]);
 let purify = null;
 {
   __vitePreload(() => import("./C3FtZLC6.js"), true ? [] : void 0, import.meta.url).then((m) => {
@@ -220,8 +154,7 @@ const _sfc_main$1 = {
       return !!openState.value[index];
     }
     return (_ctx, _cache) => {
-      const _component_Image = __nuxt_component_0;
-      const _component_Container = __nuxt_component_0$3;
+      const _component_Container = __nuxt_component_0$2;
       return openBlock(), createElementBlock("section", _hoisted_1, [
         createBaseVNode("img", {
           src: __props.images.decorLeft,
@@ -241,10 +174,6 @@ const _sfc_main$1 = {
           default: withCtx(() => [
             createBaseVNode("div", _hoisted_4, [
               createBaseVNode("h2", _hoisted_5, toDisplayString(__props.title), 1),
-              createVNode(_component_Image, {
-                src: "/images/faq/girl.png",
-                alt: "Иконка"
-              }),
               createBaseVNode("div", _hoisted_6, [
                 (openBlock(true), createElementBlock(Fragment, null, renderList(__props.items, (item, index) => {
                   return openBlock(), createElementBlock("div", {
@@ -295,7 +224,7 @@ const _sfc_main$1 = {
     };
   }
 };
-const __nuxt_component_1 = /* @__PURE__ */ _export_sfc(_sfc_main$1, [["__scopeId", "data-v-7fce3016"]]);
+const __nuxt_component_1 = /* @__PURE__ */ _export_sfc(_sfc_main$1, [["__scopeId", "data-v-777df651"]]);
 const type$1 = "hero";
 const title$1 = "Создаём современные веб-сайты";
 const subtitle = "Быстро, надёжно, красиво. Используем Nuxt 3 и SCSS.";
@@ -327,7 +256,7 @@ const _sfc_main = {
       title: ""
     });
     return (_ctx, _cache) => {
-      const _component_HeroSection = __nuxt_component_0$1;
+      const _component_HeroSection = __nuxt_component_0;
       const _component_Faq = __nuxt_component_1;
       return openBlock(), createElementBlock("main", null, [
         createVNode(_component_HeroSection, normalizeProps(guardReactiveProps(unref(heroData))), null, 16),
