@@ -1,6 +1,6 @@
 import { _ as _export_sfc } from "./1tPrXgE0.js";
-import { B as openBlock, C as createElementBlock, I as renderSlot, J as normalizeClass, F as createVNode, G as withCtx, D as createBaseVNode, E as toDisplayString, K as createCommentVNode, L as createBlock, H as createTextVNode, M as Fragment, N as renderList, i as ref, A as useHead, O as normalizeProps, P as guardReactiveProps, l as unref } from "./Cz7-0qyF.js";
-import { _ as __nuxt_component_0$2 } from "./CLW2fUw6.js";
+import { B as openBlock, C as createElementBlock, I as renderSlot, J as normalizeClass, F as createVNode, G as withCtx, D as createBaseVNode, E as toDisplayString, K as createCommentVNode, L as createBlock, H as createTextVNode, M as publicAssetsURL, _ as __vitePreload, N as Fragment, O as renderList, l as unref, i as ref, A as useHead, P as normalizeProps, Q as guardReactiveProps } from "./OkrzeBgZ.js";
+import { _ as __nuxt_component_0$2 } from "./BxqsffKz.js";
 const _hoisted_1$2 = ["href"];
 const _hoisted_2$2 = ["disabled", "type"];
 const _sfc_main$3 = {
@@ -98,6 +98,24 @@ const _sfc_main$2 = {
   }
 };
 const __nuxt_component_0 = /* @__PURE__ */ _export_sfc(_sfc_main$2, [["__scopeId", "data-v-190bb458"]]);
+const _imports_0 = publicAssetsURL("/images/faq/decor-left.svg");
+const _imports_1 = publicAssetsURL("/images/faq/decor-right.svg");
+const _imports_2 = publicAssetsURL("/images/faq/arrow-down.svg");
+const _imports_3 = publicAssetsURL("/images/faq/arrow-up.svg");
+let purify = null;
+{
+  __vitePreload(() => import("./C3FtZLC6.js"), true ? [] : void 0, import.meta.url).then((m) => {
+    purify = m.default;
+  }).catch(() => {
+  });
+}
+function sanitizeText(text) {
+  if (!text || typeof text !== "string") return "";
+  if (purify) {
+    return purify.sanitize(text, { ALLOWED_TAGS: [], ALLOWED_ATTR: [] });
+  }
+  return text.replace(/<[^>]+>/g, "");
+}
 const _hoisted_1 = {
   id: "faq",
   class: "faq"
@@ -107,6 +125,7 @@ const _hoisted_3 = { class: "faq__title" };
 const _hoisted_4 = { class: "faq__accordion" };
 const _hoisted_5 = ["aria-expanded", "aria-controls", "onClick"];
 const _hoisted_6 = ["id"];
+const _hoisted_7 = ["innerHTML"];
 const _sfc_main$1 = {
   __name: "Faq",
   props: {
@@ -124,6 +143,20 @@ const _sfc_main$1 = {
     return (_ctx, _cache) => {
       const _component_Container = __nuxt_component_0$2;
       return openBlock(), createElementBlock("section", _hoisted_1, [
+        _cache[1] || (_cache[1] = createBaseVNode("img", {
+          src: _imports_0,
+          alt: "",
+          class: "faq__decor faq__decor--left",
+          width: "1075",
+          height: "1090"
+        }, null, -1)),
+        _cache[2] || (_cache[2] = createBaseVNode("img", {
+          src: _imports_1,
+          alt: "",
+          class: "faq__decor faq__decor--right",
+          width: "945",
+          height: "958"
+        }, null, -1)),
         createVNode(_component_Container, null, {
           default: withCtx(() => [
             createBaseVNode("div", _hoisted_2, [
@@ -145,31 +178,20 @@ const _sfc_main$1 = {
                         class: "faq__icon",
                         "aria-hidden": "true"
                       }, [
-                        createBaseVNode("svg", {
+                        createBaseVNode("img", {
+                          src: _imports_2,
+                          alt: "",
+                          class: "faq__down",
                           width: "36",
-                          height: "36",
-                          viewBox: "0 0 36 36",
-                          fill: "none",
-                          xmlns: "http://www.w3.org/2000/svg"
-                        }, [
-                          createBaseVNode("rect", {
-                            x: "4",
-                            y: "16",
-                            width: "28",
-                            height: "4",
-                            rx: "2",
-                            fill: "currentColor"
-                          }),
-                          createBaseVNode("rect", {
-                            x: "16",
-                            y: "4",
-                            width: "4",
-                            height: "28",
-                            rx: "2",
-                            fill: "currentColor",
-                            class: "faq__icon-vert"
-                          })
-                        ])
+                          height: "36"
+                        }),
+                        createBaseVNode("img", {
+                          src: _imports_3,
+                          alt: "",
+                          class: "faq__up",
+                          width: "36",
+                          height: "36"
+                        })
                       ], -1))
                     ], 10, _hoisted_5),
                     createBaseVNode("div", {
@@ -177,7 +199,9 @@ const _sfc_main$1 = {
                       class: normalizeClass(["faq__content", { active: isOpen(index) }]),
                       role: "region"
                     }, [
-                      createBaseVNode("p", null, toDisplayString(item.answer), 1)
+                      createBaseVNode("p", {
+                        innerHTML: unref(sanitizeText)(item.answer)
+                      }, null, 8, _hoisted_7)
                     ], 10, _hoisted_6)
                   ], 2);
                 }), 128))
@@ -190,7 +214,7 @@ const _sfc_main$1 = {
     };
   }
 };
-const __nuxt_component_1 = /* @__PURE__ */ _export_sfc(_sfc_main$1, [["__scopeId", "data-v-1d1be621"]]);
+const __nuxt_component_1 = /* @__PURE__ */ _export_sfc(_sfc_main$1, [["__scopeId", "data-v-ce363c85"]]);
 const type$1 = "hero";
 const title$1 = "Создаём современные веб-сайты";
 const subtitle = "Быстро, надёжно, красиво. Используем Nuxt 3 и SCSS.";
@@ -207,7 +231,7 @@ const heroData = {
 };
 const type = "faq";
 const title = "Вопросы и ответы";
-const items = [{ "question": "Сколько активностей можно посетить?", "answer": "Вы можете выбрать и посетить любое количество активностей фестиваля. На некоторые понадобится регистрация — в расписании вы увидите кнопку «Регистрация»." }, { "question": "Нужно ли брать с собой спортивный инвентарь?", "answer": "Мы предоставим коврики, а другой специальный инвентарь не потребуется. Просто приходите в удобной одежде и обуви. И не забудьте взять с собой воду." }, { "question": "Можно ли переодеться на площадке?", "answer": "На площадке нет раздевалок и камер хранения, поэтому приходите в спортивной одежде и обуви сразу." }, { "question": "Что делать, если я опаздываю на зарегистрированное событие?", "answer": "В случае опоздания забронированный слот аннулируется. Рекомендуем приходить на площадку за 15 минут до начала, чтобы успеть отметиться и занять место." }, { "question": "Можно ли прийти с ребенком?", "answer": "Да, для детей от 3 лет подготовлены специальные активности в детской зоне." }, { "question": "Могут ли в активностях принять участие мужчины?", "answer": "Тренировки организованы только для женщин. Но для мужчин будет работать специальная зона с кибербаром и играми." }];
+const items = [{ "question": "Сколько активностей можно посетить?", "answer": "Вы&nbsp;можете выбрать и&nbsp;посетить любое количество активностей фестиваля. На&nbsp;некоторые понадобится регистрация&nbsp;&mdash; в&nbsp;расписании вы&nbsp;увидите кнопку &laquo;Регистрация&raquo;." }, { "question": "Нужно ли брать с собой спортивный инвентарь?", "answer": "Мы предоставим коврики, а другой специальный инвентарь не потребуется. Просто приходите в удобной одежде и обуви. И не забудьте взять с собой воду." }, { "question": "Можно ли переодеться на площадке?", "answer": "На площадке нет раздевалок и камер хранения, поэтому приходите в спортивной одежде и обуви сразу." }, { "question": "Что делать, если я опаздываю на зарегистрированное событие?", "answer": "В случае опоздания забронированный слот аннулируется. Рекомендуем приходить на площадку за 15 минут до начала, чтобы успеть отметиться и занять место." }, { "question": "Можно ли прийти с ребенком?", "answer": "Да, для детей от 3 лет подготовлены специальные активности в детской зоне." }, { "question": "Могут ли в активностях принять участие мужчины?", "answer": "Тренировки организованы только для женщин. Но для мужчин будет работать специальная зона с кибербаром и играми." }];
 const faqData = {
   type,
   title,
@@ -217,8 +241,7 @@ const _sfc_main = {
   __name: "index",
   setup(__props) {
     useHead({
-      title: "Главная",
-      meta: []
+      title: ""
     });
     return (_ctx, _cache) => {
       const _component_HeroSection = __nuxt_component_0;

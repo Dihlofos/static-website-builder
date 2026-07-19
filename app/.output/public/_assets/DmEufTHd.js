@@ -1,6 +1,6 @@
 import { _ as _export_sfc } from "./1tPrXgE0.js";
-import { B as openBlock, C as createElementBlock, D as createBaseVNode, E as toDisplayString, l as unref, M as Fragment, N as renderList, J as normalizeClass, i as ref, o as onMounted, Q as onUnmounted, F as createVNode, G as withCtx, I as renderSlot } from "./Cz7-0qyF.js";
-import { _ as __nuxt_component_0$2 } from "./CLW2fUw6.js";
+import { B as openBlock, C as createElementBlock, D as createBaseVNode, E as toDisplayString, l as unref, N as Fragment, O as renderList, J as normalizeClass, i as ref, o as onMounted, R as onUnmounted, F as createVNode, G as withCtx, I as renderSlot } from "./OkrzeBgZ.js";
+import { _ as __nuxt_component_0$2 } from "./BxqsffKz.js";
 const navItems = [
   {
     label: "Главная",
@@ -101,7 +101,7 @@ const _sfc_main$2 = {
 const __nuxt_component_0 = /* @__PURE__ */ _export_sfc(_sfc_main$2, [["__scopeId", "data-v-0b6565a3"]]);
 const type = "footer";
 const title = "Контакты";
-const contacts = [{ "label": "По вопросам регистрации", "email": "ano@mossport.ru" }, { "label": "Для СМИ", "email": "press@moscow.sport" }];
+const contacts = [{ "label": "По вопросам регистрации", "email": "name@mail.ru" }, { "label": "Для СМИ", "email": "pressame@mail.ru" }];
 const info = { "text": "Для аккредитации на событие отправьте письмо на электронный адрес со следующей информацией:", "items": ["название СМИ и программы, планируемая дата выхода материала;", "ФИО корреспондента / всех участников съемочной группы с контактными телефонами."] };
 const docs = [{ "href": "/docs/policy.pdf", "label": "Политика конфиденциальности" }, { "href": "/docs/reject.pdf", "label": "Отказ от претензий от участника" }, { "href": "/docs/reject_child.pdf", "label": "Отказ от претензий от опекуна ребенка" }];
 const footerData = {

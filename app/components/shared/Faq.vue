@@ -20,6 +20,8 @@ function isOpen(index) {
 
 <template>
   <section id="faq" class="faq">
+    <img src="/images/faq/decor-left.svg" alt="" class="faq__decor faq__decor--left" width="1075" height="1090">
+    <img src="/images/faq/decor-right.svg" alt="" class="faq__decor faq__decor--right" width="945" height="958">
     <Container>
       <div class="faq__wrapper">
         <h2 class="faq__title">{{ title }}</h2>
@@ -40,14 +42,8 @@ function isOpen(index) {
             >
               {{ item.question }}
               <span class="faq__icon" aria-hidden="true">
-                <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <rect x="4" y="16" width="28" height="4" rx="2" fill="currentColor" />
-                  <rect
-                    x="16" y="4" width="4" height="28" rx="2"
-                    fill="currentColor"
-                    class="faq__icon-vert"
-                  />
-                </svg>
+                <img src="/images/faq/arrow-down.svg" alt="" class="faq__down" width="36" height="36">
+                <img src="/images/faq/arrow-up.svg" alt="" class="faq__up" width="36" height="36">
               </span>
             </button>
 
@@ -149,35 +145,58 @@ function isOpen(index) {
     }
   }
 
-  &__icon {
-    flex-shrink: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 3.6rem;
-    height: 3.6rem;
-    color: $magenta;
-    transition: transform 0.3s ease;
+  &__decor {
+    top: 0;
+    position: absolute;
+    max-width: unset;
+    user-select: none;
+    pointer-events: none;
 
-    @media (max-width: $tablet) {
-      width: 2.4rem;
-      height: 2.4rem;
+    &--left {
+      top: -32.7rem;
+      left: -52.8rem;
     }
 
-    svg {
-      width: 100%;
-      height: 100%;
-    }
-
-    &-vert {
-      transition: transform 0.3s ease;
-      transform-origin: center;
+    &--right {
+      top: -38.5rem;
+      right: -56rem;
     }
   }
 
+  &__icon {
+    display: flex;
+    width: 3.6rem;
+    height: 3.6rem;
+
+    @media (max-width: $tablet) {
+        width: 2.4rem;
+        height: 2.4rem;
+    }
+
+    img {
+        width: 3.6rem;
+        height: 3.6rem;
+        align-self: flex-start;
+
+        @media (max-width: $tablet) {
+          width: 2.4rem;
+          height: 2.4rem;
+        }
+    }
+
+    .faq__up {
+        display: none;
+    }
+
+  }
+
   .faq__item.active &__icon {
-    .faq__icon-vert {
-      transform: rotate(90deg);
+    .faq__down {
+        display: none;
+    }
+
+    .faq__up {
+        display: block;
     }
   }
 
