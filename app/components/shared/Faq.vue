@@ -1,5 +1,6 @@
 <script setup>
 import { ref } from 'vue'
+import { sanitizeText } from '~/utils/sanitize'
 
 const props = defineProps({
   title: { type: String, required: true },
@@ -56,7 +57,7 @@ function isOpen(index) {
               :class="{ active: isOpen(index) }"
               role="region"
             >
-              <p>{{ item.answer }}</p>
+              <p v-html="sanitizeText(item.answer)"></p>
             </div>
           </div>
         </div>
