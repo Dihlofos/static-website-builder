@@ -6,6 +6,10 @@ const __dirname = dirname(fileURLToPath(import.meta.url))
 export default defineNuxtConfig({
   srcDir: __dirname,
 
+  modules: [
+    './modules/webp-converter',
+  ],
+
   css: ['~/assets/scss/main.scss'],
 
   ssr: true,

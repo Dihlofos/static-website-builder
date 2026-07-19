@@ -34,6 +34,7 @@ function isOpen(index) {
     <Container>
       <div class="faq__wrapper">
         <h2 class="faq__title">{{ title }}</h2>
+        <Image src="/images/faq/girl.png" alt="Иконка" />
 
         <div class="faq__accordion">
           <div

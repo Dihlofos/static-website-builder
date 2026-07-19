@@ -96,6 +96,80 @@ The `Faq` component demonstrates the image workflow:
 - The component receives an `images` prop and uses them in the template as `:src="images.decorLeft"`
 - A default prop value provides fallback paths so the component works without passing the prop
 
+## WebP Image Optimization
+
+Изображения `.png` и `.jpg` в `app/public/images/` автоматически конвертируются в `.webp` при каждой сборке. Для подключения оптимизированных изображений используется компонент `<Image>`, который рендерит `<picture>` с WebP-источником и фоллбеком.
+
+### Как это работает
+
+1. **Сборка** (`nuxt dev` / `nuxt generate`) — модуль `webp-converter` проходит по `app/public/images/`, находит `.png`/`.jpg` и создаёт рядом `.webp`-копии через `sharp`
+2. **Повторные сборки** — проверяется `mtime`: если `.webp` свежее оригинала, конвертация пропускается
+3. **Чистка** — `.webp` без соответствующего оригинала автоматически удаляются
+
+### Компонент `<Image>`
+
+Заменяет стандартный `<img>` там, где нужна WebP-поддержка:
+
+```vue
+<template>
+  <Image src="/images/team/photo.jpg" alt="Фото команды" width="800" height="600" />
+</template>
+```
+
+На выходе:
+
+```html
+<picture>
+  <source srcset="/images/team/photo.webp" type="image/webp" />
+  <img src="/images/team/photo.jpg" alt="Фото команды" width="800" height="600" loading="lazy" decoding="async" />
+</picture>
+```
+
+**Пропсы:**
+
+| Проп | Тип | По умолчанию | Описание |
+|------|-----|-------------|----------|
+| `src` | `string` | — | Путь к изображению (обязательный) |
+| `alt` | `string` | `''` | Alt-текст |
+| `width` | `number` | — | Ширина |
+| `height` | `number` | — | Высота |
+| `loading` | `string` | `'lazy'` | `lazy` или `eager` |
+| `fetchpriority` | `string` | — | `high` для LCP-изображений |
+| `decoding` | `string` | `'async'` | `async`, `sync` или `auto` |
+| `class` | `string` | — | CSS-класс на `<img>` |
+| `imgAttrs` | `object` | `{}` | Дополнительные атрибуты на `<img>` |
+
+**Edge cases:**
+
+- **SVG / GIF / ICO** — рендерятся как обычный `<img>` без `<picture>`
+- **Внешние URL** (`https://...`, `data:...`) — без `<picture>`
+- **Query-параметры** (`photo.png?v=2`) — расширение определяется корректно, параметры сохраняются
+- **Hash-фрагменты** (`photo.png#section`) — хэш отбрасывается
+
+### Конфигурация модуля
+
+В `nuxt.config.js` можно переопределить параметры:
+
+```js
+export default defineNuxtConfig({
+  modules: ['./modules/webp-converter'],
+  webp: {
+    quality: 90,        // качество WebP (0–100), по умолчанию 85
+    cleanOrphans: true, // удалять осиротевшие .webp
+    skipInDev: false,   // отключить конвертацию в dev-режиме
+  },
+  // ...
+})
+```
+
+### Добавление нового изображения
+
+1. Положи файл в `app/public/images/<раздел>/` (например, `photo.jpg`)
+2. При сборке `.webp` появится рядом автоматически
+3. Используй в шаблоне: `<Image src="/images/<раздел>/photo.jpg" alt="..." />`
+
+> **Совет:** Для SVG-иконок и декоративных элементов `<picture>` не нужен — используйте обычный `<img>`. Компонент `<Image>` нужен для фотографий и растровых картинок, где WebP даёт существенное сжатие (обычно −60…−80%).
+
 ## Dependencies
 
 | Package | Purpose |
@@ -104,3 +178,4 @@ The `Faq` component demonstrates the image workflow:
 | sass | SCSS compilation |
 | js-beautify | HTML formatting after build |
 | serve | Local preview of the built site |
+| sharp | WebP image conversion during build |
