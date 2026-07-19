@@ -2,10 +2,9 @@
 import heroData from '~/../data/sections/hero.json'
 import faqData from '~/../data/sections/faq.json'
 
+// Здесь можно переписать title и description для каждой страницы, если нужно
 useHead({
-  title: 'Главная',
-  meta: [
-  ],
+  title: ''
 })
 </script>
 
