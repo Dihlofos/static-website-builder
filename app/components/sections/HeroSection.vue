@@ -28,7 +28,7 @@ const props = defineProps({
   </section>
 </template>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .hero {
   min-height: 100vh;
   display: flex;

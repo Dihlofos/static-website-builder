@@ -25,7 +25,7 @@ onUnmounted(() => {
   </header>
 </template>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .header {
   position: fixed;
   top: 0;

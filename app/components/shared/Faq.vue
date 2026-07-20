@@ -29,8 +29,8 @@ function isOpen(index) {
 
 <template>
   <section id="faq" class="faq">
-    <img :src="images.decorLeft" alt="" class="faq__decor faq__decor--left" width="1075" height="1090">
-    <img :src="images.decorRight" alt="" class="faq__decor faq__decor--right" width="945" height="958">
+    <Image :src="images.decorLeft" alt="" class="faq__decor faq__decor--left" width="1075" height="1090" />
+    <Image :src="images.decorRight" alt="" class="faq__decor faq__decor--right" width="945" height="958" />
     <Container>
       <div class="faq__wrapper">
         <h2 class="faq__title">{{ title }}</h2>
@@ -70,7 +70,7 @@ function isOpen(index) {
   </section>
 </template>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .faq {
   position: relative;
   z-index: 2;

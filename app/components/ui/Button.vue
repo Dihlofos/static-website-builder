@@ -26,7 +26,7 @@ const props = defineProps({
   </button>
 </template>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .button {
   display: inline-flex;
   align-items: center;

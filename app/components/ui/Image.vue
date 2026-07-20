@@ -84,12 +84,3 @@ const imgBindings = computed(() => {
   </picture>
   <img v-else v-bind="imgBindings" />
 </template>
-
-<style lang="scss" scoped>
-picture,
-img {
-  display: block;
-  max-width: 100%;
-  height: auto;
-}
-</style>

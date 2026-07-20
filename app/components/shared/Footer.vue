@@ -32,7 +32,7 @@ import footerData from '~/../data/sections/footer.json'
   </footer>
 </template>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .footer {
   position: relative;
   background-color: $darkBlue;

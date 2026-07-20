@@ -32,7 +32,7 @@ function closeMobile() {
   </nav>
 </template>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .nav {
   &__toggle {
     display: none;
