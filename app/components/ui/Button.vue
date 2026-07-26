@@ -40,6 +40,16 @@ const props = defineProps({
     cursor: not-allowed;
   }
 
+  &.white {
+    background-color: $white;
+    border-color: $white;
+    color: $magenta;
+
+    &:hover {
+      color: $white;
+    }
+  }
+
   // --- Sizes ---
   &--sm {
     padding: 4px 16px;

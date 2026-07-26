@@ -1,9 +1,8 @@
-import { _ as _export_sfc } from "./1tPrXgE0.js";
-import { B as openBlock, C as createElementBlock, I as renderSlot, J as normalizeClass, F as createVNode, G as withCtx, D as createBaseVNode, E as toDisplayString, K as createCommentVNode, L as createBlock, H as createTextVNode, _ as __vitePreload, M as Fragment, N as renderList, l as unref, i as ref, A as useHead, O as normalizeProps, P as guardReactiveProps } from "./DPA6MgMa.js";
-import { _ as __nuxt_component_0$2 } from "./V-qEBWXD.js";
-const _hoisted_1$2 = ["href"];
-const _hoisted_2$2 = ["disabled", "type"];
-const _sfc_main$3 = {
+import { B as openBlock, C as createElementBlock, I as renderSlot, J as normalizeClass, F as createVNode, G as withCtx, D as createBaseVNode, E as toDisplayString, K as createCommentVNode, L as createBlock, H as createTextVNode, M as Fragment, N as renderList, O as normalizeProps, P as guardReactiveProps, Q as mergeProps, m as computed, _ as __vitePreload, l as unref, i as ref, A as useHead } from "./ZIQbdsly.js";
+import { _ as _sfc_main$5 } from "./BPE--Q3V.js";
+const _hoisted_1$3 = ["href"];
+const _hoisted_2$3 = ["disabled", "type"];
+const _sfc_main$4 = {
   __name: "Button",
   props: {
     variant: { type: String, default: "primary" },
@@ -19,25 +18,24 @@ const _sfc_main$3 = {
         href: __props.to,
         class: normalizeClass(["button", `button--${__props.variant}`, `button--${__props.size}`])
       }, [
-        renderSlot(_ctx.$slots, "default", {}, void 0)
-      ], 10, _hoisted_1$2)) : (openBlock(), createElementBlock("button", {
+        renderSlot(_ctx.$slots, "default")
+      ], 10, _hoisted_1$3)) : (openBlock(), createElementBlock("button", {
         key: 1,
         class: normalizeClass(["button", `button--${__props.variant}`, `button--${__props.size}`]),
         disabled: __props.disabled,
         type: __props.type
       }, [
-        renderSlot(_ctx.$slots, "default", {}, void 0)
-      ], 10, _hoisted_2$2));
+        renderSlot(_ctx.$slots, "default")
+      ], 10, _hoisted_2$3));
     };
   }
 };
-const __nuxt_component_0$1 = /* @__PURE__ */ _export_sfc(_sfc_main$3, [["__scopeId", "data-v-03c3ba3b"]]);
-const _hoisted_1$1 = {
+const _hoisted_1$2 = {
   id: "hero",
   class: "hero"
 };
-const _hoisted_2$1 = { class: "hero__content" };
-const _hoisted_3$1 = { class: "hero__title" };
+const _hoisted_2$2 = { class: "hero__content" };
+const _hoisted_3$2 = { class: "hero__title" };
 const _hoisted_4$1 = {
   key: 0,
   class: "hero__subtitle"
@@ -46,7 +44,7 @@ const _hoisted_5$1 = {
   key: 1,
   class: "hero__actions"
 };
-const _sfc_main$2 = {
+const _sfc_main$3 = {
   __name: "HeroSection",
   props: {
     title: { type: String, required: true },
@@ -57,13 +55,13 @@ const _sfc_main$2 = {
   },
   setup(__props) {
     return (_ctx, _cache) => {
-      const _component_Button = __nuxt_component_0$1;
-      const _component_Container = __nuxt_component_0$2;
-      return openBlock(), createElementBlock("section", _hoisted_1$1, [
+      const _component_Button = _sfc_main$4;
+      const _component_Container = _sfc_main$5;
+      return openBlock(), createElementBlock("section", _hoisted_1$2, [
         createVNode(_component_Container, null, {
           default: withCtx(() => [
-            createBaseVNode("div", _hoisted_2$1, [
-              createBaseVNode("h1", _hoisted_3$1, toDisplayString(__props.title), 1),
+            createBaseVNode("div", _hoisted_2$2, [
+              createBaseVNode("h1", _hoisted_3$2, toDisplayString(__props.title), 1),
               __props.subtitle ? (openBlock(), createElementBlock("p", _hoisted_4$1, toDisplayString(__props.subtitle), 1)) : createCommentVNode("", true),
               __props.button || __props.secondaryButton ? (openBlock(), createElementBlock("div", _hoisted_5$1, [
                 __props.button?.text ? (openBlock(), createBlock(_component_Button, {
@@ -97,7 +95,116 @@ const _sfc_main$2 = {
     };
   }
 };
-const __nuxt_component_0 = /* @__PURE__ */ _export_sfc(_sfc_main$2, [["__scopeId", "data-v-190bb458"]]);
+const _hoisted_1$1 = { key: 0 };
+const _hoisted_2$1 = ["media", "srcset", "type"];
+const _hoisted_3$1 = ["srcset"];
+const _sfc_main$2 = {
+  __name: "Image",
+  props: {
+    src: { type: String, required: true },
+    alt: { type: String, default: "" },
+    width: { type: [Number, String], default: null },
+    height: { type: [Number, String], default: null },
+    loading: { type: String, default: "lazy" },
+    decoding: { type: String, default: "async" },
+    fetchpriority: { type: String, default: null },
+    class: { type: [String, Array, Object], default: null },
+    imgAttrs: { type: Object, default: () => ({}) },
+    /**
+     * Массив источников для тега <source> внутри <picture>.
+     * Позволяет показывать разные изображения на разных разрешениях.
+     *
+     * @example
+     * :sources="[
+     *   { media: '(max-width: 768px)', srcset: '/images/hero-mobile.jpg' },
+     * ]"
+     *
+     * Для растровых форматов WebP-вариант генерируется автоматически.
+     * Если нужно переопределить type — укажите его явно, тогда
+     * WebP-конвертация не применяется.
+     */
+    sources: {
+      type: Array,
+      default: () => []
+    }
+  },
+  setup(__props) {
+    const props = __props;
+    const RASTER_EXTS = /* @__PURE__ */ new Set([".png", ".jpg", ".jpeg"]);
+    function cleanPath(src) {
+      return src.split("?")[0].split("#")[0];
+    }
+    function getExtension(src) {
+      const path = cleanPath(src);
+      const match = path.match(/\.(\w+)$/);
+      return match ? match[1].toLowerCase() : null;
+    }
+    function isExternalUrl(src) {
+      return /^https?:\/\//.test(src) || /^\/\//.test(src) || /^data:/.test(src);
+    }
+    function getWebpSrc(src) {
+      const [path, rest] = src.split("?");
+      const [pathOnly] = path.split("#");
+      const webpPath = pathOnly.replace(/\.\w+$/, ".webp");
+      return rest ? `${webpPath}?${rest}` : webpPath;
+    }
+    const ext = computed(() => {
+      if (isExternalUrl(props.src)) return null;
+      return getExtension(props.src);
+    });
+    const isRaster = computed(() => ext.value && RASTER_EXTS.has(`.${ext.value}`));
+    const webpSrc = computed(() => isRaster.value ? getWebpSrc(props.src) : null);
+    const processedSources = computed(() => {
+      return props.sources.flatMap((source) => {
+        if (source.type) return [source];
+        const srcExt = getExtension(source.srcset);
+        const isRasterExt = srcExt && RASTER_EXTS.has(`.${srcExt}`);
+        if (!isExternalUrl(source.srcset) && isRasterExt) {
+          const webpSrcset = getWebpSrc(source.srcset);
+          return [
+            { media: source.media, srcset: webpSrcset, type: "image/webp" },
+            { media: source.media, srcset: source.srcset }
+          ];
+        }
+        return [source];
+      });
+    });
+    const usePicture = computed(
+      () => isRaster.value && webpSrc.value || props.sources.length > 0
+    );
+    const imgBindings = computed(() => {
+      const bindings = {
+        src: props.src,
+        alt: props.alt,
+        loading: props.loading,
+        decoding: props.decoding
+      };
+      if (props.width != null) bindings.width = props.width;
+      if (props.height != null) bindings.height = props.height;
+      if (props.fetchpriority) bindings.fetchpriority = props.fetchpriority;
+      if (props.class) bindings.class = props.class;
+      return { ...bindings, ...props.imgAttrs };
+    });
+    return (_ctx, _cache) => {
+      return usePicture.value ? (openBlock(), createElementBlock("picture", _hoisted_1$1, [
+        (openBlock(true), createElementBlock(Fragment, null, renderList(processedSources.value, (source, index) => {
+          return openBlock(), createElementBlock("source", {
+            key: index,
+            media: source.media,
+            srcset: source.srcset,
+            type: source.type
+          }, null, 8, _hoisted_2$1);
+        }), 128)),
+        webpSrc.value ? (openBlock(), createElementBlock("source", {
+          key: 0,
+          srcset: webpSrc.value,
+          type: "image/webp"
+        }, null, 8, _hoisted_3$1)) : createCommentVNode("", true),
+        createBaseVNode("img", normalizeProps(guardReactiveProps(imgBindings.value)), null, 16)
+      ])) : (openBlock(), createElementBlock("img", normalizeProps(mergeProps({ key: 1 }, imgBindings.value)), null, 16));
+    };
+  }
+};
 let purify = null;
 {
   __vitePreload(() => import("./C3FtZLC6.js"), true ? [] : void 0, import.meta.url).then((m) => {
@@ -116,20 +223,18 @@ const _hoisted_1 = {
   id: "faq",
   class: "faq"
 };
-const _hoisted_2 = ["src"];
-const _hoisted_3 = ["src"];
-const _hoisted_4 = { class: "faq__wrapper" };
-const _hoisted_5 = { class: "faq__title" };
-const _hoisted_6 = { class: "faq__accordion" };
-const _hoisted_7 = ["aria-expanded", "aria-controls", "onClick"];
-const _hoisted_8 = {
+const _hoisted_2 = { class: "faq__wrapper" };
+const _hoisted_3 = { class: "faq__title" };
+const _hoisted_4 = { class: "faq__accordion" };
+const _hoisted_5 = ["aria-expanded", "aria-controls", "onClick"];
+const _hoisted_6 = {
   class: "faq__icon",
   "aria-hidden": "true"
 };
-const _hoisted_9 = ["src"];
-const _hoisted_10 = ["src"];
-const _hoisted_11 = ["id"];
-const _hoisted_12 = ["innerHTML"];
+const _hoisted_7 = ["src"];
+const _hoisted_8 = ["src"];
+const _hoisted_9 = ["id"];
+const _hoisted_10 = ["innerHTML"];
 const _sfc_main$1 = {
   __name: "Faq",
   props: {
@@ -154,27 +259,28 @@ const _sfc_main$1 = {
       return !!openState.value[index];
     }
     return (_ctx, _cache) => {
-      const _component_Container = __nuxt_component_0$2;
+      const _component_Image = _sfc_main$2;
+      const _component_Container = _sfc_main$5;
       return openBlock(), createElementBlock("section", _hoisted_1, [
-        createBaseVNode("img", {
+        createVNode(_component_Image, {
           src: __props.images.decorLeft,
           alt: "",
           class: "faq__decor faq__decor--left",
           width: "1075",
           height: "1090"
-        }, null, 8, _hoisted_2),
-        createBaseVNode("img", {
+        }, null, 8, ["src"]),
+        createVNode(_component_Image, {
           src: __props.images.decorRight,
           alt: "",
           class: "faq__decor faq__decor--right",
           width: "945",
           height: "958"
-        }, null, 8, _hoisted_3),
+        }, null, 8, ["src"]),
         createVNode(_component_Container, null, {
           default: withCtx(() => [
-            createBaseVNode("div", _hoisted_4, [
-              createBaseVNode("h2", _hoisted_5, toDisplayString(__props.title), 1),
-              createBaseVNode("div", _hoisted_6, [
+            createBaseVNode("div", _hoisted_2, [
+              createBaseVNode("h2", _hoisted_3, toDisplayString(__props.title), 1),
+              createBaseVNode("div", _hoisted_4, [
                 (openBlock(true), createElementBlock(Fragment, null, renderList(__props.items, (item, index) => {
                   return openBlock(), createElementBlock("div", {
                     key: index,
@@ -187,23 +293,23 @@ const _sfc_main$1 = {
                       onClick: ($event) => toggle(index)
                     }, [
                       createTextVNode(toDisplayString(item.question) + " ", 1),
-                      createBaseVNode("span", _hoisted_8, [
+                      createBaseVNode("span", _hoisted_6, [
                         createBaseVNode("img", {
                           src: __props.images.arrowDown,
                           alt: "",
                           class: "faq__down",
                           width: "36",
                           height: "36"
-                        }, null, 8, _hoisted_9),
+                        }, null, 8, _hoisted_7),
                         createBaseVNode("img", {
                           src: __props.images.arrowUp,
                           alt: "",
                           class: "faq__up",
                           width: "36",
                           height: "36"
-                        }, null, 8, _hoisted_10)
+                        }, null, 8, _hoisted_8)
                       ])
-                    ], 10, _hoisted_7),
+                    ], 10, _hoisted_5),
                     createBaseVNode("div", {
                       id: `faq-content-${index}`,
                       class: normalizeClass(["faq__content", { active: isOpen(index) }]),
@@ -211,8 +317,8 @@ const _sfc_main$1 = {
                     }, [
                       createBaseVNode("p", {
                         innerHTML: unref(sanitizeText)(item.answer)
-                      }, null, 8, _hoisted_12)
-                    ], 10, _hoisted_11)
+                      }, null, 8, _hoisted_10)
+                    ], 10, _hoisted_9)
                   ], 2);
                 }), 128))
               ])
@@ -224,7 +330,6 @@ const _sfc_main$1 = {
     };
   }
 };
-const __nuxt_component_1 = /* @__PURE__ */ _export_sfc(_sfc_main$1, [["__scopeId", "data-v-777df651"]]);
 const type$1 = "hero";
 const title$1 = "Создаём современные веб-сайты";
 const subtitle = "Быстро, надёжно, красиво. Используем Nuxt 3 и SCSS.";
@@ -256,8 +361,8 @@ const _sfc_main = {
       title: ""
     });
     return (_ctx, _cache) => {
-      const _component_HeroSection = __nuxt_component_0;
-      const _component_Faq = __nuxt_component_1;
+      const _component_HeroSection = _sfc_main$3;
+      const _component_Faq = _sfc_main$1;
       return openBlock(), createElementBlock("main", null, [
         createVNode(_component_HeroSection, normalizeProps(guardReactiveProps(unref(heroData))), null, 16),
         createVNode(_component_Faq, {

@@ -1,37 +1,35 @@
+import { o as onMounted, _ as __vitePreload, R as onUnmounted, B as openBlock, C as createElementBlock, D as createBaseVNode, E as toDisplayString, l as unref, M as Fragment, N as renderList, J as normalizeClass, i as ref, F as createVNode, G as withCtx, I as renderSlot } from "./ZIQbdsly.js";
+import { _ as _sfc_main$4 } from "./BPE--Q3V.js";
 import { _ as _export_sfc } from "./1tPrXgE0.js";
-import { B as openBlock, C as createElementBlock, D as createBaseVNode, E as toDisplayString, l as unref, M as Fragment, N as renderList, J as normalizeClass, i as ref, o as onMounted, Q as onUnmounted, F as createVNode, G as withCtx, I as renderSlot } from "./DPA6MgMa.js";
-import { _ as __nuxt_component_0$2 } from "./V-qEBWXD.js";
-const navItems = [
-  {
-    label: "Главная",
-    link: "#hero"
-  },
-  {
-    label: "Возможности",
-    link: "#features"
-  },
-  {
-    label: "О нас",
-    link: "#about"
-  },
-  {
-    label: "Контакты",
-    link: "#contact"
-  }
-];
+const navItems = [{ "label": "Главная", "link": "#hero" }, { "label": "Возможности", "link": "#features" }, { "label": "О нас", "link": "#about" }, { "label": "Контакты", "link": "#contact" }];
 const _hoisted_1$3 = { class: "nav__toggle-icon" };
-const _hoisted_2$1 = { class: "nav__list" };
-const _hoisted_3$1 = ["href"];
+const _hoisted_2$1 = { class: "nav__overlay" };
+const _hoisted_3$1 = { class: "nav__list" };
+const _hoisted_4$1 = ["href"];
 const _sfc_main$3 = {
   __name: "Navigation",
   setup(__props) {
     const mobileOpen = ref(false);
+    let smoothScroll = null;
     function toggleMobile() {
       mobileOpen.value = !mobileOpen.value;
     }
     function closeMobile() {
       mobileOpen.value = false;
     }
+    onMounted(async () => {
+      const SmoothScroll = (await __vitePreload(async () => {
+        const { default: __vite_default__ } = await import("./CSbmv_7n.js").then((n) => n.s);
+        return { default: __vite_default__ };
+      }, true ? [] : void 0, import.meta.url)).default;
+      smoothScroll = new SmoothScroll(".nav__link", {
+        speed: 200,
+        offset: 45
+      });
+    });
+    onUnmounted(() => {
+      smoothScroll?.destroy();
+    });
     return (_ctx, _cache) => {
       return openBlock(), createElementBlock("nav", {
         class: normalizeClass(["nav", { "nav--open": unref(mobileOpen) }])
@@ -43,25 +41,26 @@ const _sfc_main$3 = {
         }, [
           createBaseVNode("span", _hoisted_1$3, toDisplayString(unref(mobileOpen) ? "✕" : "☰"), 1)
         ]),
-        createBaseVNode("ul", _hoisted_2$1, [
-          (openBlock(true), createElementBlock(Fragment, null, renderList(unref(navItems), (item) => {
-            return openBlock(), createElementBlock("li", {
-              key: item.link,
-              class: "nav__item"
-            }, [
-              createBaseVNode("a", {
-                href: item.link,
-                class: "nav__link",
-                onClick: closeMobile
-              }, toDisplayString(item.label), 9, _hoisted_3$1)
-            ]);
-          }), 128))
+        createBaseVNode("div", _hoisted_2$1, [
+          createBaseVNode("ul", _hoisted_3$1, [
+            (openBlock(true), createElementBlock(Fragment, null, renderList(unref(navItems), (item) => {
+              return openBlock(), createElementBlock("li", {
+                key: item.link,
+                class: "nav__item"
+              }, [
+                createBaseVNode("a", {
+                  href: item.link,
+                  class: "nav__link",
+                  onClick: closeMobile
+                }, toDisplayString(item.label), 9, _hoisted_4$1)
+              ]);
+            }), 128))
+          ])
         ])
       ], 2);
     };
   }
 };
-const __nuxt_component_0$1 = /* @__PURE__ */ _export_sfc(_sfc_main$3, [["__scopeId", "data-v-e25e4602"]]);
 const _hoisted_1$2 = { class: "header__inner" };
 const _sfc_main$2 = {
   __name: "Header",
@@ -77,8 +76,8 @@ const _sfc_main$2 = {
       window.removeEventListener("scroll", onScroll);
     });
     return (_ctx, _cache) => {
-      const _component_Navigation = __nuxt_component_0$1;
-      const _component_Container = __nuxt_component_0$2;
+      const _component_Navigation = _sfc_main$3;
+      const _component_Container = _sfc_main$4;
       return openBlock(), createElementBlock("header", {
         class: normalizeClass(["header", { "header--scrolled": unref(scrolled) }])
       }, [
@@ -98,7 +97,6 @@ const _sfc_main$2 = {
     };
   }
 };
-const __nuxt_component_0 = /* @__PURE__ */ _export_sfc(_sfc_main$2, [["__scopeId", "data-v-0b6565a3"]]);
 const type = "footer";
 const title = "Контакты";
 const contacts = [{ "label": "По вопросам регистрации", "email": "name@mail.ru" }, { "label": "Для СМИ", "email": "pressame@mail.ru" }];
@@ -129,7 +127,7 @@ const _sfc_main$1 = {
   __name: "Footer",
   setup(__props) {
     return (_ctx, _cache) => {
-      const _component_Container = __nuxt_component_0$2;
+      const _component_Container = _sfc_main$4;
       return openBlock(), createElementBlock("footer", _hoisted_1$1, [
         createVNode(_component_Container, null, {
           default: withCtx(() => [
@@ -177,19 +175,18 @@ const _sfc_main$1 = {
     };
   }
 };
-const __nuxt_component_1 = /* @__PURE__ */ _export_sfc(_sfc_main$1, [["__scopeId", "data-v-8d2b4cce"]]);
 const _sfc_main = {};
 const _hoisted_1 = { class: "page" };
 function _sfc_render(_ctx, _cache) {
-  const _component_Header = __nuxt_component_0;
-  const _component_Footer = __nuxt_component_1;
+  const _component_Header = _sfc_main$2;
+  const _component_Footer = _sfc_main$1;
   return openBlock(), createElementBlock("div", _hoisted_1, [
     createVNode(_component_Header),
-    renderSlot(_ctx.$slots, "default", {}, void 0),
+    renderSlot(_ctx.$slots, "default"),
     createVNode(_component_Footer)
   ]);
 }
-const _default = /* @__PURE__ */ _export_sfc(_sfc_main, [["render", _sfc_render], ["__scopeId", "data-v-9931e2df"]]);
+const _default = /* @__PURE__ */ _export_sfc(_sfc_main, [["render", _sfc_render]]);
 export {
   _default as default
 };

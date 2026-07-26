@@ -3,7 +3,7 @@ import footerData from '~/../data/sections/footer.json'
 </script>
 
 <template>
-  <footer class="footer" id="footer">
+  <footer class="footer" id="contact">
     <Container>
       <div class="footer__wrapper">
         <div class="footer__content">

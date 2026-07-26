@@ -15,6 +15,7 @@ export default defineNuxtConfig({
   ssr: true,
 
   app: {
+    baseURL: process.env.BASE_URL || '/',
     buildAssetsDir: '_assets/',
     head: {
       charset: 'utf-8',

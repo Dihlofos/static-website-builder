@@ -1,7 +1,8 @@
 <script setup>
-import navItems from '~/../data/navigation.json'
+import { navItems, images } from '~/../data/navigation.json'
 
 const mobileOpen = ref(false)
+let smoothScroll = null
 
 function toggleMobile() {
   mobileOpen.value = !mobileOpen.value
@@ -10,92 +11,137 @@ function toggleMobile() {
 function closeMobile() {
   mobileOpen.value = false
 }
+
+onMounted(async () => {
+  const SmoothScroll = (await import('smooth-scroll')).default
+  smoothScroll = new SmoothScroll('.nav__link', {
+    speed: 200,
+    offset: 45,
+  })
+})
+
+onUnmounted(() => {
+  smoothScroll?.destroy()
+})
 </script>
 
 <template>
   <nav class="nav" :class="{ 'nav--open': mobileOpen }">
     <button class="nav__toggle" @click="toggleMobile" aria-label="Меню">
-      <span class="nav__toggle-icon">{{ mobileOpen ? '✕' : '☰' }}</span>
+      <Image v-if="!mobileOpen" :src="images.burger" alt="Открыть меню" width="44" height="44" />
+      <Image v-else :src="images.close" alt="Закрыть меню" width="35" height="35" />
     </button>
 
-    <ul class="nav__list">
-      <li v-for="item in navItems" :key="item.link" class="nav__item">
-        <a
-          :href="item.link"
-          class="nav__link"
-          @click="closeMobile"
-        >
-          {{ item.label }}
-        </a>
-      </li>
-    </ul>
+    <div class="nav__overlay">
+      <ul class="nav__list">
+        <li v-for="item in navItems" :key="item.link" class="nav__item">
+          <a :href="item.link" class="nav__link" @click="closeMobile">
+            {{ item.label }}
+          </a>
+        </li>
+      </ul>
+    </div>
   </nav>
 </template>
 
 <style lang="scss">
 .nav {
+  img.nav__girls {
+    display: none !important;
+
+    @media (max-width: $tablet) {
+      display: block !important;
+    }
+  }
+
   &__toggle {
     display: none;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    padding: 0;
+    line-height: 0;
+
     &:focus-visible {
       outline: 2px solid #0055ff;
       outline-offset: 2px;
     }
+
+
+
+    @media (max-width: $tablet) {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: fixed;
+      top: 1.2rem;
+      right: 1.6rem;
+      z-index: 1030;
+
+      .nav--open & {
+        top: 1.6rem;
+        right: 2rem;
+
+      }
+    }
   }
 
-  &__toggle-icon {
-    font-size: 24px;
-    line-height: 1;
+  &__overlay {
+    display: contents;
+
+    @media (max-width: $tablet) {
+      display: flex;
+      flex-direction: column;
+      position: fixed;
+      inset: 0;
+      background-color: $magenta;
+      z-index: 1029;
+      padding: 2rem 2rem 4rem;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 300ms ease;
+      overflow-y: auto;
+    }
+
+    .nav--open & {
+      @media (max-width: $tablet) {
+        opacity: 1;
+        pointer-events: all;
+      }
+    }
   }
 
   &__list {
     display: flex;
-    gap: 24px;
+    gap: 2.4rem;
     align-items: center;
+    list-style: none;
+
+    @media (max-width: $tablet) {
+      flex-direction: column;
+      gap: 2.4rem;
+      padding: 0;
+      flex-shrink: 0;
+      align-items: flex-start;
+    }
   }
 
   &__link {
-    font-size: 14px;
+    font-size: 1.8rem;
     font-weight: 500;
-    color: #64748b;
+    line-height: 1.1;
+    color: $white;
     transition: color 150ms ease;
+    text-decoration: none;
 
     &:hover {
-      color: #0055ff;
-    }
-  }
-
-  // Mobile
-  @media (max-width: 767px) {
-    &__toggle {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      z-index: 1030;
+      text-decoration: underline;
     }
 
-    &__list {
-      position: fixed;
-      top: 0;
-      right: 0;
-      bottom: 0;
-      width: 280px;
-      flex-direction: column;
-      padding: 64px 32px;
-      background: #ffffff;
-      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
-      transform: translateX(100%);
-      transition: transform 250ms ease;
-      gap: 16px;
-      z-index: 1039;
-    }
-
-    &--open &__list {
-      transform: translateX(0);
-    }
-
-    &__link {
-      font-size: 18px;
-      padding: 8px 0;
+    @media (max-width: $tablet) {
+      font-size: 2.4rem;
+      font-weight: 600;
+      padding: 0.8rem 0;
     }
   }
 }

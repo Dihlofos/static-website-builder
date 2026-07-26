@@ -11,6 +11,23 @@ const props = defineProps({
   fetchpriority: { type: String, default: null },
   class: { type: [String, Array, Object], default: null },
   imgAttrs: { type: Object, default: () => ({}) },
+  /**
+   * Массив источников для тега <source> внутри <picture>.
+   * Позволяет показывать разные изображения на разных разрешениях.
+   *
+   * @example
+   * :sources="[
+   *   { media: '(max-width: 768px)', srcset: '/images/hero-mobile.jpg' },
+   * ]"
+   *
+   * Для растровых форматов WebP-вариант генерируется автоматически.
+   * Если нужно переопределить type — укажите его явно, тогда
+   * WebP-конвертация не применяется.
+   */
+  sources: {
+    type: Array,
+    default: () => [],
+  },
 })
 
 const RASTER_EXTS = new Set(['.png', '.jpg', '.jpeg'])
@@ -60,6 +77,41 @@ const isRaster = computed(() => ext.value && RASTER_EXTS.has(`.${ext.value}`))
 const webpSrc = computed(() => (isRaster.value ? getWebpSrc(props.src) : null))
 
 /**
+ * Обрабатывает пользовательские источники:
+ * - Для растровых форматов добавляет WebP-вариант перед оригиналом
+ * - Если type указан явно — пропускает как есть
+ * - Если формат не растровый или внешний URL — пропускает как есть
+ */
+const processedSources = computed(() => {
+  return props.sources.flatMap((source) => {
+    // Если type задан явно — доверяем пользователю
+    if (source.type) return [source]
+
+    const srcExt = getExtension(source.srcset)
+    const isRasterExt = srcExt && RASTER_EXTS.has(`.${srcExt}`)
+
+    if (!isExternalUrl(source.srcset) && isRasterExt) {
+      const webpSrcset = getWebpSrc(source.srcset)
+      return [
+        { media: source.media, srcset: webpSrcset, type: 'image/webp' },
+        { media: source.media, srcset: source.srcset },
+      ]
+    }
+
+    return [source]
+  })
+})
+
+/**
+ * Нужен ли <picture>?
+ * — Да, если есть WebP-версия основного src
+ * — Да, если пользователь передал кастомные sources
+ */
+const usePicture = computed(() =>
+  (isRaster.value && webpSrc.value) || props.sources.length > 0,
+)
+
+/**
  * Атрибуты, которые идут на <img>.
  */
 const imgBindings = computed(() => {
@@ -78,9 +130,23 @@ const imgBindings = computed(() => {
 </script>
 
 <template>
-  <picture v-if="isRaster && webpSrc">
-    <source :srcset="webpSrc" type="image/webp" />
+  <picture v-if="usePicture">
+    <!-- Пользовательские источники с медиа-запросами -->
+    <template v-for="(source, index) in processedSources" :key="index">
+      <source
+        :media="source.media"
+        :srcset="source.srcset"
+        :type="source.type"
+      />
+    </template>
+
+    <!-- Дефолтный WebP для основного src -->
+    <source v-if="webpSrc" :srcset="webpSrc" type="image/webp" />
+
+    <!-- Фолбэк: <img> со всеми биндингами -->
     <img v-bind="imgBindings" />
   </picture>
   <img v-else v-bind="imgBindings" />
 </template>
+
+<style lang="scss"></style>
