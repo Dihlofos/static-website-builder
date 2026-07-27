@@ -1,4 +1,4 @@
-const __vite__mapDeps=(i,m=__vite__mapDeps,d=(m.f||(m.f=["./CL-QEcqD.js","./BPE--Q3V.js","./Container.gkKRJ0Hb.css","./index.a_29WwsE.css","./DFzKS-ls.js","./1tPrXgE0.js","./default.BgKdbZHX.css","./DmE-3gA6.js","./error-404.Dv2pyLoR.css","./DtHlhgGu.js","./error-500.C2XaBLWY.css"])))=>i.map(i=>d[i]);
+const __vite__mapDeps=(i,m=__vite__mapDeps,d=(m.f||(m.f=["./CUOyRWvN.js","./BcJR2hUE.js","./Image.gkKRJ0Hb.css","./index.a_29WwsE.css","./BpVZfrcR.js","./1tPrXgE0.js","./default.Bh96K_-2.css","./CfDegB-K.js","./error-404.Dv2pyLoR.css","./87Oq-O9Y.js","./error-500.C2XaBLWY.css"])))=>i.map(i=>d[i]);
 (function polyfill() {
   const relList = document.createElement("link").relList;
   if (relList && relList.supports && relList.supports("modulepreload")) return;
@@ -2263,6 +2263,36 @@ function withCtx(fn, ctx = currentRenderingInstance, isNonScopedSlot) {
   renderFnWithContext._d = true;
   return renderFnWithContext;
 }
+function withDirectives(vnode, directives) {
+  if (currentRenderingInstance === null) {
+    return vnode;
+  }
+  const instance = getComponentPublicInstance(currentRenderingInstance);
+  const bindings = vnode.dirs || (vnode.dirs = []);
+  for (let i = 0; i < directives.length; i++) {
+    let [dir, value, arg, modifiers = EMPTY_OBJ] = directives[i];
+    if (dir) {
+      if (isFunction(dir)) {
+        dir = {
+          mounted: dir,
+          updated: dir
+        };
+      }
+      if (dir.deep) {
+        traverse(value);
+      }
+      bindings.push({
+        dir,
+        instance,
+        value,
+        oldValue: void 0,
+        arg,
+        modifiers
+      });
+    }
+  }
+  return vnode;
+}
 function invokeDirectiveHook(vnode, prevVNode, instance, name) {
   const bindings = vnode.dirs;
   const oldBindings = prevVNode && prevVNode.dirs;
@@ -3921,6 +3951,7 @@ function onErrorCaptured(hook, target = currentInstance) {
   injectHook("ec", hook, target);
 }
 const COMPONENTS = "components";
+const DIRECTIVES = "directives";
 function resolveComponent(name, maybeSelfReference) {
   return resolveAsset(COMPONENTS, name, true, maybeSelfReference) || name;
 }
@@ -3932,11 +3963,14 @@ function resolveDynamicComponent(component) {
     return component || NULL_DYNAMIC_COMPONENT;
   }
 }
+function resolveDirective(name) {
+  return resolveAsset(DIRECTIVES, name);
+}
 function resolveAsset(type, name, warnMissing = true, maybeSelfReference = false) {
   const instance = currentRenderingInstance || currentInstance;
   if (instance) {
     const Component = instance.type;
-    {
+    if (type === COMPONENTS) {
       const selfName = getComponentName(
         Component,
         false
@@ -8371,6 +8405,46 @@ function patchClass(el, value, isSVG) {
 }
 const vShowOriginalDisplay = /* @__PURE__ */ Symbol("_vod");
 const vShowHidden = /* @__PURE__ */ Symbol("_vsh");
+const vShow = {
+  // used for prop mismatch check during hydration
+  name: "show",
+  beforeMount(el, { value }, { transition }) {
+    el[vShowOriginalDisplay] = el.style.display === "none" ? "" : el.style.display;
+    if (transition && value) {
+      transition.beforeEnter(el);
+    } else {
+      setDisplay(el, value);
+    }
+  },
+  mounted(el, { value }, { transition }) {
+    if (transition && value) {
+      transition.enter(el);
+    }
+  },
+  updated(el, { value, oldValue }, { transition }) {
+    if (!value === !oldValue) return;
+    if (transition) {
+      if (value) {
+        transition.beforeEnter(el);
+        setDisplay(el, true);
+        transition.enter(el);
+      } else {
+        transition.leave(el, () => {
+          setDisplay(el, false);
+        });
+      }
+    } else {
+      setDisplay(el, value);
+    }
+  },
+  beforeUnmount(el, { value }) {
+    setDisplay(el, value);
+  }
+};
+function setDisplay(el, value) {
+  el.style.display = value ? el[vShowOriginalDisplay] : "none";
+  el[vShowHidden] = !value;
+}
 const CSS_VAR_TEXT = /* @__PURE__ */ Symbol("");
 const displayRE = /(?:^|;)\s*display\s*:/;
 function patchStyle(el, prev, next) {
@@ -13555,7 +13629,7 @@ const _routes = [
   {
     name: "index",
     path: "/",
-    component: () => __vitePreload(() => import("./CL-QEcqD.js"), true ? __vite__mapDeps([0,1,2,3]) : void 0, import.meta.url)
+    component: () => __vitePreload(() => import("./CUOyRWvN.js"), true ? __vite__mapDeps([0,1,2,3]) : void 0, import.meta.url)
   }
 ];
 const _wrapInTransition = (props, children) => {
@@ -14099,7 +14173,7 @@ const components_plugin_z4hgvsiddfKkfXTP6M8M4zG5Cb7sGnDhcryKVM45Di4 = /* @__PURE
   name: "nuxt:global-components"
 });
 const layouts = {
-  default: /* @__PURE__ */ defineAsyncComponent(() => __vitePreload(() => import("./DFzKS-ls.js"), true ? __vite__mapDeps([4,1,2,5,6]) : void 0, import.meta.url).then((m) => m.default || m))
+  default: /* @__PURE__ */ defineAsyncComponent(() => __vitePreload(() => import("./BpVZfrcR.js"), true ? __vite__mapDeps([4,1,2,5,6]) : void 0, import.meta.url).then((m) => m.default || m))
 };
 function _loadAsyncComponent(component) {
   if (component?.__asyncLoader && !component.__asyncResolved) {
@@ -14165,6 +14239,67 @@ const prefetch_client_xwHiCvtnqAuv25cPdV3VTRqlYkBwUqHZbymrolAkzB8 = /* @__PURE__
     });
   }
 });
+const DEFAULTS = {
+  offset: 45,
+  speed: 200
+};
+let smoothScroll = null;
+function setSmoothScrollInstance(instance) {
+  smoothScroll = instance;
+}
+function createClickHandler(options) {
+  return (event) => {
+    const mouseEvent = event;
+    const link = mouseEvent.currentTarget;
+    const href = link.getAttribute("href");
+    if (!href?.startsWith("#")) return;
+    if (mouseEvent.ctrlKey || mouseEvent.metaKey || mouseEvent.shiftKey) return;
+    const target = document.querySelector(href);
+    if (!target) {
+      return;
+    }
+    mouseEvent.preventDefault();
+    const opts = { ...DEFAULTS, ...options };
+    smoothScroll.animateScroll(target, null, {
+      speed: opts.speed,
+      offset: opts.offset
+    });
+  };
+}
+const vAnchor = {
+  mounted(el, binding) {
+    const handler = createClickHandler(binding.value ?? {});
+    el.__vAnchorHandler = handler;
+    el.addEventListener("click", handler);
+  },
+  updated(el, binding) {
+    const oldHandler = el.__vAnchorHandler;
+    if (oldHandler) {
+      el.removeEventListener("click", oldHandler);
+    }
+    const handler = createClickHandler(binding.value ?? {});
+    el.__vAnchorHandler = handler;
+    el.addEventListener("click", handler);
+  },
+  unmounted(el) {
+    const handler = el.__vAnchorHandler;
+    if (handler) {
+      el.removeEventListener("click", handler);
+    }
+  }
+};
+const anchor_directive_gkBdwTWihbzGmsuWuvnTWZip45TIxz1hQmI_XKzWUig = /* @__PURE__ */ defineNuxtPlugin(async (nuxtApp) => {
+  let __temp, __restore;
+  nuxtApp.vueApp.directive("anchor", vAnchor);
+  {
+    const SmoothScroll = ([__temp, __restore] = executeAsync(() => __vitePreload(() => import("./CSbmv_7n.js").then((n) => n.s), true ? [] : void 0, import.meta.url)), __temp = await __temp, __restore(), __temp).default;
+    const instance = new SmoothScroll(null, {
+      speed: 200,
+      offset: 45
+    });
+    setSmoothScrollInstance(instance);
+  }
+});
 const plugins = [
   revive_payload_client_lyWX1wvL7rSItZC0SHHXlpXViCrvKJ1yqCDTSoqslF0,
   unhead_PtamfB47yqQY_Rh4zjrimgYJkXOrkZ_s7Rhm1JWaAcQ,
@@ -14174,7 +14309,8 @@ const plugins = [
   check_outdated_build_client_kRdP0hsyNSWRJESGlaqVgRQ1Bgm0NpNaCfqmEeSNd0I,
   chunk_reload_client_x05C_tQGwZj13_VNB3Soz0TV8ALoiwkuOXzHHEW9mKk,
   components_plugin_z4hgvsiddfKkfXTP6M8M4zG5Cb7sGnDhcryKVM45Di4,
-  prefetch_client_xwHiCvtnqAuv25cPdV3VTRqlYkBwUqHZbymrolAkzB8
+  prefetch_client_xwHiCvtnqAuv25cPdV3VTRqlYkBwUqHZbymrolAkzB8,
+  anchor_directive_gkBdwTWihbzGmsuWuvnTWZip45TIxz1hQmI_XKzWUig
 ];
 const defineRouteProvider = (name = "RouteProvider") => /* @__PURE__ */ defineComponent({
   name,
@@ -14666,8 +14802,8 @@ const _sfc_main$1 = {
     const statusText = _error.statusMessage ?? (is404 ? "Page Not Found" : "Internal Server Error");
     const description2 = _error.message || _error.toString();
     const stack2 = void 0;
-    const _Error404 = /* @__PURE__ */ defineAsyncComponent(() => __vitePreload(() => import("./DmE-3gA6.js"), true ? __vite__mapDeps([7,5,8]) : void 0, import.meta.url));
-    const _Error = /* @__PURE__ */ defineAsyncComponent(() => __vitePreload(() => import("./DtHlhgGu.js"), true ? __vite__mapDeps([9,5,10]) : void 0, import.meta.url));
+    const _Error404 = /* @__PURE__ */ defineAsyncComponent(() => __vitePreload(() => import("./CfDegB-K.js"), true ? __vite__mapDeps([7,5,8]) : void 0, import.meta.url));
+    const _Error = /* @__PURE__ */ defineAsyncComponent(() => __vitePreload(() => import("./87Oq-O9Y.js"), true ? __vite__mapDeps([9,5,10]) : void 0, import.meta.url));
     const ErrorTemplate = is404 ? _Error404 : _Error;
     return (_ctx, _cache) => {
       return openBlock(), createBlock(unref(ErrorTemplate), normalizeProps$1(guardReactiveProps({ status: unref(status), statusText: unref(statusText), statusCode: unref(status), statusMessage: unref(statusText), description: unref(description2), stack: unref(stack2) })), null, 16);
@@ -14795,8 +14931,11 @@ export {
   renderList as N,
   normalizeProps$1 as O,
   guardReactiveProps as P,
-  mergeProps as Q,
-  onUnmounted as R,
+  resolveDirective as Q,
+  withDirectives as R,
+  onUnmounted as S,
+  vShow as T,
+  mergeProps as U,
   __vitePreload as _,
   useNuxtApp as a,
   onNuxtReady as b,
