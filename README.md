@@ -1,6 +1,6 @@
 # Nuxt 3 Static Site Template
 
-A static site generator on Nuxt 3 with JSON-driven data, SCSS, and zero TypeScript.
+A static site template built with Nuxt 3, localized TypeScript data modules, and SCSS. Vue components are written in JavaScript.
 
 ## Quick Start
 
@@ -19,35 +19,32 @@ npm run clean    # Clean Nuxt cache
 │   ├── assets/
 │   │   ├── fonts/       # WOFF / WOFF2 font files
 │   │   └── scss/        # SCSS system
-│   │       ├── _variables.scss
-│   │       ├── _mixins.scss
-│   │       ├── _breakpoints.scss
-│   │       ├── _reset.scss
-│   │       ├── _typography.scss
-│   │       └── main.scss
 │   ├── components/
 │   │   ├── sections/    # Page sections (HeroSection, …)
 │   │   ├── shared/      # Shared components (Header, Navigation, Faq, Footer)
-│   │   └── ui/          # UI primitives (Container, Button)
+│   │   └── ui/          # UI primitives (Container, Button, Image)
+│   ├── composables/
+│   │   └── useLocale.js # Reactive language state shared with provide/inject
 │   ├── layouts/         # Nuxt layouts
-│   │   └── default.vue
 │   ├── pages/           # Route pages
-│   │   └── index.vue
-│   ├── public/          # Static files served at root (/)
+│   ├── public/          # Static files served from the site root (/)
 │   │   ├── docs/        # Documents (PDFs, etc.)
 │   │   └── images/      # Images organised by section / component
-│   │       ├── favicons/ # Favicon set + manifest
-│   │       └── Faq/      # Example: images used by the Faq component
+│   │       ├── favicons/
+│   │       └── faq/     # Images used by the FAQ section
 │   ├── utils/           # Utility functions
-│   │   ├── sanitize.ts  # HTML sanitizer
-│   │   └── getYM.ts     # Yandex.Metrica script builder
-│   ├── app.vue          # Entry point (global meta, fonts, Yandex.Metrica)
+│   ├── app.vue          # Entry point (locale provider and global metadata)
 │   └── nuxt.config.js   # Nuxt configuration
-├── data/                # JSON data files
-│   ├── sections/        # Section data (hero.json, faq.json, footer.json)
-│   ├── pages/           # Page composition (index.json → list of section keys)
-│   ├── navigation.json  # Navigation links
-│   └── site.json        # Site metadata (title, description, OG, keywords)
+├── data/
+│   ├── common/          # Shared localized data
+│   │   ├── navigation/{ru,en}.ts
+│   │   ├── site/{ru,en}.ts
+│   │   └── ui/{ru,en}.ts
+│   ├── sections/        # One folder per section, with a module per locale
+│   │   ├── hero/{ru,en}.ts
+│   │   ├── faq/{ru,en}.ts
+│   │   └── footer/{ru,en}.ts
+│   └── pages/           # Shared page composition (index.json; not localized)
 ├── scripts/             # Build scripts
 │   └── format-html.js   # HTML beautifier run after `npm run generate`
 ├── .claude/             # Claude Code configuration
@@ -61,40 +58,31 @@ npm run clean    # Clean Nuxt cache
 
 ## How It Works
 
-1. **Data** lives in `data/sections/*.json`.
-2. **Section components** in `app/components/sections/` receive the data as props.
-3. **Pages** in `app/pages/` import the JSON and pass it to the section components.
-4. **Page composition** (`data/pages/index.json`) lists which section keys belong to a page.
+1. **Localized content** lives in `data/sections/<section>/{ru,en}.ts`. Shared localized data such as navigation, site metadata, and common UI strings lives in `data/common/<group>/{ru,en}.ts`.
+2. **Locale state** is created in `app/app.vue` with `provide/inject`; `useLocale()` exposes the reactive current locale and `setLocale()` to descendants. A component may pass an explicit locale to `useLocale(locale)` to override the inherited language locally. Russian (`ru`) is the default; changing language is not persisted across reloads.
+3. **Data consumers** statically import both locale modules and select the matching object reactively. This keeps both translations in the client build so switching works without a server or runtime fetch, including on a statically published site.
+4. **Pages** in `app/pages/` pass the selected section data to components as props. `data/pages/index.json` is shared and not localized; the current `app/pages/index.vue` directly renders Hero followed by FAQ, so that JSON does not currently control its rendered section list.
 5. **Build** (`npm run generate`) produces a fully static site, then `scripts/format-html.js` beautifies the output HTML.
 
 ## Adding a New Section
 
-1. **Create section data** — `data/sections/gallery.json`
-2. **Create a section component** — `app/components/sections/GallerySection.vue`
-3. **Add images** — place them in `app/public/images/gallery/`, then reference the paths in your JSON data or component via `/images/gallery/...`
-4. **Import on a page** — add the component to `app/pages/index.vue` and pass the data as props
-5. **Register in page composition** — add `"gallery"` to `data/pages/index.json`
+1. **Create both locale modules** — `data/sections/gallery/ru.ts` and `data/sections/gallery/en.ts`. Export the same object shape from each file; translate text values and keep IDs, links, and shared asset paths consistent.
+2. **Create a section component** — `app/components/sections/GallerySection.vue`, with props matching the data object.
+3. **Add images** — place files in `app/public/images/gallery/`; store their public-root paths (for example, `/images/gallery/photo.jpg`) in the section data.
+4. **Connect the section to the page** — statically import both locale modules in `app/pages/index.vue`, select data using `useLocale()`, and pass the selected object to `<GallerySection />`.
+5. Keep the page's section list language-independent. The current home page renders sections directly in `app/pages/index.vue`; `data/pages/index.json` is not currently used to build that page.
 
-### Image Handling (Example: Faq)
+### Image Handling
 
-The `Faq` component demonstrates the image workflow:
+- Put static images in `app/public/images/<section>/`. Files in Nuxt's `public` directory are referenced from the site root, so data should contain paths such as `/images/faq/decor-left.svg` — not filesystem paths such as `app/public/images/faq/decor-left.svg`.
+- Keep paths in both locale modules when the image is shared between languages. Store a different path per locale only when the design actually uses different images.
+- Use the project `<Image />` component for images in Vue templates (including SVGs). For example:
 
-- Images are placed in `app/public/images/Faq/` (the folder name matches the component name)
-- Paths are stored in the component's data JSON (`data/sections/faq.json`) under an `images` field:
-
-```json
-{
-  "images": {
-    "decorLeft": "/images/faq/decor-left.svg",
-    "decorRight": "/images/faq/decor-right.svg",
-    "arrowDown": "/images/faq/arrow-down.svg",
-    "arrowUp": "/images/faq/arrow-up.svg"
-  }
-}
+```vue
+<Image :src="images.decorLeft" alt="" width="1075" height="1090" />
 ```
 
-- The component receives an `images` prop and uses them in the template as `:src="images.decorLeft"`
-- A default prop value provides fallback paths so the component works without passing the prop
+`<Image />` renders a regular image for SVGs and adds a WebP `<source>` with a fallback for supported raster formats. Do not use a raw `<img>` in a template.
 
 ## WebP Image Optimization
 
@@ -168,7 +156,7 @@ export default defineNuxtConfig({
 2. При сборке `.webp` появится рядом автоматически
 3. Используй в шаблоне: `<Image src="/images/<раздел>/photo.jpg" alt="..." />`
 
-> **Совет:** Для SVG-иконок и декоративных элементов `<picture>` не нужен — используйте обычный `<img>`. Компонент `<Image>` нужен для фотографий и растровых картинок, где WebP даёт существенное сжатие (обычно −60…−80%).
+> **Важно:** Используйте `<Image />` для всех изображений, включая SVG-иконки и декоративные элементы. Компонент сам выводит обычный `<img>` для SVG и добавляет WebP-источник для поддерживаемых растровых форматов.
 
 ## Dependencies
 
