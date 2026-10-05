@@ -1,5 +1,5 @@
-import { B as openBlock, C as createElementBlock, I as renderSlot, J as normalizeClass, F as createVNode, G as withCtx, D as createBaseVNode, E as toDisplayString, K as createCommentVNode, L as createBlock, H as createTextVNode, _ as __vitePreload, M as Fragment, N as renderList, l as unref, i as ref, A as useHead, O as normalizeProps, P as guardReactiveProps } from "./CtvTRxII.js";
-import { _ as _sfc_main$4, a as _sfc_main$5 } from "./BcJR2hUE.js";
+import { B as openBlock, C as createElementBlock, I as renderSlot, J as normalizeClass, F as createVNode, G as withCtx, D as createBaseVNode, E as toDisplayString, K as createCommentVNode, L as createBlock, H as createTextVNode, _ as __vitePreload, M as Fragment, N as renderList, l as unref, i as ref, O as useLocale, A as useHead, P as normalizeProps, Q as guardReactiveProps, m as computed, R as toRef } from "./K7dWFRaF.js";
+import { _ as _sfc_main$4, a as _sfc_main$5 } from "./BXhAQt0p.js";
 const _hoisted_1$2 = ["href"];
 const _hoisted_2$2 = ["disabled", "type"];
 const _sfc_main$3 = {
@@ -220,33 +220,106 @@ const _sfc_main$1 = {
     };
   }
 };
-const type$1 = "hero";
-const title$1 = "Создаём современные веб-сайты";
-const subtitle = "Быстро, надёжно, красиво. Используем Nuxt 3 и SCSS.";
-const button = { "text": "Узнать больше", "link": "#features" };
-const secondaryButton = { "text": "Связаться", "link": "#contact" };
-const backgroundImage = "components/HeroSection/bg-hero.jpg";
-const heroData = {
-  type: type$1,
-  title: title$1,
-  subtitle,
-  button,
-  secondaryButton,
-  backgroundImage
+const heroRu = {
+  type: "hero",
+  title: "Создаём современные веб-сайты",
+  subtitle: "Быстро, надёжно, красиво. Используем Nuxt 3 и SCSS.",
+  button: { text: "Узнать больше", link: "#features" },
+  secondaryButton: { text: "Связаться", link: "#contact" },
+  backgroundImage: "components/HeroSection/bg-hero.jpg"
 };
-const type = "faq";
-const title = "Вопросы и ответы";
-const images = { "decorLeft": "/images/faq/decor-left.svg", "decorRight": "/images/faq/decor-right.svg", "arrowDown": "/images/faq/arrow-down.svg", "arrowUp": "/images/faq/arrow-up.svg" };
-const items = [{ "question": "Сколько активностей можно посетить?", "answer": "Вы&nbsp;можете выбрать и&nbsp;посетить любое количество активностей фестиваля. На&nbsp;некоторые понадобится регистрация&nbsp;&mdash; в&nbsp;расписании вы&nbsp;увидите кнопку &laquo;Регистрация&raquo;." }, { "question": "Нужно ли брать с собой спортивный инвентарь?", "answer": "Мы предоставим коврики, а другой специальный инвентарь не потребуется. Просто приходите в удобной одежде и обуви. И не забудьте взять с собой воду." }, { "question": "Можно ли переодеться на площадке?", "answer": "На площадке нет раздевалок и камер хранения, поэтому приходите в спортивной одежде и обуви сразу." }, { "question": "Что делать, если я опаздываю на зарегистрированное событие?", "answer": "В случае опоздания забронированный слот аннулируется. Рекомендуем приходить на площадку за 15 минут до начала, чтобы успеть отметиться и занять место." }, { "question": "Можно ли прийти с ребенком?", "answer": "Да, для детей от 3 лет подготовлены специальные активности в детской зоне." }, { "question": "Могут ли в активностях принять участие мужчины?", "answer": "Тренировки организованы только для женщин. Но для мужчин будет работать специальная зона с кибербаром и играми." }];
-const faqData = {
-  type,
-  title,
-  images,
-  items
+const heroEn = {
+  type: "hero",
+  title: "We create modern websites",
+  subtitle: "Fast, reliable, beautiful. Built with Nuxt 3 and SCSS.",
+  button: { text: "Learn more", link: "#features" },
+  secondaryButton: { text: "Contact us", link: "#contact" },
+  backgroundImage: "components/HeroSection/bg-hero.jpg"
+};
+const faqRu = {
+  type: "faq",
+  title: "Вопросы и ответы",
+  images: {
+    decorLeft: "/images/faq/decor-left.svg",
+    decorRight: "/images/faq/decor-right.svg",
+    arrowDown: "/images/faq/arrow-down.svg",
+    arrowUp: "/images/faq/arrow-up.svg"
+  },
+  items: [
+    {
+      question: "Сколько активностей можно посетить?",
+      answer: "Вы&nbsp;можете выбрать и&nbsp;посетить любое количество активностей фестиваля. На&nbsp;некоторые понадобится регистрация&nbsp;&mdash; в&nbsp;расписании вы&nbsp;увидите кнопку &laquo;Регистрация&raquo;."
+    },
+    {
+      question: "Нужно ли брать с собой спортивный инвентарь?",
+      answer: "Мы предоставим коврики, а другой специальный инвентарь не потребуется. Просто приходите в удобной одежде и обуви. И не забудьте взять с собой воду."
+    },
+    {
+      question: "Можно ли переодеться на площадке?",
+      answer: "На площадке нет раздевалок и камер хранения, поэтому приходите в спортивной одежде и обуви сразу."
+    },
+    {
+      question: "Что делать, если я опаздываю на зарегистрированное событие?",
+      answer: "В случае опоздания забронированный слот аннулируется. Рекомендуем приходить на площадку за 15 минут до начала, чтобы успеть отметиться и занять место."
+    },
+    {
+      question: "Можно ли прийти с ребенком?",
+      answer: "Да, для детей от 3 лет подготовлены специальные активности в детской зоне."
+    },
+    {
+      question: "Могут ли в активностях принять участие мужчины?",
+      answer: "Тренировки организованы только для женщин. Но для мужчин будет работать специальная зона с кибербаром и играми."
+    }
+  ]
+};
+const faqEn = {
+  type: "faq",
+  title: "Frequently Asked Questions",
+  images: {
+    decorLeft: "/images/faq/decor-left.svg",
+    decorRight: "/images/faq/decor-right.svg",
+    arrowDown: "/images/faq/arrow-down.svg",
+    arrowUp: "/images/faq/arrow-up.svg"
+  },
+  items: [
+    {
+      question: "How many activities can I attend?",
+      answer: "You can choose and attend any number of festival activities. Some require registration — look for the “Register” button in the schedule."
+    },
+    {
+      question: "Do I need to bring sports equipment?",
+      answer: "We will provide exercise mats, and no other special equipment is needed. Just come in comfortable clothes and shoes, and remember to bring water."
+    },
+    {
+      question: "Can I change clothes at the venue?",
+      answer: "There are no changing rooms or lockers at the venue, so please arrive already dressed in your sportswear and shoes."
+    },
+    {
+      question: "What should I do if I am late for a registered event?",
+      answer: "If you arrive late, your reserved slot will be cancelled. We recommend arriving 15 minutes before the event starts so you have time to check in and find a place."
+    },
+    {
+      question: "Can I bring a child?",
+      answer: "Yes. Special activities are available in the children’s area for children aged 3 and above."
+    },
+    {
+      question: "Can men take part in the activities?",
+      answer: "The workouts are for women only. Men can enjoy a special area with a cyber bar and games."
+    }
+  ]
 };
 const _sfc_main = {
   __name: "index",
+  props: {
+    locale: { type: String, default: null }
+  },
   setup(__props) {
+    const props = __props;
+    const { locale } = useLocale(toRef(props, "locale"));
+    const heroByLocale = { ru: heroRu, en: heroEn };
+    const faqByLocale = { ru: faqRu, en: faqEn };
+    const heroData = computed(() => heroByLocale[locale.value]);
+    const faqData = computed(() => faqByLocale[locale.value]);
     useHead({
       title: ""
     });
@@ -254,11 +327,11 @@ const _sfc_main = {
       const _component_HeroSection = _sfc_main$2;
       const _component_Faq = _sfc_main$1;
       return openBlock(), createElementBlock("main", null, [
-        createVNode(_component_HeroSection, normalizeProps(guardReactiveProps(unref(heroData))), null, 16),
+        createVNode(_component_HeroSection, normalizeProps(guardReactiveProps(heroData.value)), null, 16),
         createVNode(_component_Faq, {
-          title: unref(faqData).title,
-          items: unref(faqData).items,
-          images: unref(faqData).images
+          title: faqData.value.title,
+          items: faqData.value.items,
+          images: faqData.value.images
         }, null, 8, ["title", "items", "images"])
       ]);
     };

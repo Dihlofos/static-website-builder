@@ -1,5 +1,7 @@
 <script setup>
-import { ref, onMounted, onBeforeUnmount } from 'vue'
+import { computed, ref, onMounted, onBeforeUnmount, toRef } from 'vue'
+import uiRu from '~/../data/common/ui/ru'
+import uiEn from '~/../data/common/ui/en'
 import { Swiper, SwiperSlide } from 'swiper/vue'
 import { Navigation } from 'swiper/modules'
 import 'swiper/css'
@@ -8,9 +10,13 @@ const props = defineProps({
   items: { type: Array, required: true },
   arrowLeft: { type: String, required: true },
   arrowRight: { type: String, required: true },
+  locale: { type: String, default: null },
   /** @type {number} Ширина экрана в px, выше которой включается Swiper-слайдер */
   desktopBreakpoint: { type: Number, default: 1025 },
 })
+const { locale } = useLocale(toRef(props, 'locale'))
+const uiByLocale = { ru: uiRu, en: uiEn }
+const ui = computed(() => uiByLocale[locale.value])
 
 // ═══════════════════════════════════════════
 // Переключение Desktop ↔ Mobile
@@ -47,7 +53,7 @@ const nextRef = ref(null)
         ref="prevRef"
         class="slider__arrow slider__arrow--left"
         type="button"
-        aria-label="Назад"
+        :aria-label="ui.sliderPrevious"
       >
         <Image :src="arrowLeft" alt="" width="57" height="57" />
       </button>
@@ -77,7 +83,7 @@ const nextRef = ref(null)
         ref="nextRef"
         class="slider__arrow slider__arrow--right"
         type="button"
-        aria-label="Вперёд"
+        :aria-label="ui.sliderNext"
       >
         <Image :src="arrowRight" alt="" width="57" height="57" />
       </button>

@@ -1,6 +1,14 @@
 <script setup lang="ts">
-import { ref, onMounted } from 'vue'
+import { computed, ref, onMounted, toRef } from 'vue'
+import uiRu from '~/../data/common/ui/ru'
+import uiEn from '~/../data/common/ui/en'
 
+const props = defineProps({
+  locale: { type: String, default: null },
+})
+const { locale } = useLocale(toRef(props, 'locale'))
+const uiByLocale = { ru: uiRu, en: uiEn }
+const ui = computed(() => uiByLocale[locale.value])
 const STORAGE_KEY = 'cookie-modal-shown'
 
 const isVisible = ref(false)
@@ -20,16 +28,11 @@ function accept() {
 <template>
   <div v-show="isVisible" class="cookie-modal">
     <div class="cookie-modal__text">
-      <p>
-        Продолжая пользоваться сайтом, вы&nbsp;соглашаетесь с&nbsp;условиями
-        обработки cookie-файлов. Это необходимо для качественной работы сайта.
-        Если вы&nbsp;не&nbsp;согласны, то&nbsp;установите специальные настройки
-        в&nbsp;браузере.
-      </p>
+      <p>{{ ui.cookieMessage }}</p>
     </div>
 
     <button class="cookie-modal__close" @click="accept">
-      Ок
+      {{ ui.cookieAccept }}
     </button>
   </div>
 </template>

@@ -1,4 +1,11 @@
 <script setup>
+import { computed } from 'vue'
+import uiRu from '~/../data/common/ui/ru'
+import uiEn from '~/../data/common/ui/en'
+
+const { locale, setLocale } = useLocale()
+const uiByLocale = { ru: uiRu, en: uiEn }
+const ui = computed(() => uiByLocale[locale.value])
 const scrolled = ref(false)
 
 function onScroll() {
@@ -19,6 +26,10 @@ onUnmounted(() => {
     <Container>
       <div class="header__inner">
         <Navigation />
+        <div class="header__locale" role="group" :aria-label="ui.languageSwitcher">
+          <button type="button" :aria-pressed="locale === 'ru'" @click="setLocale('ru')">Русский</button>
+          <button type="button" :aria-pressed="locale === 'en'" @click="setLocale('en')">English</button>
+        </div>
       </div>
     </Container>
   </header>
@@ -54,12 +65,52 @@ onUnmounted(() => {
   }
 
   &__inner {
+    position: relative;
     display: flex;
     align-items: center;
     justify-content: center;
 
     @media (max-width: $tablet) {
       min-height: 0;
+    }
+  }
+
+  &__locale {
+    position: absolute;
+    top: 50%;
+    right: 0;
+    display: flex;
+    gap: 0.4rem;
+    transform: translateY(-50%);
+
+    button {
+      border: 1px solid $white;
+      border-radius: 2rem;
+      background: transparent;
+      color: $white;
+      cursor: pointer;
+      font-family: $monserrat;
+      font-size: 1.4rem;
+      padding: 0.6rem 1rem;
+
+      &[aria-pressed='true'] {
+        background: $white;
+        color: $magenta;
+      }
+
+      &:focus-visible {
+        outline: 2px solid $white;
+        outline-offset: 2px;
+      }
+    }
+
+    @media (max-width: $tablet) {
+      position: fixed;
+      top: 1.2rem;
+      right: auto;
+      left: 1.6rem;
+      z-index: 1031;
+      transform: none;
     }
   }
 

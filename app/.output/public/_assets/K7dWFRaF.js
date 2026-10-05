@@ -1,4 +1,4 @@
-const __vite__mapDeps=(i,m=__vite__mapDeps,d=(m.f||(m.f=["./CUOyRWvN.js","./BcJR2hUE.js","./Image.gkKRJ0Hb.css","./index.a_29WwsE.css","./BpVZfrcR.js","./1tPrXgE0.js","./default.Bh96K_-2.css","./CfDegB-K.js","./error-404.Dv2pyLoR.css","./87Oq-O9Y.js","./error-500.C2XaBLWY.css"])))=>i.map(i=>d[i]);
+const __vite__mapDeps=(i,m=__vite__mapDeps,d=(m.f||(m.f=["./DZnOwZRL.js","./BXhAQt0p.js","./Image.gkKRJ0Hb.css","./index.a_29WwsE.css","./D862GID7.js","./1tPrXgE0.js","./default.D0h0ycfX.css","./loPrmFOC.js","./error-404.Dv2pyLoR.css","./C16CON2J.js","./error-500.C2XaBLWY.css"])))=>i.map(i=>d[i]);
 (function polyfill() {
   const relList = document.createElement("link").relList;
   if (relList && relList.supports && relList.supports("modulepreload")) return;
@@ -9084,23 +9084,23 @@ function withQuery(input, query) {
   parsed.search = stringifyQuery$1(mergedQuery);
   return stringifyParsedURL(parsed);
 }
-function isEmptyURL(url2) {
-  return !url2 || url2 === "/";
+function isEmptyURL(url) {
+  return !url || url === "/";
 }
-function isNonEmptyURL(url2) {
-  return url2 && url2 !== "/";
+function isNonEmptyURL(url) {
+  return url && url !== "/";
 }
 function joinURL(base, ...input) {
-  let url2 = base || "";
-  for (const segment of input.filter((url22) => isNonEmptyURL(url22))) {
-    if (url2) {
+  let url = base || "";
+  for (const segment of input.filter((url2) => isNonEmptyURL(url2))) {
+    if (url) {
       const _segment = segment.replace(JOIN_LEADING_SLASH_RE, "");
-      url2 = withTrailingSlash(url2) + _segment;
+      url = withTrailingSlash(url) + _segment;
     } else {
-      url2 = segment;
+      url = segment;
     }
   }
-  return url2;
+  return url;
 }
 function joinRelativeURL(..._input) {
   const JOIN_SEGMENT_SPLIT_RE = /\/(?!\/)/;
@@ -9131,20 +9131,20 @@ function joinRelativeURL(..._input) {
       segmentsDepth++;
     }
   }
-  let url2 = segments.join("/");
+  let url = segments.join("/");
   if (segmentsDepth >= 0) {
-    if (input[0]?.startsWith("/") && !url2.startsWith("/")) {
-      url2 = "/" + url2;
-    } else if (input[0]?.startsWith("./") && !url2.startsWith("./")) {
-      url2 = "./" + url2;
+    if (input[0]?.startsWith("/") && !url.startsWith("/")) {
+      url = "/" + url;
+    } else if (input[0]?.startsWith("./") && !url.startsWith("./")) {
+      url = "./" + url;
     }
   } else {
-    url2 = "../".repeat(-1 * segmentsDepth) + url2;
+    url = "../".repeat(-1 * segmentsDepth) + url;
   }
-  if (input[input.length - 1]?.endsWith("/") && !url2.endsWith("/")) {
-    url2 += "/";
+  if (input[input.length - 1]?.endsWith("/") && !url.endsWith("/")) {
+    url += "/";
   }
-  return url2;
+  return url;
 }
 function isSamePath(p1, p2) {
   return decode$1(withoutTrailingSlash(p1)) === decode$1(withoutTrailingSlash(p2));
@@ -9214,8 +9214,8 @@ class FetchError extends Error {
 function createFetchError(ctx) {
   const errorMessage = ctx.error?.message || ctx.error?.toString() || "";
   const method = ctx.request?.method || ctx.options?.method || "GET";
-  const url2 = ctx.request?.url || String(ctx.request) || "/";
-  const requestStr = `[${method}] ${JSON.stringify(url2)}`;
+  const url = ctx.request?.url || String(ctx.request) || "/";
+  const requestStr = `[${method}] ${JSON.stringify(url)}`;
   const statusStr = ctx.response ? `${ctx.response.status} ${ctx.response.statusText}` : "<no response>";
   const message = `${requestStr}: ${statusStr}${errorMessage ? ` ${errorMessage}` : ""}`;
   const fetchError = new FetchError(
@@ -10391,8 +10391,8 @@ const navigateTo = (to, options) => {
 function resolveRouteObject(to) {
   return withQuery(to.path || "", to.query || {}) + (to.hash || "");
 }
-function encodeRoutePath(url2) {
-  const parsed = parseURL$1(url2);
+function encodeRoutePath(url) {
+  const parsed = parseURL$1(url);
   return encodePath$1(decodePath(parsed.pathname)) + parsed.search + parsed.hash;
 }
 const NUXT_ERROR_SIGNATURE = "__nuxt_error";
@@ -10612,13 +10612,13 @@ function unflatten(parsed, revivers2) {
             break;
           }
           case "URL": {
-            const url2 = new URL(value[1]);
-            hydrated[index] = url2;
+            const url = new URL(value[1]);
+            hydrated[index] = url;
             break;
           }
           case "URLSearchParams": {
-            const url2 = new URLSearchParams(value[1]);
-            hydrated[index] = url2;
+            const url = new URLSearchParams(value[1]);
+            hydrated[index] = url;
             break;
           }
           default:
@@ -11253,19 +11253,19 @@ function createUnhead(resolvedOptions = {}) {
         }
         return acc;
       }, ctx.tagMap);
-      const title2 = ctx.tagMap.get("title");
+      const title = ctx.tagMap.get("title");
       const titleTemplate = ctx.tagMap.get("titleTemplate");
-      head._title = title2?.textContent;
+      head._title = title?.textContent;
       if (titleTemplate) {
         const titleTemplateFn = titleTemplate?.textContent;
         head._titleTemplate = titleTemplateFn;
         if (titleTemplateFn) {
-          let newTitle = typeof titleTemplateFn === "function" ? titleTemplateFn(title2?.textContent) : titleTemplateFn;
+          let newTitle = typeof titleTemplateFn === "function" ? titleTemplateFn(title?.textContent) : titleTemplateFn;
           if (typeof newTitle === "string" && !head.plugins.has("template-params")) {
-            newTitle = newTitle.replace("%s", title2?.textContent || "");
+            newTitle = newTitle.replace("%s", title?.textContent || "");
           }
-          if (title2) {
-            newTitle === null ? ctx.tagMap.delete("title") : ctx.tagMap.set("title", { ...title2, textContent: newTitle });
+          if (title) {
+            newTitle === null ? ctx.tagMap.delete("title") : ctx.tagMap.set("title", { ...title, textContent: newTitle });
           } else {
             titleTemplate.tag = "title";
             titleTemplate.textContent = newTitle;
@@ -11507,9 +11507,9 @@ const TemplateParamsPlugin = /* @__PURE__ */ defineHeadPlugin((head) => {
         head._separator = sep;
       },
       "tags:afterResolve": ({ tagMap }) => {
-        const title2 = tagMap.get("title");
-        if (title2?.textContent && title2.processTemplateParams !== false) {
-          title2.textContent = processTemplateParams(title2.textContent, head._templateParams, head._separator);
+        const title = tagMap.get("title");
+        if (title?.textContent && title.processTemplateParams !== false) {
+          title.textContent = processTemplateParams(title.textContent, head._templateParams, head._separator);
         }
       }
     }
@@ -11630,23 +11630,23 @@ function getRouteRules(arg) {
     return {};
   }
 }
-async function loadPayload(url2, opts = {}) {
-  if (await shouldLoadPayload(url2)) {
-    const payloadURL = await _getPayloadURL(url2, opts);
+async function loadPayload(url, opts = {}) {
+  if (await shouldLoadPayload(url)) {
+    const payloadURL = await _getPayloadURL(url, opts);
     return await _importPayload(payloadURL) || null;
   }
   return null;
 }
 const filename = "_payload.json";
-async function _getPayloadURL(url2, opts = {}) {
-  const u = new URL(url2, "http://localhost");
+async function _getPayloadURL(url, opts = {}) {
+  const u = new URL(url, "http://localhost");
   if (u.host !== "localhost" || hasProtocol(u.pathname, { acceptRelative: true })) {
-    throw new Error("Payload URL must not include hostname: " + url2);
+    throw new Error("Payload URL must not include hostname: " + url);
   }
   const config = /* @__PURE__ */ useRuntimeConfig();
   const hash = opts.hash || (opts.fresh || false ? Date.now() : config.app.buildId);
   const cdnURL = config.app.cdnURL;
-  const baseOrCdnURL = cdnURL && await isPrerendered(url2) ? cdnURL : config.app.baseURL;
+  const baseOrCdnURL = cdnURL && await isPrerendered(url) ? cdnURL : config.app.baseURL;
   return joinURL(baseOrCdnURL, u.pathname, filename + (hash ? `?${hash}` : ""));
 }
 async function _importPayload(payloadURL) {
@@ -11672,17 +11672,17 @@ function _shouldLoadPrerenderedPayload(rules) {
     return true;
   }
 }
-async function _isPrerenderedInManifest(url2) {
-  url2 = url2 === "/" ? url2 : url2.replace(/\/$/, "");
+async function _isPrerenderedInManifest(url) {
+  url = url === "/" ? url : url.replace(/\/$/, "");
   try {
     const manifest2 = await getAppManifest();
-    return manifest2.prerendered.includes(url2);
+    return manifest2.prerendered.includes(url);
   } catch {
     return false;
   }
 }
-async function shouldLoadPayload(url2 = useRoute$1().path) {
-  const rules = getRouteRules({ path: url2 });
+async function shouldLoadPayload(url = useRoute$1().path) {
+  const rules = getRouteRules({ path: url });
   if (rules.ssr === false) {
     return false;
   }
@@ -11693,15 +11693,15 @@ async function shouldLoadPayload(url2 = useRoute$1().path) {
   if (rules.payload) {
     return true;
   }
-  const prerendered = await _isPrerenderedInManifest(url2);
+  const prerendered = await _isPrerenderedInManifest(url);
   return prerendered;
 }
-async function isPrerendered(url2 = useRoute$1().path) {
-  const res = _shouldLoadPrerenderedPayload(getRouteRules({ path: url2 }));
+async function isPrerendered(url = useRoute$1().path) {
+  const res = _shouldLoadPrerenderedPayload(getRouteRules({ path: url }));
   if (res !== void 0) {
     return res;
   }
-  const prerendered = await _isPrerenderedInManifest(url2);
+  const prerendered = await _isPrerenderedInManifest(url);
   return prerendered;
 }
 let payloadCache = null;
@@ -12517,13 +12517,13 @@ function useHistoryStateNavigation(base) {
   }, true);
   function changeLocation(to, state, replace$1) {
     const hashIndex = base.indexOf("#");
-    const url2 = hashIndex > -1 ? (location$1.host && document.querySelector("base") ? base : base.slice(hashIndex)) + to : createBaseLocation() + base + to;
+    const url = hashIndex > -1 ? (location$1.host && document.querySelector("base") ? base : base.slice(hashIndex)) + to : createBaseLocation() + base + to;
     try {
-      history$1[replace$1 ? "replaceState" : "pushState"](state, "", url2);
+      history$1[replace$1 ? "replaceState" : "pushState"](state, "", url);
       historyState.value = state;
     } catch (err) {
       console.error(err);
-      location$1[replace$1 ? "replace" : "assign"](url2);
+      location$1[replace$1 ? "replace" : "assign"](url);
     }
   }
   function replace(to, data) {
@@ -13629,7 +13629,7 @@ const _routes = [
   {
     name: "index",
     path: "/",
-    component: () => __vitePreload(() => import("./CUOyRWvN.js"), true ? __vite__mapDeps([0,1,2,3]) : void 0, import.meta.url)
+    component: () => __vitePreload(() => import("./DZnOwZRL.js"), true ? __vite__mapDeps([0,1,2,3]) : void 0, import.meta.url)
   }
 ];
 const _wrapInTransition = (props, children) => {
@@ -14053,11 +14053,11 @@ const payload_client_X0_XABaJEN3mXNpLz5RSfZdoLq_diKzZIWPF4HinC5Q = /* @__PURE__ 
       }
     });
     onNuxtReady(() => {
-      nuxtApp.hooks.hook("link:prefetch", async (url2) => {
-        const { hostname } = new URL(url2, window.location.href);
+      nuxtApp.hooks.hook("link:prefetch", async (url) => {
+        const { hostname } = new URL(url, window.location.href);
         if (hostname === window.location.hostname) {
-          await loadPayload(url2).catch(() => {
-            console.warn("[nuxt] Error preloading payload for", url2);
+          await loadPayload(url).catch(() => {
+            console.warn("[nuxt] Error preloading payload for", url);
           });
         }
       });
@@ -14113,12 +14113,12 @@ const check_outdated_build_client_kRdP0hsyNSWRJESGlaqVgRQ1Bgm0NpNaCfqmEeSNd0I = 
 });
 function reloadNuxtApp(options = {}) {
   const path = options.path || window.location.pathname;
-  const url2 = new URL(path, window.location.href);
-  if (url2.host !== window.location.host) {
+  const url = new URL(path, window.location.href);
+  if (url.host !== window.location.host) {
     throw new Error(`Cannot navigate to a URL with a different host: '${path}'.`);
   }
-  if (url2.protocol && isScriptProtocol(url2.protocol)) {
-    throw new Error(`Cannot navigate to a URL with '${url2.protocol}' protocol.`);
+  if (url.protocol && isScriptProtocol(url.protocol)) {
+    throw new Error(`Cannot navigate to a URL with '${url.protocol}' protocol.`);
   }
   let handledPath = {};
   try {
@@ -14173,7 +14173,7 @@ const components_plugin_z4hgvsiddfKkfXTP6M8M4zG5Cb7sGnDhcryKVM45Di4 = /* @__PURE
   name: "nuxt:global-components"
 });
 const layouts = {
-  default: /* @__PURE__ */ defineAsyncComponent(() => __vitePreload(() => import("./BpVZfrcR.js"), true ? __vite__mapDeps([4,1,2,5,6]) : void 0, import.meta.url).then((m) => m.default || m))
+  default: /* @__PURE__ */ defineAsyncComponent(() => __vitePreload(() => import("./D862GID7.js"), true ? __vite__mapDeps([4,1,2,5,6]) : void 0, import.meta.url).then((m) => m.default || m))
 };
 function _loadAsyncComponent(component) {
   if (component?.__asyncLoader && !component.__asyncResolved) {
@@ -14217,11 +14217,11 @@ const prefetch_client_xwHiCvtnqAuv25cPdV3VTRqlYkBwUqHZbymrolAkzB8 = /* @__PURE__
         }
       });
     });
-    nuxtApp.hooks.hook("link:prefetch", (url2) => {
-      if (hasProtocol(url2)) {
+    nuxtApp.hooks.hook("link:prefetch", (url) => {
+      if (hasProtocol(url)) {
         return;
       }
-      const route = router.resolve(url2);
+      const route = router.resolve(url);
       if (!route) {
         return;
       }
@@ -14704,18 +14704,44 @@ const LayoutProvider = /* @__PURE__ */ defineComponent({
     };
   }
 });
-const title = "Мой сайт";
-const description = "Современный статический сайт на Nuxt 3";
-const keywords = ["nuxt", "vue", "ssg", "template"];
-const url = "https://example.com";
-const ogImage = "/images/favicons/favicon.svg";
-const site = {
-  title,
-  description,
-  keywords,
-  url,
-  ogImage
+const siteRu = {
+  title: "Мой сайт",
+  description: "Современный статический сайт на Nuxt 3",
+  keywords: ["nuxt", "vue", "ssg", "template"],
+  url: "https://example.com",
+  ogImage: "/images/favicons/favicon.svg"
 };
+const siteEn = {
+  title: "My Website",
+  description: "A modern static website built with Nuxt 3",
+  keywords: ["nuxt", "vue", "ssg", "template"],
+  url: "https://example.com",
+  ogImage: "/images/favicons/favicon.svg"
+};
+const localeKey = /* @__PURE__ */ Symbol("app-locale");
+const supportedLocales = ["ru", "en"];
+function provideLocale() {
+  const locale = /* @__PURE__ */ ref("ru");
+  function setLocale(nextLocale) {
+    if (supportedLocales.includes(nextLocale)) {
+      locale.value = nextLocale;
+    }
+  }
+  const context = { locale, setLocale };
+  provide(localeKey, context);
+  return context;
+}
+function useLocale(localeOverride) {
+  const context = inject(localeKey);
+  if (!context) {
+    throw new Error("useLocale must be called under the application locale provider");
+  }
+  const locale = computed(() => {
+    const override = unref(localeOverride);
+    return supportedLocales.includes(override) ? override : context.locale.value;
+  });
+  return { locale, setLocale: context.setLocale };
+}
 const getYM = (YM_ID2) => {
   return {
     innerHTML: `
@@ -14743,39 +14769,43 @@ const YM_ID = "999999999";
 const _sfc_main$2 = {
   __name: "app",
   setup(__props) {
-    useHead({
-      titleTemplate: (titleChunk) => {
-        return titleChunk ? `${titleChunk} — ${site.title}` : site.title;
-      },
-      meta: [
-        { name: "title", content: site.title },
-        { name: "description", content: site.description },
-        { name: "keywords", content: site.keywords?.join(", ") },
-        { property: "og:title", content: site.title },
-        { property: "og:description", content: site.description },
-        { property: "og:image", content: site.ogImage },
-        { property: "og:type", content: "website" },
-        { property: "og:url", content: site.url },
-        { charset: "UTF-8" },
-        { name: "viewport", content: "width=device-width, initial-scale=1" }
-      ],
-      link: [
-        { rel: "icon", type: "image/png", href: "/images/favicons/favicon-96x96.png", sizes: "96x96" },
-        { rel: "icon", type: "image/svg+xml", href: "/images/favicons/favicon.svg" },
-        { rel: "shortcut icon", href: "/images/favicons/favicon.ico" },
-        { rel: "apple-touch-icon", sizes: "180x180", href: "/images/favicons/apple-touch-icon.png" },
-        { rel: "manifest", href: "/images/favicons/site.webmanifest" },
-        { rel: "canonical", href: site.url }
-      ],
-      script: [
-        getYM(YM_ID)
-      ],
-      noscript: [
-        {
-          innerHTML: `<div><img src="https://mc.yandex.ru/watch/${YM_ID}" style="position:absolute;left:-9999px;" alt=""></div>`,
-          tagPosition: "bodyOpen"
-        }
-      ]
+    const { locale } = provideLocale();
+    const sites = { ru: siteRu, en: siteEn };
+    useHead(() => {
+      const site = sites[locale.value];
+      return {
+        htmlAttrs: { lang: locale.value },
+        titleTemplate: (titleChunk) => titleChunk ? `${titleChunk} — ${site.title}` : site.title,
+        meta: [
+          { name: "title", content: site.title },
+          { name: "description", content: site.description },
+          { name: "keywords", content: site.keywords?.join(", ") },
+          { property: "og:title", content: site.title },
+          { property: "og:description", content: site.description },
+          { property: "og:image", content: site.ogImage },
+          { property: "og:type", content: "website" },
+          { property: "og:url", content: site.url },
+          { charset: "UTF-8" },
+          { name: "viewport", content: "width=device-width, initial-scale=1" }
+        ],
+        link: [
+          { rel: "icon", type: "image/png", href: "/images/favicons/favicon-96x96.png", sizes: "96x96" },
+          { rel: "icon", type: "image/svg+xml", href: "/images/favicons/favicon.svg" },
+          { rel: "shortcut icon", href: "/images/favicons/favicon.ico" },
+          { rel: "apple-touch-icon", sizes: "180x180", href: "/images/favicons/apple-touch-icon.png" },
+          { rel: "manifest", href: "/images/favicons/site.webmanifest" },
+          { rel: "canonical", href: site.url }
+        ],
+        script: [
+          getYM(YM_ID)
+        ],
+        noscript: [
+          {
+            innerHTML: `<div><img src="https://mc.yandex.ru/watch/${YM_ID}" style="position:absolute;left:-9999px;" alt=""></div>`,
+            tagPosition: "bodyOpen"
+          }
+        ]
+      };
     });
     return (_ctx, _cache) => {
       const _component_NuxtPage = __nuxt_component_0;
@@ -14800,13 +14830,13 @@ const _sfc_main$1 = {
     const status = Number(_error.statusCode || 500);
     const is404 = status === 404;
     const statusText = _error.statusMessage ?? (is404 ? "Page Not Found" : "Internal Server Error");
-    const description2 = _error.message || _error.toString();
+    const description = _error.message || _error.toString();
     const stack2 = void 0;
-    const _Error404 = /* @__PURE__ */ defineAsyncComponent(() => __vitePreload(() => import("./CfDegB-K.js"), true ? __vite__mapDeps([7,5,8]) : void 0, import.meta.url));
-    const _Error = /* @__PURE__ */ defineAsyncComponent(() => __vitePreload(() => import("./87Oq-O9Y.js"), true ? __vite__mapDeps([9,5,10]) : void 0, import.meta.url));
+    const _Error404 = /* @__PURE__ */ defineAsyncComponent(() => __vitePreload(() => import("./loPrmFOC.js"), true ? __vite__mapDeps([7,5,8]) : void 0, import.meta.url));
+    const _Error = /* @__PURE__ */ defineAsyncComponent(() => __vitePreload(() => import("./C16CON2J.js"), true ? __vite__mapDeps([9,5,10]) : void 0, import.meta.url));
     const ErrorTemplate = is404 ? _Error404 : _Error;
     return (_ctx, _cache) => {
-      return openBlock(), createBlock(unref(ErrorTemplate), normalizeProps$1(guardReactiveProps({ status: unref(status), statusText: unref(statusText), statusCode: unref(status), statusMessage: unref(statusText), description: unref(description2), stack: unref(stack2) })), null, 16);
+      return openBlock(), createBlock(unref(ErrorTemplate), normalizeProps$1(guardReactiveProps({ status: unref(status), statusText: unref(statusText), statusCode: unref(status), statusMessage: unref(statusText), description: unref(description), stack: unref(stack2) })), null, 16);
     };
   }
 };
@@ -14929,13 +14959,15 @@ export {
   createBlock as L,
   Fragment as M,
   renderList as N,
-  normalizeProps$1 as O,
-  guardReactiveProps as P,
-  resolveDirective as Q,
-  withDirectives as R,
-  onUnmounted as S,
-  vShow as T,
-  mergeProps as U,
+  useLocale as O,
+  normalizeProps$1 as P,
+  guardReactiveProps as Q,
+  toRef as R,
+  resolveDirective as S,
+  withDirectives as T,
+  onUnmounted as U,
+  vShow as V,
+  mergeProps as W,
   __vitePreload as _,
   useNuxtApp as a,
   onNuxtReady as b,

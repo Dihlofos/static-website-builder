@@ -1,7 +1,18 @@
 <script setup>
-import navigation from '~/../data/common/navigation/ru'
+import { computed, toRef } from 'vue'
+import navigationRu from '~/../data/common/navigation/ru'
+import navigationEn from '~/../data/common/navigation/en'
+import uiRu from '~/../data/common/ui/ru'
+import uiEn from '~/../data/common/ui/en'
 
-const { navItems, images } = navigation
+const props = defineProps({
+  locale: { type: String, default: null },
+})
+const { locale } = useLocale(toRef(props, 'locale'))
+const navigationByLocale = { ru: navigationRu, en: navigationEn }
+const uiByLocale = { ru: uiRu, en: uiEn }
+const navigation = computed(() => navigationByLocale[locale.value])
+const ui = computed(() => uiByLocale[locale.value])
 const mobileOpen = ref(false)
 
 function toggleMobile() {
@@ -15,14 +26,14 @@ function closeMobile() {
 
 <template>
   <nav class="nav" :class="{ 'nav--open': mobileOpen }">
-    <button class="nav__toggle" @click="toggleMobile" aria-label="Меню">
-      <Image v-if="!mobileOpen" :src="images.burger" alt="Открыть меню" width="44" height="44" />
-      <Image v-else :src="images.close" alt="Закрыть меню" width="35" height="35" />
+    <button class="nav__toggle" @click="toggleMobile" :aria-label="ui.menu">
+      <Image v-if="!mobileOpen" :src="navigation.images.burger" :alt="ui.openMenu" width="44" height="44" />
+      <Image v-else :src="navigation.images.close" :alt="ui.closeMenu" width="35" height="35" />
     </button>
 
     <div class="nav__overlay">
       <ul class="nav__list">
-        <li v-for="item in navItems" :key="item.link" class="nav__item">
+        <li v-for="item in navigation.navItems" :key="item.link" class="nav__item">
           <a :href="item.link" class="nav__link" v-anchor @click="closeMobile">
             {{ item.label }}
           </a>
