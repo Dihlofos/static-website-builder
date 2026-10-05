@@ -82,5 +82,5 @@ export default defineNuxtConfig({
     },
   },
 
-  watch: ['../data/**/*.json'],
+  watch: ['../data/**/*.ts'],
 })

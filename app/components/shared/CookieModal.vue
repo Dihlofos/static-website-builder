@@ -29,7 +29,7 @@ function accept() {
     </div>
 
     <button class="cookie-modal__close" @click="accept">
-      Ok
+      Ок
     </button>
   </div>
 </template>

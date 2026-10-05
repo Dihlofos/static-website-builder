@@ -1,6 +1,6 @@
 <script setup>
-import heroData from '~/../data/sections/hero.json'
-import faqData from '~/../data/sections/faq.json'
+import heroData from '~/../data/sections/hero/ru'
+import faqData from '~/../data/sections/faq/ru'
 
 // Здесь можно переписать title и description для каждой страницы, если нужно
 useHead({

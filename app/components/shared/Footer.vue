@@ -1,5 +1,5 @@
 <script setup>
-import footerData from '~/../data/sections/footer.json'
+import footerData from '~/../data/sections/footer/ru'
 </script>
 
 <template>

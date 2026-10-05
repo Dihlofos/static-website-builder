@@ -1,5 +1,5 @@
 <script setup>
-import site from '~/../data/site.json'
+import site from '~/../data/common/site/ru'
 import { getYM } from '~/utils/getYM'
 
 const YM_ID = '999999999' // ⚠️ ЗДЕСЬ МЕНЯТЬ ID ЯНДЕКС.МЕТРИКИ

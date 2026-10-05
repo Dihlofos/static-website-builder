@@ -1,6 +1,7 @@
 <script setup>
-import { navItems, images } from '~/../data/navigation.json'
+import navigation from '~/../data/common/navigation/ru'
 
+const { navItems, images } = navigation
 const mobileOpen = ref(false)
 
 function toggleMobile() {
