@@ -10,8 +10,7 @@ const errors = []
 
 async function findLocaleDirectories(directory) {
   const entries = await readdir(directory, { withFileTypes: true })
-  const files = new Set(entries.filter((entry) => entry.isFile()).map((entry) => entry.name))
-  const hasLocaleFile = files.has('ru.ts') || files.has('en.ts')
+  const hasLocaleFile = entries.some((entry) => entry.isFile() && entry.name.endsWith('.ts'))
   const directories = hasLocaleFile ? [directory] : []
 
   for (const entry of entries) {
@@ -65,88 +64,115 @@ async function readLocaleFile(filePath) {
   return defaultExport.expression
 }
 
-function compareNodes(ruNode, enNode, keyPath, ruPath, enPath) {
-  const ruShape = describeNode(ruNode)
-  const enShape = describeNode(enNode)
+function compareNodes(referenceNode, localeNode, keyPath, referencePath, localePath, referenceLocale, locale) {
+  const referenceShape = describeNode(referenceNode)
+  const localeShape = describeNode(localeNode)
 
-  if (ruShape.kind !== enShape.kind) {
-    errors.push(`${relative(projectRoot, ruPath)} ↔ ${relative(projectRoot, enPath)}: ${keyPath || '<root>'} has incompatible structure (ru: ${ruShape.kind}, en: ${enShape.kind})`)
+  if (referenceShape.kind !== localeShape.kind) {
+    errors.push(`${relative(projectRoot, referencePath)} ↔ ${relative(projectRoot, localePath)}: ${keyPath || '<root>'} has incompatible structure (${referenceLocale}: ${referenceShape.kind}, ${locale}: ${localeShape.kind})`)
     return
   }
 
-  if (ruShape.kind === 'object') {
-    const ruProperties = new Map()
-    const enProperties = new Map()
+  if (referenceShape.kind === 'object') {
+    const referenceProperties = new Map()
+    const localeProperties = new Map()
 
-    for (const property of ruShape.node.properties) {
+    for (const property of referenceShape.node.properties) {
       if (!ts.isPropertyAssignment(property)) {
-        errors.push(`${relative(projectRoot, ruPath)}: unsupported object member at ${keyPath || '<root>'}`)
+        errors.push(`${relative(projectRoot, referencePath)}: unsupported object member at ${keyPath || '<root>'}`)
         continue
       }
       const name = propertyName(property.name)
       if (name === undefined) {
-        errors.push(`${relative(projectRoot, ruPath)}: unsupported computed key at ${keyPath || '<root>'}`)
+        errors.push(`${relative(projectRoot, referencePath)}: unsupported computed key at ${keyPath || '<root>'}`)
         continue
       }
-      ruProperties.set(name, property.initializer)
+      referenceProperties.set(name, property.initializer)
     }
 
-    for (const property of enShape.node.properties) {
+    for (const property of localeShape.node.properties) {
       if (!ts.isPropertyAssignment(property)) {
-        errors.push(`${relative(projectRoot, enPath)}: unsupported object member at ${keyPath || '<root>'}`)
+        errors.push(`${relative(projectRoot, localePath)}: unsupported object member at ${keyPath || '<root>'}`)
         continue
       }
       const name = propertyName(property.name)
       if (name === undefined) {
-        errors.push(`${relative(projectRoot, enPath)}: unsupported computed key at ${keyPath || '<root>'}`)
+        errors.push(`${relative(projectRoot, localePath)}: unsupported computed key at ${keyPath || '<root>'}`)
         continue
       }
-      enProperties.set(name, property.initializer)
+      localeProperties.set(name, property.initializer)
     }
 
-    const keys = [...new Set([...ruProperties.keys(), ...enProperties.keys()])].sort()
+    const keys = [...new Set([...referenceProperties.keys(), ...localeProperties.keys()])].sort()
     for (const key of keys) {
       const nestedPath = keyPath ? `${keyPath}.${key}` : key
-      if (!ruProperties.has(key)) {
-        errors.push(`${relative(projectRoot, ruPath)} ↔ ${relative(projectRoot, enPath)}: ${nestedPath} is missing in ru`)
-      } else if (!enProperties.has(key)) {
-        errors.push(`${relative(projectRoot, ruPath)} ↔ ${relative(projectRoot, enPath)}: ${nestedPath} is missing in en`)
+      if (!referenceProperties.has(key)) {
+        errors.push(`${relative(projectRoot, referencePath)} ↔ ${relative(projectRoot, localePath)}: ${nestedPath} is missing in ${referenceLocale}`)
+      } else if (!localeProperties.has(key)) {
+        errors.push(`${relative(projectRoot, referencePath)} ↔ ${relative(projectRoot, localePath)}: ${nestedPath} is missing in ${locale}`)
       } else {
-        compareNodes(ruProperties.get(key), enProperties.get(key), nestedPath, ruPath, enPath)
+        compareNodes(referenceProperties.get(key), localeProperties.get(key), nestedPath, referencePath, localePath, referenceLocale, locale)
       }
     }
     return
   }
 
-  if (ruShape.kind === 'array') {
-    const ruElements = ruShape.node.elements
-    const enElements = enShape.node.elements
-    if (ruElements.length !== enElements.length) {
-      errors.push(`${relative(projectRoot, ruPath)} ↔ ${relative(projectRoot, enPath)}: ${keyPath || '<root>'} has different array lengths (ru: ${ruElements.length}, en: ${enElements.length})`)
+  if (referenceShape.kind === 'array') {
+    const referenceElements = referenceShape.node.elements
+    const localeElements = localeShape.node.elements
+    if (referenceElements.length !== localeElements.length) {
+      errors.push(`${relative(projectRoot, referencePath)} ↔ ${relative(projectRoot, localePath)}: ${keyPath || '<root>'} has different array lengths (${referenceLocale}: ${referenceElements.length}, ${locale}: ${localeElements.length})`)
     }
-    for (let index = 0; index < Math.min(ruElements.length, enElements.length); index++) {
-      compareNodes(ruElements[index], enElements[index], `${keyPath}[${index}]`, ruPath, enPath)
+    for (let index = 0; index < Math.min(referenceElements.length, localeElements.length); index++) {
+      compareNodes(referenceElements[index], localeElements[index], `${keyPath}[${index}]`, referencePath, localePath, referenceLocale, locale)
     }
   }
 }
 
 for (const localeDirectory of localeDirectories) {
   const root = join(dataRoot, localeDirectory)
-  const directories = await findLocaleDirectories(root)
+  const directories = (await findLocaleDirectories(root)).sort()
+  const directoryFiles = await Promise.all(directories.map(async (directory) => ({
+    directory,
+    locales: (await readdir(directory)).filter((file) => file.endsWith('.ts')).sort(),
+  })))
+  const referenceLocales = directoryFiles.reduce((reference, current) =>
+    current.locales.length > reference.length ? current.locales : reference,
+  [],)
 
-  for (const directory of directories) {
-    const ruPath = join(directory, 'ru.ts')
-    const enPath = join(directory, 'en.ts')
-    const entries = await readdir(directory)
-    const hasRu = entries.includes('ru.ts')
-    const hasEn = entries.includes('en.ts')
+  for (const { directory, locales } of directoryFiles) {
+    if (locales.length !== referenceLocales.length) {
+      for (const localeFile of referenceLocales) {
+        if (!locales.includes(localeFile)) {
+          errors.push(`${relative(projectRoot, join(directory, localeFile))} is missing`)
+        }
+      }
+      if (locales.length > referenceLocales.length) {
+        errors.push(`${relative(projectRoot, directory)} has ${locales.length} locale files; expected ${referenceLocales.length}`)
+      }
+      continue
+    }
 
-    if (!hasRu) errors.push(`${relative(projectRoot, ruPath)} is missing`)
-    if (!hasEn) errors.push(`${relative(projectRoot, enPath)} is missing`)
-    if (!hasRu || !hasEn) continue
+    const missingLocales = referenceLocales.filter((localeFile) => !locales.includes(localeFile))
+    if (missingLocales.length > 0) {
+      for (const localeFile of missingLocales) {
+        errors.push(`${relative(projectRoot, join(directory, localeFile))} is missing`)
+      }
+      continue
+    }
 
-    const [ruObject, enObject] = await Promise.all([readLocaleFile(ruPath), readLocaleFile(enPath)])
-    if (ruObject && enObject) compareNodes(ruObject, enObject, '', ruPath, enPath)
+    const referenceLocaleFile = locales[0]
+    const referenceLocale = referenceLocaleFile.slice(0, -3)
+    const referencePath = join(directory, referenceLocaleFile)
+    const referenceObject = await readLocaleFile(referencePath)
+    if (!referenceObject) continue
+
+    for (const localeFile of locales.slice(1)) {
+      const locale = localeFile.slice(0, -3)
+      const localePath = join(directory, localeFile)
+      const localeObject = await readLocaleFile(localePath)
+      if (localeObject) compareNodes(referenceObject, localeObject, '', referencePath, localePath, referenceLocale, locale)
+    }
   }
 }
 

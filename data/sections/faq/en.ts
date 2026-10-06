@@ -5,6 +5,7 @@ export default {
     decorLeft: '/images/faq/decor-left.svg',
     decorRight: '/images/faq/decor-right.svg',
     arrowDown: '/images/faq/arrow-down.svg',
+    arrowUp: '/images/faq/arrow-up.svg',
   },
   items: [
     {
