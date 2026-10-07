@@ -1,15 +1,13 @@
 <script setup>
-import siteRu from '~/../data/common/site/ru'
-import siteEn from '~/../data/common/site/en'
+import { localeData } from '~/../data/locales'
 import { provideLocale } from '~/composables/useLocale'
 import { getYM } from '~/utils/getYM'
 
 const YM_ID = '999999999' // ⚠️ ЗДЕСЬ МЕНЯТЬ ID ЯНДЕКС.МЕТРИКИ
 const { locale } = provideLocale()
-const sites = { ru: siteRu, en: siteEn }
 
 useHead(() => {
-  const site = sites[locale.value]
+  const site = localeData[locale.value].common.site
 
   return {
     htmlAttrs: { lang: locale.value },

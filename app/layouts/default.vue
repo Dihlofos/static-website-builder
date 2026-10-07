@@ -1,12 +1,16 @@
 <script setup>
+import { useLocaleData } from '~/composables/useLocale'
+
+const localeData = useLocaleData()
+const common = computed(() => localeData.value.common)
 </script>
 
 <template>
   <div class="page">
-    <Header />
+    <Header :navigation="common.navigation" :ui="common.ui" />
     <slot />
-    <Footer />
-    <CookieModal />
+    <Footer :footer-data="common.footer" />
+    <CookieModal :ui="common.ui" />
   </div>
 </template>
 

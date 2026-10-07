@@ -1,18 +1,8 @@
 <script setup>
-import { computed, toRef } from 'vue'
-import navigationRu from '~/../data/common/navigation/ru'
-import navigationEn from '~/../data/common/navigation/en'
-import uiRu from '~/../data/common/ui/ru'
-import uiEn from '~/../data/common/ui/en'
-
-const props = defineProps({
-  locale: { type: String, default: null },
+defineProps({
+  navigation: { type: Object, required: true },
+  ui: { type: Object, required: true },
 })
-const { locale } = useLocale(toRef(props, 'locale'))
-const navigationByLocale = { ru: navigationRu, en: navigationEn }
-const uiByLocale = { ru: uiRu, en: uiEn }
-const navigation = computed(() => navigationByLocale[locale.value])
-const ui = computed(() => uiByLocale[locale.value])
 const mobileOpen = ref(false)
 
 function toggleMobile() {

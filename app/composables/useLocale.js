@@ -1,13 +1,13 @@
-import { computed, inject, provide, ref, unref } from 'vue'
+import { computed, inject, provide, ref } from 'vue'
+import { DEFAULT_LOCALE, localeData, SUPPORTED_LOCALES } from '~/../data/locales'
 
 const localeKey = Symbol('app-locale')
-const supportedLocales = ['ru', 'en']
 
 export function provideLocale() {
-  const locale = ref('ru')
+  const locale = ref(DEFAULT_LOCALE)
 
   function setLocale(nextLocale) {
-    if (supportedLocales.includes(nextLocale)) {
+    if (SUPPORTED_LOCALES.includes(nextLocale)) {
       locale.value = nextLocale
     }
   }
@@ -18,17 +18,17 @@ export function provideLocale() {
   return context
 }
 
-export function useLocale(localeOverride) {
+export function useLocale() {
   const context = inject(localeKey)
 
   if (!context) {
     throw new Error('useLocale must be called under the application locale provider')
   }
 
-  const locale = computed(() => {
-    const override = unref(localeOverride)
-    return supportedLocales.includes(override) ? override : context.locale.value
-  })
+  return context
+}
 
-  return { locale, setLocale: context.setLocale }
+export function useLocaleData() {
+  const { locale } = useLocale()
+  return computed(() => localeData[locale.value])
 }

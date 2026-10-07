@@ -1,14 +1,9 @@
 <script setup lang="ts">
-import { computed, ref, onMounted, toRef } from 'vue'
-import uiRu from '~/../data/common/ui/ru'
-import uiEn from '~/../data/common/ui/en'
+import { ref, onMounted } from 'vue'
 
-const props = defineProps({
-  locale: { type: String, default: null },
+defineProps({
+  ui: { type: Object, required: true },
 })
-const { locale } = useLocale(toRef(props, 'locale'))
-const uiByLocale = { ru: uiRu, en: uiEn }
-const ui = computed(() => uiByLocale[locale.value])
 const STORAGE_KEY = 'cookie-modal-shown'
 
 const isVisible = ref(false)

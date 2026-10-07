@@ -1,7 +1,5 @@
 <script setup>
-import { computed, ref, onMounted, onBeforeUnmount, toRef } from 'vue'
-import uiRu from '~/../data/common/ui/ru'
-import uiEn from '~/../data/common/ui/en'
+import { ref, onMounted, onBeforeUnmount } from 'vue'
 import { Swiper, SwiperSlide } from 'swiper/vue'
 import { Navigation } from 'swiper/modules'
 import 'swiper/css'
@@ -10,13 +8,10 @@ const props = defineProps({
   items: { type: Array, required: true },
   arrowLeft: { type: String, required: true },
   arrowRight: { type: String, required: true },
-  locale: { type: String, default: null },
+  ui: { type: Object, required: true },
   /** @type {number} Ширина экрана в px, выше которой включается Swiper-слайдер */
   desktopBreakpoint: { type: Number, default: 1025 },
 })
-const { locale } = useLocale(toRef(props, 'locale'))
-const uiByLocale = { ru: uiRu, en: uiEn }
-const ui = computed(() => uiByLocale[locale.value])
 
 // ═══════════════════════════════════════════
 // Переключение Desktop ↔ Mobile

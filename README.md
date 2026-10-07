@@ -58,18 +58,18 @@ npm run clean    # Clean Nuxt cache
 
 ## How It Works
 
-1. **Localized content** lives in `data/sections/<section>/{ru,en}.ts`. Shared localized data such as navigation, site metadata, and common UI strings lives in `data/common/<group>/{ru,en}.ts`.
-2. **Locale state** is created in `app/app.vue` with `provide/inject`; `useLocale()` exposes the reactive current locale and `setLocale()` to descendants. A component may pass an explicit locale to `useLocale(locale)` to override the inherited language locally. Russian (`ru`) is the default; changing language is not persisted across reloads.
-3. **Data consumers** statically import both locale modules and select the matching object reactively. This keeps both translations in the client build so switching works without a server or runtime fetch, including on a statically published site.
-4. **Pages** in `app/pages/` pass the selected section data to components as props. `data/pages/index.json` is shared and not localized; the current `app/pages/index.vue` directly renders Hero followed by FAQ, so that JSON does not currently control its rendered section list.
+1. **Localized content** lives in one set per page and locale, such as `data/pages/index/{ru,en}.ts`. Shared localized data for site metadata, navigation, footer, and UI strings lives in `data/common/{ru,en}.ts`.
+2. **Locale registry** in `data/locales.ts` statically imports every supported language set and is the single source for `SUPPORTED_LOCALES` and `DEFAULT_LOCALE`. Both language bundles are part of the app's static import graph; locale switching does not fetch files at runtime.
+3. **Locale state** is created in `app/app.vue` with `provide/inject`; `useLocale()` exposes the reactive current locale and `setLocale()` to descendants. `useLocaleData()` selects the registered data for the active locale. Russian (`ru`) is the default; changing language is not persisted across reloads.
+4. **Data consumers** are the page and layout boundaries. They pass the selected page/common data to display components as props; display components do not import locale files or select a language. `data/pages/index.json` is shared and does not control the current `HeroSection` → `Faq` render order.
 5. **Build** (`npm run generate`) produces a fully static site, then `scripts/format-html.js` beautifies the output HTML.
 
 ## Adding a New Section
 
-1. **Create both locale modules** — `data/sections/gallery/ru.ts` and `data/sections/gallery/en.ts`. Export the same object shape from each file; translate text values and keep IDs, links, and shared asset paths consistent.
+1. **Add data for both locales** — add a `gallery` object with the same shape to `data/pages/index/ru.ts` and `data/pages/index/en.ts`. Translate text values and keep IDs, links, and shared asset paths consistent.
 2. **Create a section component** — `app/components/sections/GallerySection.vue`, with props matching the data object.
-3. **Add images** — place files in `app/public/images/gallery/`; store their public-root paths (for example, `/images/gallery/photo.jpg`) in the section data.
-4. **Connect the section to the page** — statically import both locale modules in `app/pages/index.vue`, select data using `useLocale()`, and pass the selected object to `<GallerySection />`.
+3. **Add images** — place files in `app/public/images/gallery/`; store their public-root paths (for example, `/images/gallery/photo.jpg`) in the page data.
+4. **Connect the section to the page** — get the active page set with `useLocaleData()` in `app/pages/index.vue` and pass the selected `gallery` object to `<GallerySection />`.
 5. Keep the page's section list language-independent. The current home page renders sections directly in `app/pages/index.vue`; `data/pages/index.json` is not currently used to build that page.
 
 ### Image Handling
