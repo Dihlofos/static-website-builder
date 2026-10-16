@@ -61,7 +61,7 @@ function isOpen(index) {
               :class="{ active: isOpen(index) }"
               role="region"
             >
-              <p v-html="sanitizeText(item.answer)"></p>
+              <p>{{ item.answer }}</p>
             </div>
           </div>
         </div>
