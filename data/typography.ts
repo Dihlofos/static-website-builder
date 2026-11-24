@@ -51,20 +51,20 @@ export function preventHangingWords(text: string, locale: Locale) {
   })
 }
 
-export function applyTypography<T>(value: T, locale: Locale, key = ''): T {
+export function applyTypography<T>(value: T, locale: Locale, key = '', skip = false): T {
   if (typeof value === 'string') {
-    return (NON_TEXT_KEYS.has(key) ? value : preventHangingWords(value, locale)) as T
+    return (skip || NON_TEXT_KEYS.has(key) ? value : preventHangingWords(value, locale)) as T
   }
 
   if (Array.isArray(value)) {
-    return value.map(item => applyTypography(item, locale, key)) as T
+    return value.map(item => applyTypography(item, locale, key, skip)) as T
   }
 
   if (value && typeof value === 'object') {
     return Object.fromEntries(
       Object.entries(value).map(([nestedKey, nestedValue]) => [
         nestedKey,
-        applyTypography(nestedValue, locale, nestedKey),
+        applyTypography(nestedValue, locale, nestedKey, skip || nestedKey === 'site'),
       ]),
     ) as T
   }

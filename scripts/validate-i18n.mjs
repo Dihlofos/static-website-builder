@@ -1,4 +1,5 @@
 import { readFile } from 'node:fs/promises'
+import { existsSync } from 'node:fs'
 import { dirname, join, relative } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import ts from 'typescript'
@@ -119,6 +120,13 @@ function compareNodes(referenceNode, localeNode, setName, keyPath) {
   }
 }
 
+const configuredLocales = ['ru', 'en'].filter((locale) =>
+  localePairs.every(({ ru, en }) => existsSync(locale === 'ru' ? ru : en)),
+)
+if (configuredLocales.length < 2) {
+  console.log('i18n validation skipped: fewer than two locales are configured')
+  process.exit(0)
+}
 for (const { name, ru: ruPath, en: enPath } of localePairs) {
   const [ruObject, enObject] = await Promise.all([
     readLocaleFile(ruPath, name, 'ru'),

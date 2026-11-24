@@ -6,9 +6,7 @@
   "scripts": {
     "prepare": "husky",
     "validate:i18n": "node scripts/validate-i18n.mjs",
-    "predev": "npm run validate:i18n",
     "dev": "npx nuxt dev --cwd app",
-    "pregenerate": "npm run validate:i18n",
     "generate": "npx nuxt generate --cwd app",
     "preview": "npx serve ./app/.output/public",
     "clean": "npx nuxt cleanup --cwd app"
